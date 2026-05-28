@@ -2,7 +2,7 @@
 import { writeFileSync, readFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { fetchWcagJson, parseWcagJson } from "./src/fetchers/wcag.ts";
+import { fetchQuickref, parseQuickrefHtml } from "./src/fetchers/wcag.ts";
 import { fetchTechnique, extractExamplesFromTechnique, type ScrapedExample } from "./src/fetchers/techniques.ts";
 import { loadAxeRules, groupRulesByCriterion } from "./src/fetchers/axe.ts";
 import { assembleRaw, type RawCriterion } from "./src/assemble-raw.ts";
@@ -13,7 +13,7 @@ const RAW_PATH = join(here, "raw/criteria-raw.json");
 const CACHE_DIR = join(here, "cache");
 const OUTPUT_PATH = join(here, "..", "template/src/data/wcag-criteria.json");
 
-const WCAG_JSON_URL = "https://raw.githubusercontent.com/w3c/wcag/main/_data/wcag22.json";
+const WCAG_QUICKREF_URL = "https://www.w3.org/WAI/WCAG22/quickref/";
 
 const TECHNIQUES_BY_CRITERION: Record<string, string[]> = {
   "1.4.3": ["G18", "G145"],
@@ -21,9 +21,9 @@ const TECHNIQUES_BY_CRITERION: Record<string, string[]> = {
 };
 
 async function fetchPhase(): Promise<void> {
-  console.log("Phase 1.1: fetching wcag.json...");
-  const wcagInput = await fetchWcagJson(WCAG_JSON_URL);
-  const wcagBase = parseWcagJson(wcagInput);
+  console.log("Phase 1.1: fetching WCAG quickref HTML...");
+  const html = await fetchQuickref(WCAG_QUICKREF_URL);
+  const wcagBase = parseQuickrefHtml(html);
   console.log(`  → ${wcagBase.length} criteria`);
 
   console.log("Phase 1.2: scraping technique pages...");
