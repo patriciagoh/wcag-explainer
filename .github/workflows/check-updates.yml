@@ -1,0 +1,46 @@
+name: Check WCAG source updates
+on:
+  schedule:
+    - cron: '0 10 * * 1'   # weekly Monday 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install script deps
+        working-directory: scripts
+        run: npm ci
+
+      - name: Run check-updates
+        id: check
+        working-directory: scripts
+        run: |
+          set +e
+          npm run check-updates > ../diff.md
+          echo "exitcode=$?" >> $GITHUB_OUTPUT
+          set -e
+
+      - name: Set changed output
+        id: changed
+        run: |
+          if [ "${{ steps.check.outputs.exitcode }}" = "1" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Open PR if changed
+        if: steps.changed.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "WCAG source updates detected"
+          body-path: diff.md
+          branch: wcag-update-check
+          commit-message: "chore: detected WCAG/axe upstream drift"
