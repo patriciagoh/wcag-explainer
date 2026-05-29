@@ -1,0 +1,27 @@
+{
+  "inputHash": "ed2fb637f63a61f755370420623d27cedf32e26f34e0d24db119919479399d94",
+  "plainEnglish": "Don't make users re-enter information they already provided earlier in the same process. Auto-populate it, or let them pick it from a previous answer (like a 'same as billing address' checkbox). Exceptions: when re-entry is essential or for security (e.g., confirming a password).",
+  "whyItMatters": "Users with cognitive disabilities or motor impairments are burdened by re-typing the same information—like an address—multiple times in one flow.",
+  "quickCheck": "Walk through a multi-step flow and confirm previously entered info is auto-filled or selectable, not re-typed (except passwords or genuinely essential re-entry).",
+  "commonMistakes": [
+    "Asking for the same address or email again later in the same flow with no auto-fill.",
+    "Providing no 'same as above' option to copy previously entered data.",
+    "Clearing earlier answers and forcing re-entry after a validation error."
+  ],
+  "codeExamples": [
+    {
+      "label": "Reuse earlier input with a 'same as' option",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label>\n  <input type=\"checkbox\" onChange={copyBillingToShipping} />\n  Shipping address same as billing\n</label>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Forces re-entry of the same data",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Same address must be typed a second time */}\n<fieldset>\n  <legend>Shipping address</legend>\n  {/* empty fields again */}\n</fieldset>",
+      "source": "synthesized"
+    }
+  ]
+}

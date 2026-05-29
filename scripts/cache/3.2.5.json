@@ -1,0 +1,27 @@
+{
+  "inputHash": "d857f1b2cf7f7896a660672a5ef79bf2077ed7d33df30b0bd71994fbfaa6b0db",
+  "plainEnglish": "At Level AAA, changes of context—navigation, new windows, major content swaps—happen only when the user explicitly requests them, or you provide a way to turn automatic changes off. No surprise redirects, auto-refreshes, or pop-ups.",
+  "whyItMatters": "Users with cognitive disabilities and screen reader users lose their place when the page redirects, refreshes, or opens windows automatically without their request.",
+  "quickCheck": "Confirm context changes happen only on explicit user action, and check there's no <meta http-equiv=\"refresh\"> auto-redirect (axe meta-refresh-no-exceptions).",
+  "commonMistakes": [
+    "Auto-refreshing or auto-redirecting with <meta http-equiv=\"refresh\"> (axe meta-refresh-no-exceptions).",
+    "Opening new windows or popups the user didn't request.",
+    "Automatically advancing carousels or content in a way that changes context."
+  ],
+  "codeExamples": [
+    {
+      "label": "Context changes only on a user click",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Navigation happens only when the user chooses */}\n<button onClick={() => navigate(\"/dashboard\")}>Go to dashboard</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Automatic redirect, not user-initiated",
+      "kind": "fail",
+      "language": "html",
+      "code": "<!-- Redirects on a timer rather than on user request -->\n<meta http-equiv=\"refresh\" content=\"5; url=/dashboard\" />",
+      "source": "synthesized"
+    }
+  ]
+}

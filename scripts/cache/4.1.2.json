@@ -1,0 +1,29 @@
+{
+  "inputHash": "0112ef1dd0924a76087cb8fc8550d9cb9909c3963535a5e3358feecac9c32f8f",
+  "plainEnglish": "Every UI component must expose its name (what it's called), role (what kind of thing it is—button, checkbox, tab), and value/state (checked, expanded, selected) to assistive tech, and notify them when these change. Native HTML elements do this for free; custom widgets built from <div>s need the right ARIA roles, properties, and states.",
+  "whyItMatters": "Screen reader users can't understand or operate a custom control built from <div>s—they don't hear what it is, what it's called, or whether it's on or off—unless its name, role, and state are exposed.",
+  "quickCheck": "Inspect custom widgets in the Chrome DevTools Accessibility pane and confirm each exposes a name, a correct role, and current state; axe flags missing names (button-name, link-name, label) and invalid ARIA.",
+  "commonMistakes": [
+    "Building buttons, checkboxes, or tabs from <div>s with no role and no ARIA state — use native elements or add role plus aria-*.",
+    "Buttons, links, or inputs with no accessible name (axe button-name, link-name, label).",
+    "A custom toggle that never updates aria-checked or aria-expanded when its state changes.",
+    "Invalid or unsupported ARIA attributes and roles (axe aria-allowed-attr, aria-roles).",
+    "An icon-only button whose only content is an SVG with no label."
+  ],
+  "codeExamples": [
+    {
+      "label": "Native button exposes name, role, and state",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* aria-pressed exposes the toggle state; the role and name are built in */}\n<button aria-pressed={on} onClick={toggle}>Mute</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Div toggle exposes nothing to assistive tech",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No role, no name, no state */}\n<div className=\"toggle\" onClick={toggle} />",
+      "source": "synthesized"
+    }
+  ]
+}

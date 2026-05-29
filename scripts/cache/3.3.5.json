@@ -1,0 +1,27 @@
+{
+  "inputHash": "fcae20e85e81884a76d8ef5c5378b10140c1af0d9d5f39b017b1a5bdcf3204f4",
+  "plainEnglish": "At Level AAA, provide context-sensitive help—inline hints, a help link near complex fields, examples, or access to support. People who get stuck on a form or task should be able to get guidance without leaving the page.",
+  "whyItMatters": "Users with cognitive disabilities may be unable to complete a complex form or task without context-sensitive help available right where they're working.",
+  "quickCheck": "Confirm complex forms and tasks offer context-sensitive help—inline hints, examples, or a help link near the relevant fields.",
+  "commonMistakes": [
+    "Complex forms with no inline help, examples, or hints.",
+    "Burying help on a separate page far from where it's needed.",
+    "Offering no way to reach human support when self-help isn't enough."
+  ],
+  "codeExamples": [
+    {
+      "label": "Inline help next to a complex field",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label htmlFor=\"tax-id\">Tax ID</label>\n<input id=\"tax-id\" aria-describedby=\"tax-help\" />\n<p id=\"tax-help\">\n  Find this on line 2 of your W-9. <a href=\"/help/tax-id\">Need help?</a>\n</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Complex field with no help available",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<label htmlFor=\"tax-id\">Tax ID</label>\n<input id=\"tax-id\" />",
+      "source": "synthesized"
+    }
+  ]
+}

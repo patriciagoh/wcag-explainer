@@ -1,0 +1,28 @@
+{
+  "inputHash": "2f3e3574534c222c60ae56e6566ac891570a3fc633d90add852ec328c4e3f7b7",
+  "plainEnglish": "Set the page's default language with a lang attribute on the <html> element (e.g., lang=\"en\"). Screen readers use it to choose the right pronunciation rules and voice; without it, English text might be read with a French accent and vice versa.",
+  "whyItMatters": "Screen readers mispronounce an entire page—making it hard to understand—when the <html> element has no valid lang attribute telling them which language to speak.",
+  "quickCheck": "Inspect the <html> element and confirm it has a valid lang attribute (e.g., lang=\"en\"); axe's html-has-lang and html-lang-valid rules check this.",
+  "commonMistakes": [
+    "Omitting the lang attribute on the <html> element entirely (axe html-has-lang).",
+    "Using an invalid or made-up language code like lang=\"english\" instead of lang=\"en\" (axe html-lang-valid).",
+    "lang and xml:lang attributes that disagree on the page's language (axe html-xml-lang-mismatch).",
+    "Hard-coding lang=\"en\" on a site that serves multiple languages instead of setting it per locale."
+  ],
+  "codeExamples": [
+    {
+      "label": "Document declares its language",
+      "kind": "pass",
+      "language": "html",
+      "code": "<html lang=\"en\">",
+      "source": "synthesized"
+    },
+    {
+      "label": "Document with no lang attribute",
+      "kind": "fail",
+      "language": "html",
+      "code": "<html>",
+      "source": "synthesized"
+    }
+  ]
+}

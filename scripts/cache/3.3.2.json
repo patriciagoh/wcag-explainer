@@ -1,0 +1,28 @@
+{
+  "inputHash": "03436c0f93124bf8b46e73142d46612924d005c9c6393084060232eb0a1ea5c0",
+  "plainEnglish": "Every input that requires user data needs a clear label or instructions telling people what to enter. Use a real <label> tied to the field, and add format hints (like 'MM/DD/YYYY') where needed. Placeholders alone don't count—they vanish as soon as the user types.",
+  "whyItMatters": "Screen reader users can't fill in a field that has no associated label, and everyone struggles when required formats (date, password rules) aren't stated.",
+  "quickCheck": "Confirm every input has a programmatically associated <label> plus any needed format instructions; axe's form-field-multiple-labels flags fields with conflicting labels.",
+  "commonMistakes": [
+    "Using placeholder text as the only label, which disappears once the user types.",
+    "No instructions for required formats (date format, password rules).",
+    "Multiple <label> elements on one field, confusing its accessible name (axe form-field-multiple-labels).",
+    "A label not associated with its input (missing htmlFor/id pairing)."
+  ],
+  "codeExamples": [
+    {
+      "label": "Associated label plus a format hint",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label htmlFor=\"dob\">Date of birth</label>\n<input id=\"dob\" aria-describedby=\"dob-hint\" />\n<span id=\"dob-hint\">Format: MM/DD/YYYY</span>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Placeholder used instead of a label",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<input placeholder=\"Date of birth (MM/DD/YYYY)\" />",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "b050ffffe9b6bd90ca305ceea75dccbcf166fb36006fbf9754f3c3c540fafc78",
+  "plainEnglish": "This is the stricter Level AAA version of 3.3.8: a cognitive function test can't be required at any authentication step unless there's a non-cognitive alternative or an assisting mechanism—and the object-recognition and personal-content exceptions of 3.3.8 are removed. Prefer passwordless methods like passkeys.",
+  "whyItMatters": "Users with cognitive disabilities are excluded by any login step requiring memory or puzzle-solving, even the object-recognition CAPTCHAs that are still allowed at Level AA.",
+  "quickCheck": "Confirm authentication offers a method with no cognitive test at all—such as passkeys, email magic links, or full password-manager support.",
+  "commonMistakes": [
+    "Requiring an object-recognition CAPTCHA (allowed at AA but not at AAA).",
+    "Offering only password-based login with no passwordless alternative.",
+    "Blocking password managers or paste on credential fields."
+  ],
+  "codeExamples": [
+    {
+      "label": "Passwordless sign-in with no cognitive test",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Passkeys require no memory or puzzle-solving */}\n<button onClick={signInWithPasskey}>Sign in with a passkey</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Login gated behind a puzzle CAPTCHA",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Requires solving a puzzle to authenticate */}\n<PuzzleCaptcha onSolve={continueLogin} />",
+      "source": "synthesized"
+    }
+  ]
+}

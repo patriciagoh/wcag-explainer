@@ -1,0 +1,27 @@
+{
+  "inputHash": "e34ba8c428522685f5176cb0592aab5adc04654d1c3a519e95b7133ee55d46f7",
+  "plainEnglish": "This is the Level AAA version of 3.3.4, applied to all forms that submit information—not just legal, financial, or data-changing ones. Any submission should be reversible, error-checked, or confirmable before finalizing. Give every form a safety net.",
+  "whyItMatters": "Users with disabilities can make submission mistakes on any form, not just high-stakes ones, when there's no error check, confirmation, or way to reverse it.",
+  "quickCheck": "Confirm every form that submits information offers error checking, a review/confirm step, or reversibility.",
+  "commonMistakes": [
+    "Submitting any form with no validation or confirmation step.",
+    "Providing no way to edit or undo a submission after sending.",
+    "Assuming only payment forms need a safety net."
+  ],
+  "codeExamples": [
+    {
+      "label": "Validate, then confirm before submitting",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* A safety net on an ordinary form, not just checkout */}\n<button onClick={validateThenConfirm}>Review and submit</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Form submits immediately with no checks",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No validation or confirmation */}\n<form onSubmit={submitNow}>{/* fields */}</form>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "12e8cdc59730d2da13cbf463ea361660090dd8982b63c140f129c3f44aa25905",
+  "plainEnglish": "Components with the same function across pages must be identified consistently—same label, same icon, same accessible name. If a search button says 'Search' on one page and 'Find' on another, users (especially screen reader users) can't tell they do the same thing.",
+  "whyItMatters": "Screen reader users identify controls by their name; labeling the same function differently across pages (e.g., 'Search' vs. 'Find') makes them seem like different features.",
+  "quickCheck": "Confirm controls with the same function use the same label, icon, and accessible name everywhere they appear.",
+  "commonMistakes": [
+    "Labeling the same action differently across pages ('Search' vs. 'Find', 'Submit' vs. 'Send').",
+    "Using different icons for the same function in different places.",
+    "Inconsistent accessible names (aria-label) for identical controls."
+  ],
+  "codeExamples": [
+    {
+      "label": "Same label for the same action everywhere",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* This action is labeled identically on every page */}\n<button>Download PDF</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Same action labeled differently per page",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<button>Download PDF</button>   {/* page A */}\n<button>Get the file</button>  {/* page B */}",
+      "source": "synthesized"
+    }
+  ]
+}

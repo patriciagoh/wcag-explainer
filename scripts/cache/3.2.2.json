@@ -1,0 +1,27 @@
+{
+  "inputHash": "f9a82c9f6cbb1dbf2318aa8668e6a3fbe5d696e2a2a20ba259d68daee7af8686",
+  "plainEnglish": "Changing a form control's value—selecting a radio, picking from a dropdown, typing—must not automatically cause a change of context unless you've warned the user first. Don't auto-submit a form when a select changes; use an explicit submit button instead.",
+  "whyItMatters": "Screen reader and keyboard users are thrown off when selecting a dropdown option auto-submits or navigates before they've finished, with no warning.",
+  "quickCheck": "Change each form control's value and confirm nothing auto-submits or navigates unless the user was clearly warned in advance.",
+  "commonMistakes": [
+    "Auto-submitting or navigating in a select's onChange (a 'jump to' menu) with no warning or Go button.",
+    "Reloading the page when a checkbox or radio changes.",
+    "Advancing a wizard step the instant an option is selected."
+  ],
+  "codeExamples": [
+    {
+      "label": "Selection plus an explicit Go button",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<select value={page} onChange={(e) => setPage(e.target.value)}>{/* options */}</select>\n<button onClick={() => navigate(page)}>Go</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Selection navigates with no warning",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Navigates the instant a different option is chosen */}\n<select onChange={(e) => navigate(e.target.value)}>{/* options */}</select>",
+      "source": "synthesized"
+    }
+  ]
+}

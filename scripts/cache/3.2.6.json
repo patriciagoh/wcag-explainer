@@ -1,0 +1,27 @@
+{
+  "inputHash": "64ec8914216bff4feaad309306d993f61c158dcfc4b0b35aaada1a19e5c9e513",
+  "plainEnglish": "If your pages offer help mechanisms—contact details, a help link, a chat widget—and they repeat across pages, keep them in the same relative location and order on every page. Users in difficulty shouldn't have to hunt for help in a different spot each time.",
+  "whyItMatters": "Users with cognitive disabilities who need help can't find it if the contact link or help widget moves to a different place on each page.",
+  "quickCheck": "Compare pages and confirm help mechanisms (contact link, chat, help) appear in the same relative order and location on each.",
+  "commonMistakes": [
+    "Placing the help or contact link in a different spot on different pages.",
+    "Showing a chat or help widget on some pages but not others, inconsistently.",
+    "Reordering help options relative to other content between templates."
+  ],
+  "codeExamples": [
+    {
+      "label": "Help link in the same footer slot on every page",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Rendered in the same place site-wide */}\n<Footer>\n  <a href=\"/support\">Contact support</a>\n</Footer>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Help link placed inconsistently across pages",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* In the header here, buried mid-page elsewhere */}\n<header>\n  <a href=\"/support\">Contact support</a>\n</header>",
+      "source": "synthesized"
+    }
+  ]
+}

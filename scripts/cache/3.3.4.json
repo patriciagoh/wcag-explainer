@@ -1,0 +1,27 @@
+{
+  "inputHash": "fe8f98ad0d59bd87e3d773c4d8a9a8e030f21eacbc10ea79b0601b977fbada0b",
+  "plainEnglish": "For pages that create legal or financial commitments, modify or delete user data, or submit test answers, provide a safety net: make submissions reversible, check inputs for errors, or let users review and confirm before finalizing. This prevents costly mistakes on high-stakes actions.",
+  "whyItMatters": "Users with disabilities—and anyone—can make irreversible, costly mistakes (a wrong payment, a deleted account) when there's no review, confirmation, or undo step.",
+  "quickCheck": "For checkout, account changes, or deletions, confirm there's a review/confirm step, input checking, or a way to reverse the action.",
+  "commonMistakes": [
+    "Finalizing a payment or legal agreement with no review-and-confirm step.",
+    "Permanently deleting data with no confirmation or undo.",
+    "Not re-checking critical inputs before submission."
+  ],
+  "codeExamples": [
+    {
+      "label": "Review-and-confirm before an irreversible action",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<button onClick={() => setStep(\"review\")}>Review order</button>\n{step === \"review\" && (\n  <button onClick={placeOrder}>Confirm purchase</button>\n)}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Charges immediately with no confirmation",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No review step before an irreversible charge */}\n<button onClick={placeOrder}>Buy now</button>",
+      "source": "synthesized"
+    }
+  ]
+}

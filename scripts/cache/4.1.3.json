@@ -1,0 +1,28 @@
+{
+  "inputHash": "5082306ac2e8e6cf3121eb1b02360abfbca29921518a0e4bcdf533a7edbdd919",
+  "plainEnglish": "Status messages—'Item added to cart', 'Search returned 12 results', a save confirmation—must be announced to screen readers without moving focus. Use an ARIA live region (aria-live, or role=\"status\"/\"alert\") so assistive tech reads the update while the user keeps working.",
+  "whyItMatters": "Screen reader users miss important feedback—like 'changes saved' or 'invalid coupon'—when status updates appear visually but aren't announced through a live region.",
+  "quickCheck": "Trigger status updates (add to cart, search, save) and confirm they live in an aria-live region (role=\"status\"/\"alert\"); verify a screen reader announces them without focus moving.",
+  "commonMistakes": [
+    "Showing a toast or status text with no aria-live region, so screen readers stay silent.",
+    "Moving focus to the status message instead of announcing it via a live region.",
+    "Using role=\"alert\" for non-urgent updates (it interrupts) instead of role=\"status\".",
+    "Inserting the live region and its text at the same time, so the change isn't announced."
+  ],
+  "codeExamples": [
+    {
+      "label": "Status announced via a live region",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Announced without moving focus */}\n<div role=\"status\" aria-live=\"polite\">{statusMessage}</div>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Status updates but is never announced",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No live region — screen readers stay silent */}\n<div className=\"toast\">{statusMessage}</div>",
+      "source": "synthesized"
+    }
+  ]
+}

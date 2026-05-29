@@ -1,0 +1,27 @@
+{
+  "inputHash": "1fafe7b6f0898088470d0e9c228356d97933722552ac6937e6de0dbe25dab32b",
+  "plainEnglish": "At Level AAA, provide a way to look up definitions for words used in an unusual or restricted way—jargon, idioms, technical terms. A glossary, inline definitions, or <dfn> markup helps people who struggle with non-literal or specialized language.",
+  "whyItMatters": "Users with cognitive disabilities, or anyone unfamiliar with the domain, can't understand jargon and idioms unless definitions are made available.",
+  "quickCheck": "Confirm jargon, idioms, and specialized terms link to or expose a definition, such as a glossary entry or an inline <dfn>.",
+  "commonMistakes": [
+    "Using domain jargon or idioms with no glossary or inline definitions.",
+    "Defining a term only once and never linking later uses back to it.",
+    "Assuming all readers share your domain vocabulary."
+  ],
+  "codeExamples": [
+    {
+      "label": "Unusual term linked to a definition",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p>\n  The request was <dfn id=\"idempotent-def\">idempotent</dfn> — safe to retry.\n  <a href=\"#idempotent-def\">(definition)</a>\n</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Jargon with no definition mechanism",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>The request was idempotent — safe to retry.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

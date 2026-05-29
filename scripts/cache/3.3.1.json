@@ -1,0 +1,28 @@
+{
+  "inputHash": "c4ddc3d321219a3f59b8bf147c3b94b4d332dd03d24a99bd27fe2abdf17e8cbc",
+  "plainEnglish": "When a form input error is detected, tell the user in text which field is wrong and what's wrong with it. Don't rely on color alone (a red border)—say 'Email address is required' in words, and associate the message with the field programmatically (aria-describedby, aria-invalid).",
+  "whyItMatters": "Screen reader users and colorblind users can't tell which field failed, or why, when an error is shown only with a red outline and no text.",
+  "quickCheck": "Submit a form with bad data and confirm each error is described in text and associated with its field (aria-invalid, aria-describedby); test with a screen reader.",
+  "commonMistakes": [
+    "Indicating errors only with a red border and no text message.",
+    "Not linking the error text to the field with aria-describedby.",
+    "Not setting aria-invalid on the field that's in error.",
+    "A generic 'the form has errors' message that doesn't say which field."
+  ],
+  "codeExamples": [
+    {
+      "label": "Error described in text and tied to the field",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label htmlFor=\"email\">Email</label>\n<input id=\"email\" aria-invalid=\"true\" aria-describedby=\"email-err\" />\n<p id=\"email-err\">Enter a valid email address.</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Error shown only as a red border",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No text, no aria-invalid — invisible to screen readers */}\n<input className=\"error\" />",
+      "source": "synthesized"
+    }
+  ]
+}

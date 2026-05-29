@@ -1,0 +1,28 @@
+{
+  "inputHash": "261ab95a04e3dc4b949ac6f4c8ea52c412f5f2cf8a647db39c1f941538fdc013",
+  "plainEnglish": "Don't require a cognitive function test—memorizing a password, solving a puzzle, transcribing characters—to log in, unless you offer an alternative or assistance. Allow password managers and copy-paste, support passkeys or email links, and don't block paste on password fields.",
+  "whyItMatters": "Users with cognitive disabilities (memory, attention) are locked out by logins that require remembering passwords or solving puzzles with no assistance like password-manager support.",
+  "quickCheck": "Try logging in with a password manager and by pasting into the password field; confirm neither is blocked and that any puzzle/CAPTCHA has an accessible alternative.",
+  "commonMistakes": [
+    "Blocking paste (onPaste preventDefault) on password or one-time-code fields.",
+    "Requiring a CAPTCHA or puzzle with no non-cognitive alternative.",
+    "Disabling autocomplete so password managers can't fill credentials.",
+    "Requiring users to manually transcribe a code from one place to another."
+  ],
+  "codeExamples": [
+    {
+      "label": "Password field that managers can fill and users can paste",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* autocomplete lets password managers fill; paste is allowed */}\n<input type=\"password\" name=\"password\" autoComplete=\"current-password\" />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Password field that blocks paste and autofill",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<input\n  type=\"password\"\n  onPaste={(e) => e.preventDefault()}\n  autoComplete=\"off\"\n/>",
+      "source": "synthesized"
+    }
+  ]
+}

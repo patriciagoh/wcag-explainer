@@ -1,0 +1,27 @@
+{
+  "inputHash": "c52b03b844f51b32a21a9452948d3cd86f4fc650db44caf0e39ee4ce999f8e04",
+  "plainEnglish": "At Level AAA, if your text requires reading ability beyond roughly the lower-secondary (about 9th-grade) level, provide a simpler alternative or supplemental content such as summaries or illustrations. Aim to write plainly so more people can understand.",
+  "whyItMatters": "Users with reading disabilities or limited literacy can't understand content written above a lower-secondary reading level without a simpler alternative.",
+  "quickCheck": "Run your text through a readability checker (e.g., Hemingway or a Flesch–Kincaid tool); if it's above ~9th-grade level, provide a plain-language summary.",
+  "commonMistakes": [
+    "Dense, jargon-heavy prose with no plain-language summary.",
+    "Long, complex sentences where short ones would do.",
+    "No summaries, illustrations, or supplemental content for difficult material."
+  ],
+  "codeExamples": [
+    {
+      "label": "Plain-language summary alongside the detail",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<details>\n  <summary>In short: you can cancel any time, no fee.</summary>\n  <p>\n    Subscribers may terminate the agreement at their sole discretion\n    without incurring early-termination penalties...\n  </p>\n</details>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Dense legal prose with no simpler version",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>\n  Subscribers may terminate the agreement at their sole discretion\n  without incurring early-termination penalties...\n</p>",
+      "source": "synthesized"
+    }
+  ]
+}

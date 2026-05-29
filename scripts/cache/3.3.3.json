@@ -1,0 +1,27 @@
+{
+  "inputHash": "38a7e7003da8e8d795e8babbc781126e40f0e1cf19e095fecf8a9ab2867389a0",
+  "plainEnglish": "When you detect an input error and you know how to fix it, suggest the correction—not just 'invalid input', but 'Email must include an @' or the expected format. Help users recover instead of leaving them guessing. (Unless suggesting would hurt security, as with passwords.)",
+  "whyItMatters": "Users with cognitive disabilities—and really everyone—get stuck repeating the same mistake when an error says only 'invalid' without suggesting how to fix it.",
+  "quickCheck": "Trigger validation errors and confirm the messages suggest a concrete fix (the expected format or valid range), not just 'invalid'.",
+  "commonMistakes": [
+    "Showing 'Invalid input' with no hint about what's expected.",
+    "Not suggesting a correction when the expected format is known (e.g., a date or phone format).",
+    "Generic messages that don't point to the specific problem."
+  ],
+  "codeExamples": [
+    {
+      "label": "Error message suggests the fix",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p id=\"date-err\">\n  Enter the date as MM/DD/YYYY — for example, 04/23/2025.\n</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Error message offers no guidance",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p id=\"date-err\">Invalid input.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

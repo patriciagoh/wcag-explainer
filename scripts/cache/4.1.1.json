@@ -1,0 +1,28 @@
+{
+  "inputHash": "a3234e5df8c4a26ce3a4f0097d2018dee2e7a71215083178cf3b0aa5058a515f",
+  "plainEnglish": "Markup should be well-formed: complete tags, proper nesting, no duplicate attributes, and unique IDs. Note: in WCAG 2.2 this criterion is considered always satisfied for HTML/XML because browsers handle these cases—but duplicate IDs can still break ARIA references, so keep IDs unique.",
+  "whyItMatters": "Duplicate IDs can break ARIA relationships (like aria-labelledby pointing at the wrong element), so assistive tech announces the wrong name or skips content.",
+  "quickCheck": "Validate your HTML and confirm IDs are unique (axe's duplicate-id rules); broken nesting and duplicate attributes are largely handled by browsers now.",
+  "commonMistakes": [
+    "Reusing the same id on multiple elements, breaking label or ARIA associations (axe duplicate-id).",
+    "Duplicate ids on active or focusable elements (axe duplicate-id-active).",
+    "Rendering a list where every item hard-codes the same id instead of a unique one.",
+    "Pointing aria-labelledby or htmlFor at an id that appears more than once."
+  ],
+  "codeExamples": [
+    {
+      "label": "Unique id per rendered item",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{items.map((it) => (\n  <input key={it.id} id={`qty-${it.id}`} aria-label={`Quantity for ${it.name}`} />\n))}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Duplicate ids break label and ARIA refs",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Every input shares id=\"qty\" */}\n{items.map((it) => (\n  <input key={it.id} id=\"qty\" />\n))}",
+      "source": "synthesized"
+    }
+  ]
+}

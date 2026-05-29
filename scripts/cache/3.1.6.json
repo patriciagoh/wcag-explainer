@@ -1,0 +1,27 @@
+{
+  "inputHash": "e5954cc1866c79f41dd303cd395fd8af2223b33cbce16c332a14c3b93c52dd73",
+  "plainEnglish": "At Level AAA, where a word's meaning depends on how it's pronounced (heteronyms like 'lead' the metal vs. 'lead' the verb), provide a way to convey the pronunciation—phonetic spelling, ruby annotations, or audio. This matters most where pronunciation disambiguates meaning.",
+  "whyItMatters": "Screen reader users and people with reading disabilities can misunderstand words whose meaning changes with pronunciation (like 'desert' the place vs. 'desert' the verb) without a pronunciation cue.",
+  "quickCheck": "Identify words whose meaning depends on pronunciation and confirm a cue is provided—phonetic spelling, ruby text, or audio.",
+  "commonMistakes": [
+    "Using heteronyms ambiguously with no pronunciation guidance.",
+    "Omitting ruby annotations where a writing system relies on them.",
+    "Assuming context alone resolves an ambiguous pronunciation."
+  ],
+  "codeExamples": [
+    {
+      "label": "Pronunciation conveyed with ruby text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p>I will <ruby>lead<rt>/liːd/</rt></ruby> the team.</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Ambiguous word with no pronunciation cue",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>I will lead the team.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

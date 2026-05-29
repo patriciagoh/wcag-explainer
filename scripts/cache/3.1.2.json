@@ -1,0 +1,27 @@
+{
+  "inputHash": "1d834f71c3d6d3a42cfa600b0493014d8ac1c10db24eb82d29967e1680da3fe6",
+  "plainEnglish": "When a passage or phrase is in a different language from the page, mark it with a lang attribute on that element (e.g., <span lang=\"fr\">). Screen readers then switch pronunciation for that part. Proper names and words absorbed into the surrounding language are exempt.",
+  "whyItMatters": "Screen readers mispronounce foreign-language phrases—like a French quote on an English page—unless that phrase is marked with its own lang attribute.",
+  "quickCheck": "Find any foreign-language words or quotes and confirm each is wrapped in an element with a valid lang attribute; axe's valid-lang rule flags invalid values.",
+  "commonMistakes": [
+    "Not marking inline foreign-language quotes or phrases with a lang attribute.",
+    "Using an invalid language code in a lang attribute (axe valid-lang).",
+    "Marking proper names or common loanwords that don't actually need a language change."
+  ],
+  "codeExamples": [
+    {
+      "label": "Foreign phrase marked with its language",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p>The chef called it <span lang=\"fr\">haute cuisine</span>.</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Foreign phrase with no language marker",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>The chef called it haute cuisine.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

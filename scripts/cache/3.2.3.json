@@ -1,0 +1,27 @@
+{
+  "inputHash": "918e2365c1880f35e16404f346c1b949fb5a1940f8acc4bdbb6eb1522a202e00",
+  "plainEnglish": "Navigation that repeats across pages—main menu, search, breadcrumbs—must appear in the same relative order on every page. Users learn where things are; shuffling the navigation order between pages forces them to relearn it each time.",
+  "whyItMatters": "Screen reader users and people with cognitive disabilities rely on navigation being in a predictable place; reordering it between pages forces them to re-find everything.",
+  "quickCheck": "Compare several pages and confirm repeated navigation items appear in the same relative order on each.",
+  "commonMistakes": [
+    "Reordering menu items differently from page to page.",
+    "Moving the search box or nav to a different position on some pages.",
+    "Conditionally hiding or reordering nav links inconsistently across templates."
+  ],
+  "codeExamples": [
+    {
+      "label": "One shared Nav renders the same order everywhere",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* A single shared component keeps order consistent across pages */}\n<Layout>\n  <Nav />\n  <main>{children}</main>\n</Layout>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Navigation order differs per page",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Home lists Products first; About lists Contact first */}\n<nav>{page === \"home\" ? <Products /> : <Contact />}</nav>",
+      "source": "synthesized"
+    }
+  ]
+}

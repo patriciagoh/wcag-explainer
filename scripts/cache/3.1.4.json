@@ -1,0 +1,27 @@
+{
+  "inputHash": "253c29c42e99259ada8095c3945f3efd3242759f56d89228ac7f66bc098741a0",
+  "plainEnglish": "At Level AAA, give users a way to find the expanded form of abbreviations and acronyms. Expand it on first use, or use the <abbr title=\"...\"> element so the full term is available. This helps people who don't recognize the shorthand.",
+  "whyItMatters": "Users with cognitive or reading disabilities, and newcomers to a field, can't decode abbreviations like 'ARIA' or 'SLA' unless the expansion is provided.",
+  "quickCheck": "Confirm abbreviations are expanded on first use or wrapped in <abbr title=\"full form\">.",
+  "commonMistakes": [
+    "Using acronyms with no expansion on first use and no <abbr> markup.",
+    "Relying only on the <abbr> title tooltip, which isn't reachable by keyboard or touch — expand it in text too.",
+    "Assuming an abbreviation is universally understood."
+  ],
+  "codeExamples": [
+    {
+      "label": "Abbreviation with its expansion available",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p>Add an <abbr title=\"Accessible Rich Internet Applications\">ARIA</abbr> role.</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Bare abbreviation with no expansion",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>Add an ARIA role.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

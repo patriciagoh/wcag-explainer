@@ -1,0 +1,27 @@
+{
+  "inputHash": "b00e07d497735b6692775e7fdf264027938e9a40b949d2c72b35494e57e07b2a",
+  "plainEnglish": "Moving keyboard focus to an element must not trigger an unexpected change of context—like submitting a form, opening a new window, or navigating away. Focusing a field should never surprise the user; wait for an explicit action (a click or Enter) to make big changes.",
+  "whyItMatters": "Keyboard and screen reader users get disoriented when simply tabbing onto a control unexpectedly navigates away or opens a new window.",
+  "quickCheck": "Tab through every control and confirm that merely focusing it never submits a form, opens a window, or navigates — nothing should change context on focus alone.",
+  "commonMistakes": [
+    "Using onFocus to auto-submit a form or navigate to a new page.",
+    "Opening a popup or new window when a field receives focus.",
+    "Auto-advancing to the next field on focus rather than after input is complete."
+  ],
+  "codeExamples": [
+    {
+      "label": "Focus alone changes nothing",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Focus just focuses — navigation happens only on explicit submit */}\n<select onChange={handleChange}>{/* options */}</select>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Focusing the field navigates away",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Tabbing onto the field unexpectedly changes context */}\n<select onFocus={() => (window.location.href = \"/next\")}>{/* options */}</select>",
+      "source": "synthesized"
+    }
+  ]
+}
