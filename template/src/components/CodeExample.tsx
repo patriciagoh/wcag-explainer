@@ -1,4 +1,5 @@
 import type { CodeExample as CodeExampleType } from "../types.ts";
+import { CopyButton } from "./CopyButton.tsx";
 
 type Props = { example: CodeExampleType };
 
@@ -14,9 +15,10 @@ export function CodeExample({ example }: Props) {
           {example.kind === "pass" ? "PASS" : "FAIL"}
         </span>
         <span className="text-sm">{example.label}</span>
-        {example.source && (
-          <span className="ml-auto text-xs text-gray-500">{example.source}</span>
-        )}
+        <span className="ml-auto flex items-center gap-2">
+          {example.source && <span className="text-xs text-gray-500">{example.source}</span>}
+          <CopyButton text={example.code} label="Copy" />
+        </span>
       </figcaption>
       <pre className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm">
         <code>{example.code}</code>

@@ -1,9 +1,21 @@
 import type { Criterion } from "../types.ts";
-import { CodeExample } from "./CodeExample.tsx";
+import { CodeExamples } from "./CodeExamples.tsx";
 import { AxeRuleBadges } from "./AxeRuleBadges.tsx";
 import { RelatedCriteria } from "./RelatedCriteria.tsx";
+import { ExperienceCallout } from "./ExperienceCallout.tsx";
+import { CopyButton } from "./CopyButton.tsx";
+import { getFacets } from "../augment.ts";
+import { criterionToMarkdown } from "../lib/exporters.ts";
 
-type Props = { criterion: Criterion };
+type Props = {
+  criterion: Criterion;
+  inChecklist?: boolean;
+  onToggleChecklist?: (id: string) => void;
+};
+
+function permalink(id: string): string {
+  return `${window.location.origin}${window.location.pathname}#${id}`;
+}
 
 const levelClass: Record<Criterion["level"], string> = {
   A: "bg-blue-100 text-blue-900 border-blue-300",
@@ -11,10 +23,11 @@ const levelClass: Record<Criterion["level"], string> = {
   AAA: "bg-gray-200 text-gray-900 border-gray-400",
 };
 
-export function CriterionDetail({ criterion }: Props) {
+export function CriterionDetail({ criterion, inChecklist, onToggleChecklist }: Props) {
+  const facets = getFacets(criterion.id);
   return (
     <article className="prose max-w-none">
-      <header className="flex items-baseline gap-3 not-prose">
+      <header className="flex items-baseline gap-3 flex-wrap not-prose">
         <h1 className="text-2xl font-semibold m-0">
           {criterion.id} — {criterion.title}
         </h1>
@@ -31,9 +44,38 @@ export function CriterionDetail({ criterion }: Props) {
         )}
       </header>
 
+      <div className="flex items-center gap-2 flex-wrap mt-3 not-prose">
+        {onToggleChecklist && (
+          <button
+            type="button"
+            onClick={() => onToggleChecklist(criterion.id)}
+            aria-pressed={inChecklist}
+            className={`text-xs px-2 py-0.5 rounded border ${
+              inChecklist
+                ? "bg-blue-600 text-white border-blue-600"
+                : "bg-white hover:bg-gray-50"
+            }`}
+          >
+            {inChecklist ? "✓ In checklist" : "＋ Add to checklist"}
+          </button>
+        )}
+        <CopyButton text={permalink(criterion.id)} label="🔗 Copy link" />
+        <CopyButton text={criterionToMarkdown(criterion)} label="⧉ Copy as Markdown" />
+        {facets.components.map((c) => (
+          <span key={c} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 border">
+            {c}
+          </span>
+        ))}
+      </div>
+
       <section aria-labelledby="plain-english-h">
         <h2 id="plain-english-h" className="text-lg font-semibold mt-6">Plain English</h2>
         <p>{criterion.plainEnglish}</p>
+      </section>
+
+      <section aria-labelledby="experience-h" className="not-prose">
+        <h2 id="experience-h" className="text-lg font-semibold mt-6">What the user experiences</h2>
+        <ExperienceCallout criterionId={criterion.id} />
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 not-prose">
@@ -47,13 +89,9 @@ export function CriterionDetail({ criterion }: Props) {
         </section>
       </div>
 
-      <section aria-labelledby="examples-h">
+      <section aria-labelledby="examples-h" className="not-prose">
         <h2 id="examples-h" className="text-lg font-semibold mt-6">Code examples</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
-          {criterion.codeExamples.map((ex, i) => (
-            <CodeExample key={i} example={ex} />
-          ))}
-        </div>
+        <CodeExamples examples={criterion.codeExamples} />
       </section>
 
       <section aria-labelledby="mistakes-h">

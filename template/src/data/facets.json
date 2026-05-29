@@ -1,0 +1,1003 @@
+{
+  "1.1.1": {
+    "components": [
+      "Buttons",
+      "Custom widgets",
+      "Forms",
+      "Images & icons",
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.2.1": {
+    "components": [
+      "Audio & video",
+      "Forms",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "1.2.2": {
+    "components": [
+      "Audio & video",
+      "Modals & overlays",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "1.2.3": {
+    "components": [
+      "Audio & video",
+      "Forms",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.2.4": {
+    "components": [
+      "Audio & video",
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "1.2.5": {
+    "components": [
+      "Audio & video",
+      "Forms",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.2.6": {
+    "components": [
+      "Audio & video",
+      "Language & readability",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "1.2.7": {
+    "components": [
+      "Audio & video"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.2.8": {
+    "components": [
+      "Audio & video",
+      "Images & icons",
+      "Modals & overlays",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.2.9": {
+    "components": [
+      "Audio & video",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "1.3.1": {
+    "components": [
+      "Custom widgets",
+      "Forms",
+      "Headings",
+      "Structure",
+      "Tables"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.3.2": {
+    "components": [
+      "Custom widgets",
+      "Keyboard",
+      "Structure"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.3.3": {
+    "components": [
+      "Buttons",
+      "Color & contrast",
+      "Custom widgets",
+      "Forms",
+      "Structure",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.3.4": {
+    "components": [
+      "Structure"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.3.5": {
+    "components": [
+      "Custom widgets",
+      "Forms",
+      "Images & icons",
+      "Structure"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "1.3.6": {
+    "components": [
+      "Custom widgets",
+      "Forms",
+      "Images & icons",
+      "Structure"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "1.4.1": {
+    "components": [
+      "Color & contrast",
+      "Images & icons",
+      "Links",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "1.4.2": {
+    "components": [
+      "Audio & video",
+      "Color & contrast",
+      "Custom widgets"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "1.4.3": {
+    "components": [
+      "Color & contrast",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.4": {
+    "components": [
+      "Color & contrast",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.5": {
+    "components": [
+      "Color & contrast",
+      "Custom widgets",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.6": {
+    "components": [
+      "Color & contrast",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.7": {
+    "components": [
+      "Audio & video",
+      "Color & contrast"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "1.4.8": {
+    "components": [
+      "Color & contrast",
+      "Tables",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.9": {
+    "components": [
+      "Color & contrast",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.10": {
+    "components": [
+      "Color & contrast",
+      "Tables",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.11": {
+    "components": [
+      "Buttons",
+      "Color & contrast",
+      "Focus",
+      "Images & icons",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.12": {
+    "components": [
+      "Color & contrast",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "1.4.13": {
+    "components": [
+      "Color & contrast",
+      "Focus",
+      "Keyboard",
+      "Modals & overlays",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.1.1": {
+    "components": [
+      "Buttons",
+      "Keyboard",
+      "Links",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.1.2": {
+    "components": [
+      "Focus",
+      "Keyboard",
+      "Modals & overlays"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.1.3": {
+    "components": [
+      "Images & icons",
+      "Keyboard"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.1.4": {
+    "components": [
+      "Focus",
+      "Keyboard"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.2.1": {
+    "components": [
+      "Forms",
+      "Tables",
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.2.2": {
+    "components": [
+      "Carousels",
+      "Links",
+      "Motion & animation",
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "2.2.3": {
+    "components": [
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.2.4": {
+    "components": [
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.2.5": {
+    "components": [
+      "Forms",
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.2.6": {
+    "components": [
+      "Time limits"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.3.1": {
+    "components": [
+      "Motion & animation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.3.2": {
+    "components": [
+      "Motion & animation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.3.3": {
+    "components": [
+      "Motion & animation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.4.1": {
+    "components": [
+      "Custom widgets",
+      "Keyboard",
+      "Links",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.4.2": {
+    "components": [
+      "Custom widgets",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.4.3": {
+    "components": [
+      "Focus",
+      "Keyboard",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.4.4": {
+    "components": [
+      "Custom widgets",
+      "Links",
+      "Navigation",
+      "Tables",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.4.5": {
+    "components": [
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.4.6": {
+    "components": [
+      "Forms",
+      "Headings",
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.4.7": {
+    "components": [
+      "Focus",
+      "Keyboard",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.4.8": {
+    "components": [
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.4.9": {
+    "components": [
+      "Links",
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.4.10": {
+    "components": [
+      "Forms",
+      "Headings",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.4.11": {
+    "components": [
+      "Focus",
+      "Keyboard",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.4.12": {
+    "components": [
+      "Focus",
+      "Keyboard",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.4.13": {
+    "components": [
+      "Color & contrast",
+      "Focus",
+      "Keyboard",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.5.1": {
+    "components": [
+      "Buttons",
+      "Forms",
+      "Images & icons",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.5.2": {
+    "components": [
+      "Images & icons",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "2.5.3": {
+    "components": [
+      "Buttons",
+      "Custom widgets",
+      "Forms",
+      "Pointer & touch",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "2.5.4": {
+    "components": [
+      "Motion & animation",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "2.5.5": {
+    "components": [
+      "Links",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer",
+      "Content author"
+    ]
+  },
+  "2.5.6": {
+    "components": [
+      "Keyboard",
+      "Modals & overlays",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.5.7": {
+    "components": [
+      "Buttons",
+      "Carousels",
+      "Pointer & touch"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "2.5.8": {
+    "components": [
+      "Pointer & touch",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "3.1.1": {
+    "components": [
+      "Custom widgets",
+      "Language & readability",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.1.2": {
+    "components": [
+      "Custom widgets",
+      "Language & readability"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.1.3": {
+    "components": [
+      "Language & readability"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.1.4": {
+    "components": [
+      "Forms",
+      "Language & readability"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.1.5": {
+    "components": [
+      "Images & icons",
+      "Language & readability",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.1.6": {
+    "components": [
+      "Audio & video",
+      "Language & readability"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.2.1": {
+    "components": [
+      "Focus",
+      "Forms",
+      "Keyboard",
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.2.2": {
+    "components": [
+      "Buttons",
+      "Forms",
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.2.3": {
+    "components": [
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.2.4": {
+    "components": [
+      "Buttons",
+      "Custom widgets",
+      "Forms",
+      "Images & icons",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.2.5": {
+    "components": [
+      "Navigation",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.2.6": {
+    "components": [
+      "Links",
+      "Navigation"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.3.1": {
+    "components": [
+      "Color & contrast",
+      "Custom widgets",
+      "Forms",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Designer"
+    ]
+  },
+  "3.3.2": {
+    "components": [
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.3.3": {
+    "components": [
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.3.4": {
+    "components": [
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.3.5": {
+    "components": [
+      "Forms",
+      "Links",
+      "Text & typography"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.3.6": {
+    "components": [
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.3.7": {
+    "components": [
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "3.3.8": {
+    "components": [
+      "Forms",
+      "Images & icons",
+      "Links"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "3.3.9": {
+    "components": [
+      "Forms",
+      "Images & icons"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester",
+      "Content author"
+    ]
+  },
+  "4.1.1": {
+    "components": [
+      "Custom widgets",
+      "Forms"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "4.1.2": {
+    "components": [
+      "Buttons",
+      "Custom widgets"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  },
+  "4.1.3": {
+    "components": [
+      "Custom widgets",
+      "Focus"
+    ],
+    "roles": [
+      "Developer",
+      "QA / tester"
+    ]
+  }
+}

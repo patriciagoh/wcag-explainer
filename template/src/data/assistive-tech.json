@@ -1,0 +1,350 @@
+{
+  "1.1.1": {
+    "fail": "A screen reader reaches the image and announces only the file name — \"newsletter dot gif, image\" — so the user has no idea what it shows.",
+    "pass": "The screen reader reads the alt text aloud — \"Free newsletter. Get free recipes and more.\" — giving the user the same information a sighted user sees."
+  },
+  "1.2.1": {
+    "fail": "A Deaf user opens the podcast and finds only an audio player — no words to read — so the content is simply unavailable to them.",
+    "pass": "A transcript link sits beside the player, so a Deaf user reads the full content and a blind user gets a silent video described in text."
+  },
+  "1.2.2": {
+    "fail": "A hard-of-hearing viewer presses play and sees lips moving with no captions — the dialogue and a doorbell sound pass by unheard.",
+    "pass": "Synchronized captions appear in time with the speech, so the viewer follows every line of dialogue and meaningful sound."
+  },
+  "1.2.3": {
+    "fail": "A blind user hears the soundtrack but misses an on-screen chart the narrator never mentions, losing key information.",
+    "pass": "An audio description narrates the visuals during pauses (or a full text alternative is provided), so the blind user gets the on-screen information too."
+  },
+  "1.2.4": {
+    "fail": "A Deaf attendee joins the live webinar and the speech goes by with no real-time text — they can't follow along as it happens.",
+    "pass": "Live captions stream in near-real-time, so the Deaf attendee follows the webinar as it unfolds."
+  },
+  "1.2.5": {
+    "fail": "A blind viewer follows the dialogue, but a silent on-screen demonstration leaves a gap they can't fill.",
+    "pass": "An audio-description track narrates the key visuals, so the blind viewer experiences the full video."
+  },
+  "1.2.6": {
+    "fail": "A Deaf user whose first language is a sign language must rely on written captions, reading slower and missing nuance.",
+    "pass": "A picture-in-picture interpreter signs the audio, giving the user content in their native language."
+  },
+  "1.2.7": {
+    "fail": "The video's pauses are too short, so the audio description is cut off and the blind viewer misses fast-moving visual detail.",
+    "pass": "The video pauses to let extended descriptions finish, so the blind viewer captures every visual detail."
+  },
+  "1.2.8": {
+    "fail": "A Deafblind user on a braille display reaches the video and finds nothing their device can render.",
+    "pass": "A full text alternative — dialogue plus visual description — feeds the braille display, making the video fully accessible."
+  },
+  "1.2.9": {
+    "fail": "A Deaf listener tunes into the live audio stream and gets silence with no accompanying text.",
+    "pass": "A live text feed runs alongside the audio, so the Deaf listener follows the broadcast in real time."
+  },
+  "1.3.1": {
+    "fail": "A screen reader announces a styled <div> as plain text, so the user never learns it was a heading, list, or table — the structure is invisible to them.",
+    "pass": "Semantic markup lets the screen reader announce \"heading level 2\", \"list, 5 items\", or a labeled field, so the user perceives the same structure sighted users see."
+  },
+  "1.3.2": {
+    "fail": "A screen reader reads columns in DOM order that CSS has visually reordered, so the steps come out scrambled.",
+    "pass": "The reading order matches the visual order, so the screen reader narrates content in a sensible sequence."
+  },
+  "1.3.3": {
+    "fail": "The instruction says \"press the round green button on the right\" — a blind user has no way to identify which control that is.",
+    "pass": "The instruction names the control — \"press the Submit button\" — so it's identifiable without seeing shape, color, or position."
+  },
+  "1.3.4": {
+    "fail": "A user with a wheelchair-mounted tablet can't rotate it, and the app shows a blank \"please rotate your device\" wall.",
+    "pass": "The layout works in both portrait and landscape, so a user with a fixed-mount device can use it either way."
+  },
+  "1.3.5": {
+    "fail": "A user with a cognitive disability faces a bare phone field that won't autofill and shows no familiar icon — every field is manual effort.",
+    "pass": "autocomplete=\"tel\" lets the browser autofill and assistive tools add a familiar icon, cutting the effort."
+  },
+  "1.3.6": {
+    "fail": "A personalization tool can't tell which region is navigation or which icon means \"home\", so it can't simplify the interface.",
+    "pass": "Landmarks and ARIA expose each region and control's purpose, so personalization tools can adapt the UI."
+  },
+  "1.4.1": {
+    "fail": "A colorblind user sees required fields marked only in red and can't tell them apart from the rest.",
+    "pass": "Required fields also carry an icon or text label, so the cue survives colorblindness and grayscale."
+  },
+  "1.4.2": {
+    "fail": "Autoplaying audio blares over a blind user's screen reader, drowning out its speech until they can find a stop control.",
+    "pass": "A visible pause/stop control (or no autoplay) lets the user silence the audio so their screen reader can be heard."
+  },
+  "1.4.3": {
+    "fail": "A user with low vision squints at light-gray text on white and gives up — the words don't separate from the background.",
+    "pass": "Text meets a 4.5:1 contrast ratio, so a low-vision user reads it without strain."
+  },
+  "1.4.4": {
+    "fail": "A low-vision user zooms to 200% and the text overlaps and clips, breaking the layout.",
+    "pass": "At 200% zoom the text reflows cleanly with no loss of content or function."
+  },
+  "1.4.5": {
+    "fail": "A low-vision user enlarges a heading that's actually a PNG and it turns into a blurry, pixelated smear.",
+    "pass": "Real text stays crisp at any zoom and can be recolored or read aloud."
+  },
+  "1.4.6": {
+    "fail": "A user with moderately low vision can make out AA-level text only with effort and can't read it comfortably.",
+    "pass": "Text meets the stronger 7:1 ratio, so a moderately low-vision user reads it comfortably without assistive tech."
+  },
+  "1.4.7": {
+    "fail": "A hard-of-hearing listener can't separate the speaker's voice from loud background music.",
+    "pass": "Background sound stays well below the speech (or can be turned off), so the voice stays clear."
+  },
+  "1.4.8": {
+    "fail": "A user with dyslexia loses their place in justified, full-width, tightly-spaced text.",
+    "pass": "Narrow, left-aligned, generously-spaced text lets the user track each line."
+  },
+  "1.4.9": {
+    "fail": "A screen reader skips words baked into an image, and a low-vision user can't resize or recolor them.",
+    "pass": "All meaningful text is real text — readable, resizable, and recolorable."
+  },
+  "1.4.10": {
+    "fail": "A low-vision user at 400% zoom must scroll left and right on every single line to read.",
+    "pass": "Content reflows into one column, so the user scrolls in only one direction."
+  },
+  "1.4.11": {
+    "fail": "A low-vision user can't find the input field — its faint border blends into the page background.",
+    "pass": "Borders, icons, and focus rings meet 3:1 contrast, so the user can locate controls and their states."
+  },
+  "1.4.12": {
+    "fail": "A user bumps up line and letter spacing to read more easily, and the text overflows its button and gets clipped.",
+    "pass": "Increased text spacing is absorbed gracefully, with no clipping or overlap."
+  },
+  "1.4.13": {
+    "fail": "A zoomed-in user moves toward a tooltip to read it and it vanishes the moment the pointer leaves the trigger.",
+    "pass": "The tooltip stays put, can be hovered, and dismisses with Escape — so the user can actually read it."
+  },
+  "2.1.1": {
+    "fail": "A keyboard-only user tabs through the page but can't reach or activate a div-based \"button\" — the action is unavailable.",
+    "pass": "Every control is reachable with Tab and operable with Enter or Space, so the keyboard user can do everything."
+  },
+  "2.1.2": {
+    "fail": "A keyboard user tabs into a widget and can't tab back out — focus is stuck and the rest of the page is unreachable.",
+    "pass": "Focus moves in and back out with standard keys, so the user is never trapped."
+  },
+  "2.1.3": {
+    "fail": "A keyboard-only user hits a drawing or drag feature with no key-operable alternative and is blocked.",
+    "pass": "Every feature, including drag and draw, has a keyboard path."
+  },
+  "2.1.4": {
+    "fail": "A speech-input user dictates a word, a stray single-key shortcut fires, and it deletes their work.",
+    "pass": "Single-key shortcuts can be turned off, remapped, or only fire when focused — no accidental triggers."
+  },
+  "2.2.1": {
+    "fail": "A user who reads slowly is logged out mid-form with no warning and loses everything they typed.",
+    "pass": "The user is warned before the timeout and can extend it, so they finish at their own pace."
+  },
+  "2.2.2": {
+    "fail": "A user with ADHD can't focus on the article because a carousel keeps auto-rotating beside it with no off switch.",
+    "pass": "A pause control lets the user stop the motion and concentrate."
+  },
+  "2.2.3": {
+    "fail": "A user who needs extra time is rushed by a countdown that auto-submits before they finish.",
+    "pass": "There's no time limit, so the user takes as long as they need."
+  },
+  "2.2.4": {
+    "fail": "A screen reader user loses their place as a notification keeps interrupting and shifting focus.",
+    "pass": "The user can mute or defer notifications and stay focused."
+  },
+  "2.2.5": {
+    "fail": "A user who stepped away is logged out and returns to find the long form they'd filled in wiped clean.",
+    "pass": "After re-authenticating, their data is preserved and they continue where they left off."
+  },
+  "2.2.6": {
+    "fail": "A user takes a break unaware that inactivity will silently discard their work.",
+    "pass": "The user is told up front how long they can be idle before any data is lost."
+  },
+  "2.3.1": {
+    "fail": "A rapidly strobing banner risks triggering a seizure in a user with photosensitive epilepsy.",
+    "pass": "Nothing flashes more than three times a second, so the content is seizure-safe."
+  },
+  "2.3.2": {
+    "fail": "Even a small but fast-flashing indicator could trigger a seizure in a highly photosensitive user.",
+    "pass": "No content flashes more than three times a second, regardless of size."
+  },
+  "2.3.3": {
+    "fail": "A user with a vestibular disorder feels dizzy as large parallax motion fires on scroll with no way to turn it off.",
+    "pass": "Honoring the reduce-motion setting, the motion is removed so the user isn't made ill."
+  },
+  "2.4.1": {
+    "fail": "A screen reader user must tab through the same 30 navigation links on every page before reaching the content.",
+    "pass": "A skip link (or landmarks) jumps the user straight to the main content."
+  },
+  "2.4.2": {
+    "fail": "A screen reader user with many tabs open hears the same generic title on each and can't tell pages apart.",
+    "pass": "Each page announces a unique, descriptive title on load, so the user knows where they are."
+  },
+  "2.4.3": {
+    "fail": "Tabbing jumps erratically — last name, then first name, then submit — confusing the keyboard user.",
+    "pass": "Focus moves in a logical order matching the visual layout."
+  },
+  "2.4.4": {
+    "fail": "A screen reader user pulls up the links list and hears \"click here, click here, read more\" with no idea where any goes.",
+    "pass": "Each link's text describes its destination, so the links list is meaningful."
+  },
+  "2.4.5": {
+    "fail": "A user who can't navigate the menu has no search or sitemap and can't find the page they need.",
+    "pass": "Search plus navigation gives the user more than one way to reach any page."
+  },
+  "2.4.6": {
+    "fail": "A screen reader user jumps by heading and hears only \"Section 2\" — no clue what's in it.",
+    "pass": "Descriptive headings and labels let the user understand and navigate the structure."
+  },
+  "2.4.7": {
+    "fail": "A keyboard user tabs across the page with no visible indicator and can't tell which control is focused.",
+    "pass": "A clear focus ring shows exactly where the keyboard user is at all times."
+  },
+  "2.4.8": {
+    "fail": "A user with a cognitive disability gets lost deep in the site with no breadcrumb or current-page marker.",
+    "pass": "Breadcrumbs and a marked current page show the user where they are."
+  },
+  "2.4.9": {
+    "fail": "A screen reader user reads a link out of context and still can't tell what \"learn more\" refers to.",
+    "pass": "The link text alone identifies the destination — no context needed."
+  },
+  "2.4.10": {
+    "fail": "A screen reader user faces a long wall of text with no headings to jump between.",
+    "pass": "Section headings let the user skim and jump to the part they need."
+  },
+  "2.4.11": {
+    "fail": "A keyboard user tabs to a field that scrolls behind a sticky header and disappears from view.",
+    "pass": "The focused element stays at least partly visible, never fully hidden behind fixed content."
+  },
+  "2.4.12": {
+    "fail": "Part of the focused control is clipped by a sticky bar, so the keyboard user can't see its full state.",
+    "pass": "The entire focused element stays visible, with nothing covering it."
+  },
+  "2.4.13": {
+    "fail": "A low-vision keyboard user can't perceive the thin, faint focus outline and loses their position.",
+    "pass": "A thick, high-contrast focus indicator is easy to spot."
+  },
+  "2.5.1": {
+    "fail": "A user with limited dexterity can only advance the gallery by swiping — a gesture they can't perform.",
+    "pass": "Single-tap previous/next buttons offer a simple alternative to the swipe."
+  },
+  "2.5.2": {
+    "fail": "A user with tremors accidentally presses Delete and it fires on touch-down with no chance to cancel.",
+    "pass": "The action fires on release, so the user can slide off to abort a mistaken press."
+  },
+  "2.5.3": {
+    "fail": "A speech-input user says \"click Search\" but the button's hidden name is \"Submit\", so nothing happens.",
+    "pass": "The button's accessible name contains its visible label, so the voice command works."
+  },
+  "2.5.4": {
+    "fail": "A user who can't shake their device — or shakes it involuntarily — can't trigger, or keeps mis-triggering, the shake action.",
+    "pass": "An on-screen button does the same thing, and motion triggering can be disabled."
+  },
+  "2.5.5": {
+    "fail": "A user with a tremor repeatedly misses a tiny 24px icon button.",
+    "pass": "A 44px target is comfortably large enough to hit reliably."
+  },
+  "2.5.6": {
+    "fail": "A user who attaches a keyboard to their tablet finds it disabled because the app assumed touch-only.",
+    "pass": "Touch, mouse, and keyboard all work interchangeably, even mid-task."
+  },
+  "2.5.7": {
+    "fail": "A user who can't perform a sustained drag can't reorder the list or move a kanban card.",
+    "pass": "Up and down buttons let the user reorder without dragging."
+  },
+  "2.5.8": {
+    "fail": "A touchscreen user with motor difficulties keeps tapping the wrong one of several cramped 16px buttons.",
+    "pass": "Targets are at least 24px or well-spaced, so taps land where intended."
+  },
+  "3.1.1": {
+    "fail": "With no lang attribute, the screen reader reads English text using French pronunciation rules — it comes out as gibberish.",
+    "pass": "lang=\"en\" tells the screen reader to use the right voice and pronunciation."
+  },
+  "3.1.2": {
+    "fail": "A French phrase on an English page is read with English pronunciation and comes out garbled.",
+    "pass": "The phrase is marked lang=\"fr\", so the screen reader switches pronunciation just for it."
+  },
+  "3.1.3": {
+    "fail": "A user unfamiliar with the jargon hits an undefined term and can't follow the rest.",
+    "pass": "A definition or glossary link lets the user look up the unusual term."
+  },
+  "3.1.4": {
+    "fail": "A user encounters \"ARIA\" with no expansion and doesn't know what it stands for.",
+    "pass": "The expansion is available (e.g. via <abbr>), so the user can decode it."
+  },
+  "3.1.5": {
+    "fail": "A user with limited literacy bounces off dense, complex legal prose.",
+    "pass": "A plain-language summary makes the content understandable."
+  },
+  "3.1.6": {
+    "fail": "A screen reader pronounces an ambiguous heteronym the wrong way, changing the meaning for the listener.",
+    "pass": "A pronunciation cue (ruby or phonetics) disambiguates the word."
+  },
+  "3.2.1": {
+    "fail": "A screen reader user tabs onto a dropdown and the page unexpectedly navigates away, disorienting them.",
+    "pass": "Focusing a control changes nothing; navigation waits for an explicit action."
+  },
+  "3.2.2": {
+    "fail": "A user selects a dropdown option and the page submits before they're done, with no warning.",
+    "pass": "Changing a value does nothing surprising; a Go button triggers the change."
+  },
+  "3.2.3": {
+    "fail": "A screen reader user re-learns the menu on every page because its order keeps changing.",
+    "pass": "Navigation appears in the same order on every page, so it's predictable."
+  },
+  "3.2.4": {
+    "fail": "The same action is called \"Search\" on one page and \"Find\" on another, so the user thinks they're different.",
+    "pass": "The same function is labeled identically everywhere, so it's recognizable."
+  },
+  "3.2.5": {
+    "fail": "The page auto-refreshes and yanks a screen reader user back to the top mid-read.",
+    "pass": "Context changes only when the user asks, so nothing moves unexpectedly."
+  },
+  "3.2.6": {
+    "fail": "A user in difficulty hunts for the contact link, which sits in a different place on each page.",
+    "pass": "Help appears in the same place on every page, so it's easy to find."
+  },
+  "3.3.1": {
+    "fail": "A colorblind user submits the form and only a red border marks the bad field — they can't tell what's wrong.",
+    "pass": "A text message names the field and the problem, and it's announced to screen readers too."
+  },
+  "3.3.2": {
+    "fail": "A screen reader user reaches a field whose only label was a placeholder that's now gone — they don't know what to enter.",
+    "pass": "A persistent label and format hint tell the user exactly what's expected."
+  },
+  "3.3.3": {
+    "fail": "The form says only \"Invalid input\", so the user keeps guessing and re-failing.",
+    "pass": "The error suggests the fix — \"enter the date as MM/DD/YYYY\" — so the user can recover."
+  },
+  "3.3.4": {
+    "fail": "A user with a cognitive disability submits a payment with a typo and there's no way to review or undo it.",
+    "pass": "A review-and-confirm step lets the user catch the mistake before it's final."
+  },
+  "3.3.5": {
+    "fail": "A user stuck on a complex field finds no hint or help anywhere nearby.",
+    "pass": "Context-sensitive help sits right beside the field that needs it."
+  },
+  "3.3.6": {
+    "fail": "Any form submits instantly with no checks, so a slip can't be caught.",
+    "pass": "Validation and a confirm step give every form a safety net."
+  },
+  "3.3.7": {
+    "fail": "A user with motor difficulty must re-type the same address a second time in the same checkout.",
+    "pass": "A \"same as billing\" option reuses the earlier entry — no re-typing."
+  },
+  "3.3.8": {
+    "fail": "A user with memory difficulties is blocked because login forbids paste and demands a solved puzzle.",
+    "pass": "Password managers and paste work, so no memory test is required to log in."
+  },
+  "3.3.9": {
+    "fail": "Login requires solving an object-recognition puzzle a user with a cognitive disability can't reliably pass.",
+    "pass": "A passkey or magic link signs the user in with no cognitive test at all."
+  },
+  "4.1.1": {
+    "fail": "Duplicate IDs make aria-labelledby point at the wrong element, so the screen reader announces a mismatched name.",
+    "pass": "Unique IDs keep ARIA references intact, so names are announced correctly."
+  },
+  "4.1.2": {
+    "fail": "A screen reader hits a div-based toggle and announces nothing — no name, no role, no on/off state.",
+    "pass": "The control exposes its name, role, and state, so the screen reader says \"Mute, toggle button, pressed\"."
+  },
+  "4.1.3": {
+    "fail": "A blind user adds an item to the cart and hears nothing — the \"Added\" confirmation appears only on screen.",
+    "pass": "A live region announces \"Added to cart\" without moving focus, so the user gets the feedback."
+  }
+}

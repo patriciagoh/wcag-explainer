@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App Features — WCAG Explainer</title>
+<style>
+  :root {
+    --bg: #0f1226; --bg-soft: #171b38; --panel: #1d2244; --panel-2: #232a54;
+    --ink: #e8eaf6; --ink-dim: #aab0d6; --line: #343b6e;
+    --teal: #3fd6c2; --teal-ink: #0a201d; --amber: #ffc861; --violet: #9d8cff;
+    --pink: #ff8fb3; --green: #57e08a; --red: #ff7a8a;
+    --radius: 14px;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--sans);
+    background: radial-gradient(1200px 700px at 80% -10%, #16324a 0%, var(--bg) 55%);
+    color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--teal); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  .skip-link { position: absolute; left: -999px; top: 0; background: var(--teal); color: var(--teal-ink);
+    padding: 10px 16px; border-radius: 0 0 10px 0; font-weight: 700; z-index: 50; }
+  .skip-link:focus { left: 0; }
+
+  header.hero { padding: 60px 0 34px; border-bottom: 1px solid var(--line); }
+  .topnav { display: flex; gap: 14px; font-size: .85rem; margin-bottom: 26px; }
+  .topnav a { text-decoration: none; color: var(--ink-dim); }
+  .topnav a.active { color: var(--teal); font-weight: 600; }
+  .eyebrow { display: inline-block; font-family: var(--mono); font-size: .8rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
+    background: rgba(63,214,194,.1); border: 1px solid rgba(63,214,194,.35);
+    padding: 5px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin: 18px 0 10px; letter-spacing: -.02em; }
+  .lede { font-size: 1.18rem; color: var(--ink-dim); max-width: 64ch; }
+
+  /* mode-tab mock */
+  .tabsmock { display: inline-flex; gap: 4px; margin-top: 26px; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 12px; padding: 6px; flex-wrap: wrap; }
+  .tabsmock span { font-size: .85rem; padding: 6px 12px; border-radius: 8px; color: var(--ink-dim); }
+  .tabsmock span.on { background: #2b62ff; color: #fff; }
+  .tabsmock .badge { background: rgba(255,255,255,.25); border-radius: 999px; padding: 0 6px; margin-left: 6px; font-size: .7rem; }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 1.55rem; margin: 0 0 4px; letter-spacing: -.01em; }
+  .group-tag { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--violet); margin: 0 0 18px; }
+  .section-intro { color: var(--ink-dim); max-width: 70ch; margin: 0 0 24px; }
+
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; margin-bottom: 18px; }
+  .feature.rev { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 800px){ .feature, .feature.rev { grid-template-columns: 1fr; } }
+  .feature .num { font-family: var(--mono); font-size: .8rem; color: var(--teal-ink);
+    background: var(--teal); border-radius: 6px; padding: 2px 8px; display: inline-block; }
+  .feature h3 { font-size: 1.15rem; margin: 10px 0 6px; }
+  .feature p { margin: 0 0 8px; color: var(--ink-dim); font-size: .97rem; }
+  .feature .where { font-size: .82rem; color: var(--ink); }
+  .feature .where b { color: var(--amber); }
+
+  /* little UI mockups */
+  .mock { background: #0c0f24; border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: .8rem; }
+  .mock .mhead { font-family: var(--mono); color: var(--ink-dim); font-size: .72rem; margin-bottom: 10px; }
+  .chip { display: inline-block; font-family: var(--mono); font-size: .72rem; padding: 3px 8px; border-radius: 6px;
+    border: 1px solid var(--line); margin: 2px; }
+  .chip.axe { background: rgba(255,200,97,.13); color: var(--amber); border-color: rgba(255,200,97,.4); }
+  .chip.lint { background: rgba(157,140,255,.13); color: var(--violet); border-color: rgba(157,140,255,.4); }
+  .chip.crit { background: rgba(63,214,194,.12); color: var(--teal); border-color: rgba(63,214,194,.4); }
+  .codeline { font-family: var(--mono); padding: 2px 8px; border-radius: 4px; white-space: pre-wrap; }
+  .codeline.del { background: rgba(255,122,138,.14); color: #ffb3bd; }
+  .codeline.add { background: rgba(87,224,138,.14); color: #aef0c6; }
+  .exp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .exp .bad { background: rgba(255,122,138,.1); border: 1px solid rgba(255,122,138,.35); border-radius: 8px; padding: 10px; }
+  .exp .good { background: rgba(87,224,138,.1); border: 1px solid rgba(87,224,138,.35); border-radius: 8px; padding: 10px; }
+  .exp h4 { margin: 0 0 5px; font-size: .8rem; }
+  .exp .bad h4 { color: #ffb3bd; } .exp .good h4 { color: #aef0c6; }
+  .exp p { font-size: .78rem; color: var(--ink); margin: 0; }
+  .quizmock button { font-family: var(--sans); font-size: .8rem; padding: 5px 12px; border-radius: 7px;
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); margin-right: 8px; }
+  .quizmock .ok { border-color: rgba(87,224,138,.5); color: #aef0c6; }
+  .quizmock .no { border-color: rgba(255,122,138,.5); color: #ffb3bd; }
+  .checkline { font-family: var(--mono); font-size: .78rem; color: var(--ink-dim); }
+  .checkline b { color: var(--ink); }
+
+  pre { background: #0c0f24; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+    overflow-x: auto; font-family: var(--mono); font-size: .78rem; line-height: 1.5; color: #d6dbff; margin: 0; }
+  pre .c { color: #6f78ad; } pre .k { color: var(--violet); } pre .s { color: var(--green); } pre .p { color: var(--amber); }
+  code.inline { font-family: var(--mono); background: var(--bg-soft); border: 1px solid var(--line);
+    padding: 1px 6px; border-radius: 6px; font-size: .85em; color: var(--amber); }
+
+  .diagram { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; }
+  .diagram svg { width: 100%; height: auto; display: block; }
+
+  footer { padding: 40px 0 70px; color: var(--ink-dim); font-size: .86rem; }
+  footer .meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  footer .meta-grid span { font-family: var(--mono); background: var(--panel); border: 1px solid var(--line);
+    padding: 6px 11px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="topnav" aria-label="Docs">
+      <a href="phase-2.html">← Build pipeline (Phase 2)</a>
+      <a href="features.html" class="active" aria-current="page">App features</a>
+    </nav>
+    <span class="eyebrow">WCAG Explainer · The App</span>
+    <h1>From reference to workflow tool</h1>
+    <p class="lede">
+      The explainer started as a browsable list of 87 criteria. These eight features turn it into
+      something a team actually works in — connecting the scanner you run, the code you write, the
+      users you serve, and the checklist you ship.
+    </p>
+    <div class="tabsmock" aria-hidden="true">
+      <span class="on">Reference</span>
+      <span>Rule lookup</span>
+      <span>Quiz</span>
+      <span>My checklist <span class="badge">5</span></span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- FIND & FIX -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Find &amp; fix</p>
+    <h2>Start from what your tools flag</h2>
+    <p class="section-intro">
+      Developers see scanner output, not criterion numbers. These features bridge "my linter yelled at me"
+      to "here's the criterion and the fix."
+    </p>
+
+    <div class="feature">
+      <div>
+        <span class="num">Feature 1 &amp; 7</span>
+        <h3>Rule lookup — axe-core &amp; eslint-plugin-jsx-a11y</h3>
+        <p>Paste a rule id your scanner or linter reported and jump straight to the criteria it maps to,
+        each with the plain-English why and the fix. Covers axe-core rules (from the dataset) and 31
+        eslint-plugin-jsx-a11y rules (curated mapping).</p>
+        <p class="where"><b>In the app:</b> the <em>Rule lookup</em> tab.</p>
+      </div>
+      <div class="mock">
+        <div class="mhead">Rule lookup · "image-alt"</div>
+        <div><span class="chip axe">axe-core</span> <span style="font-family:var(--mono)">image-alt</span></div>
+        <p style="color:var(--ink-dim); margin:8px 0;">Ensure &lt;img&gt; elements have alternative text…</p>
+        <div><span class="chip crit">1.1.1 Non-text Content →</span></div>
+        <div style="margin-top:10px"><span class="chip lint">jsx-a11y</span> <span style="font-family:var(--mono)">alt-text</span> → <span class="chip crit">1.1.1 →</span></div>
+      </div>
+    </div>
+
+    <div class="feature rev">
+      <div class="mock">
+        <div class="mhead">Code examples · fail → pass diff</div>
+        <div class="codeline del">- &lt;img src="newsletter.gif" /&gt;</div>
+        <div class="codeline add">+ &lt;img src="newsletter.gif" alt="Free newsletter…" /&gt;</div>
+        <div style="margin-top:10px"><span class="chip crit">Copy fixed code</span></div>
+      </div>
+      <div>
+        <span class="num">Feature 5</span>
+        <h3>Fix-it diff &amp; copy</h3>
+        <p>Every criterion's pass and fail examples can be flipped into a line-level <strong>fail → pass diff</strong>,
+        so you see the minimal change — not two separate blocks. One click copies the example, or the fixed code.</p>
+        <p class="where"><b>In the app:</b> the "Show fail → pass diff" toggle and <em>Copy</em> buttons on any criterion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNDERSTAND -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Understand</p>
+    <h2>See it from the user's side</h2>
+    <p class="section-intro">
+      The spec tells you the rule. This tells you what actually happens to a person when you get it
+      wrong — the thing no Understanding doc or "just ask an LLM" reliably gives you.
+    </p>
+    <div class="feature">
+      <div>
+        <span class="num">Feature 4</span>
+        <h3>"What the user experiences"</h3>
+        <p>Each of the 87 criteria carries a concrete <strong>broken vs. done-right</strong> pair, framed around
+        the person most affected — a screen-reader user hearing a filename, a low-vision user losing text at
+        200% zoom, a keyboard user trapped in a widget.</p>
+        <p class="where"><b>In the app:</b> the "What the user experiences" panel on every criterion.</p>
+      </div>
+      <div class="mock">
+        <div class="mhead">1.1.1 · What the user experiences</div>
+        <div class="exp">
+          <div class="bad"><h4>😣 When it's broken</h4><p>A screen reader announces only "newsletter dot gif, image" — no idea what it shows.</p></div>
+          <div class="good"><h4>🙂 When it's done right</h4><p>It reads the alt text aloud — the same information a sighted user sees.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAVIGATE -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Navigate your way</p>
+    <h2>Enter by how you actually think</h2>
+    <div class="feature">
+      <div>
+        <span class="num">Feature 6</span>
+        <h3>Component &amp; role filtering</h3>
+        <p>Filter the 87 criteria by the <strong>component</strong> you're building (forms, images, modals,
+        color &amp; contrast, keyboard…) or by your <strong>role</strong> (developer, designer, content author,
+        QA). Each criterion shows its component tags, too.</p>
+        <p class="where"><b>In the app:</b> the Component / Your-role dropdowns in the sidebar.</p>
+      </div>
+      <div class="mock">
+        <div class="mhead">Filter · Component = "Forms"</div>
+        <div class="checkline"><b>1.3.5</b> Identify Input Purpose</div>
+        <div class="checkline"><b>3.3.1</b> Error Identification</div>
+        <div class="checkline"><b>3.3.2</b> Labels or Instructions</div>
+        <div class="checkline"><b>3.3.7</b> Redundant Entry</div>
+        <div style="margin-top:8px"><span class="chip">Forms</span><span class="chip">Custom widgets</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Learn &amp; onboard</p>
+    <h2>Active practice, not passive reading</h2>
+    <div class="feature rev">
+      <div class="mock">
+        <div class="mhead">Quiz · Pass or fail?</div>
+        <pre style="margin-bottom:10px">&lt;div className="btn" onClick=&#123;save&#125;&gt;Save&lt;/div&gt;</pre>
+        <div class="quizmock"><button class="ok">✓ Pass</button><button class="no">✕ Fail</button></div>
+        <p style="color:var(--ink-dim); margin-top:10px; font-size:.78rem">→ FAIL · 2.1.1 Keyboard</p>
+      </div>
+      <div>
+        <span class="num">Feature 8</span>
+        <h3>Spot-the-violation quiz</h3>
+        <p>Turns the existing pass/fail examples into flashcards: see a snippet, guess pass or fail, then get
+        the answer plus a link to the criterion — with a running score. Built for onboarding a team to a11y.</p>
+        <p class="where"><b>In the app:</b> the <em>Quiz</em> tab.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN & SHARE -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Plan &amp; share</p>
+    <h2>Make it your team's artifact</h2>
+    <div class="feature">
+      <div>
+        <span class="num">Feature 9</span>
+        <h3>Project checklist &amp; PR template</h3>
+        <p>Add the criteria relevant to your project, name it, and export a <strong>Markdown checklist</strong> or a
+        <strong>PR-review template</strong>. Your selection is saved in the browser, so it persists across visits.</p>
+        <p class="where"><b>In the app:</b> the <em>My checklist</em> tab + "＋ Add to checklist" on any criterion.</p>
+      </div>
+      <div class="mock">
+        <div class="mhead">My checklist · PR template</div>
+        <pre>### Accessibility review — Checkout
+- [ ] `1.4.3` Contrast (Minimum)
+- [ ] `2.1.1` Keyboard
+- [ ] `3.3.1` Error Identification</pre>
+        <div style="margin-top:8px"><span class="chip crit">Copy Markdown</span></div>
+      </div>
+    </div>
+
+    <div class="feature rev">
+      <div class="mock">
+        <div class="mhead">Any criterion · share</div>
+        <div><span class="chip crit">🔗 Copy link</span> <span style="font-family:var(--mono); color:var(--ink-dim)">…/#1.4.3</span></div>
+        <div style="margin-top:10px"><span class="chip crit">⧉ Copy as Markdown</span></div>
+        <pre style="margin-top:10px">## 1.4.3 Contrast (Minimum) (Level AA)
+Text must have enough contrast…
+**Quick check:** Use DevTools' color picker…</pre>
+      </div>
+      <div>
+        <span class="num">Feature 10</span>
+        <h3>Deep links &amp; exports</h3>
+        <p>Every criterion has a stable permalink (<code class="inline">#1.4.3</code>) you can copy and paste into
+        Slack or docs, plus a one-click <strong>Copy as Markdown</strong> for issues and wikis.</p>
+        <p class="where"><b>In the app:</b> the 🔗 and ⧉ buttons in each criterion's header.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section>
+  <div class="wrap">
+    <p class="group-tag">Under the hood</p>
+    <h2>How the new data is composed</h2>
+    <p class="section-intro">
+      Three features needed data that didn't exist (screen-reader experience, component/role tags, eslint
+      mappings). Rather than touch the validated build-pipeline dataset, they live as <strong>side files</strong>
+      composed onto each criterion at load — keeping the <code class="inline">wcag-criteria.json</code> contract clean.
+    </p>
+    <div class="diagram">
+      <svg viewBox="0 0 960 250" role="img" aria-labelledby="dTitle dDesc">
+        <title id="dTitle">App data composition</title>
+        <desc id="dDesc">The shipped wcag-criteria.json plus three side data files (assistive-tech, facets,
+        eslint-jsx-a11y) are composed by augment.ts and consumed by the React features.</desc>
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#5b63a0"></path>
+          </marker>
+          <style>
+            .l { fill:#e8eaf6; font-family: var(--sans); font-size: 13px; font-weight:600; }
+            .s2 { fill:#aab0d6; font-family: ui-monospace, monospace; font-size: 10px; }
+            .e { stroke:#5b63a0; stroke-width:2; fill:none; marker-end:url(#ar); }
+          </style>
+        </defs>
+        <rect rx="10" x="20" y="30" width="190" height="50" fill="#202650" stroke="#57e08a"></rect>
+        <text x="34" y="52" class="l">wcag-criteria.json</text><text x="34" y="69" class="s2">87 · build pipeline</text>
+        <rect rx="10" x="20" y="95" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <text x="34" y="113" class="l" font-size="12">assistive-tech.json</text><text x="34" y="128" class="s2">#4</text>
+        <rect rx="10" x="20" y="150" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <text x="34" y="168" class="l" font-size="12">facets.json</text><text x="34" y="183" class="s2">#6</text>
+        <rect rx="10" x="20" y="205" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <text x="34" y="223" class="l" font-size="12">eslint-jsx-a11y.json</text><text x="34" y="238" class="s2">#7</text>
+
+        <rect rx="10" x="380" y="110" width="160" height="55" fill="#232a54" stroke="#9d8cff"></rect>
+        <text x="402" y="135" class="l">augment.ts</text><text x="402" y="152" class="s2">compose by id</text>
+
+        <rect rx="10" x="700" y="40" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <text x="716" y="65" class="l" font-size="12">Rule lookup · #1 #7</text>
+        <rect rx="10" x="700" y="92" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <text x="716" y="117" class="l" font-size="12">Detail · experience, diff · #4 #5 #10</text>
+        <rect rx="10" x="700" y="144" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <text x="716" y="169" class="l" font-size="12">Sidebar filters · #6</text>
+        <rect rx="10" x="700" y="196" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <text x="716" y="221" class="l" font-size="12">Quiz · #8 · Checklist · #9</text>
+
+        <path class="e" d="M210,55 C300,55 320,120 378,128"></path>
+        <path class="e" d="M210,115 L378,130"></path>
+        <path class="e" d="M210,170 L378,140"></path>
+        <path class="e" d="M210,225 C300,225 320,150 378,148"></path>
+        <path class="e" d="M540,125 C620,125 640,60 698,60"></path>
+        <path class="e" d="M540,135 L698,112"></path>
+        <path class="e" d="M540,142 L698,164"></path>
+        <path class="e" d="M540,150 C620,150 640,210 698,216"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>These features layer on top of the <a href="phase-2.html">Phase&nbsp;2 enriched dataset</a> without changing its
+    contract — new data lives in side files composed by <code class="inline">src/augment.ts</code>. Built into the
+    skill's <code class="inline">template/</code>, type-checked, and covered by the app test suite.</p>
+    <div class="meta-grid" aria-label="Feature summary">
+      <span>8 features</span>
+      <span>4 app modes</span>
+      <span>3 side-data files</span>
+      <span>87 "what the user experiences" pairs</span>
+      <span>46 tests passing</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
