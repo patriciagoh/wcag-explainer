@@ -3,6 +3,7 @@ import { Sidebar } from "./components/Sidebar.tsx";
 import { SearchBar } from "./components/SearchBar.tsx";
 import { FacetFilter } from "./components/FacetFilter.tsx";
 import { CriterionDetail } from "./components/CriterionDetail.tsx";
+import { Welcome } from "./components/Welcome.tsx";
 import { RuleLookup } from "./components/RuleLookup.tsx";
 import { Quiz } from "./components/Quiz.tsx";
 import { Checklist } from "./components/Checklist.tsx";
@@ -122,7 +123,7 @@ export function App() {
                   onToggleChecklist={checklist.toggle}
                 />
               ) : (
-                <p className="text-gray-600">Select a criterion from the sidebar to begin.</p>
+                <Welcome byId={byId} total={all.length} onSelect={select} onMode={setMode} />
               )}
             </main>
           </>

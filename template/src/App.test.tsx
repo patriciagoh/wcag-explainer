@@ -14,9 +14,14 @@ describe("<App>", () => {
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
   });
 
-  it("shows a 'select a criterion' message when none selected", () => {
+  it("shows the welcome front page with reference links when none selected", () => {
     render(<App />);
-    expect(screen.getByText(/select a criterion/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Official docs & tools/i })).toBeInTheDocument();
+    expect(screen.getByText(/Start here/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /WCAG 2.2 specification/i })).toHaveAttribute(
+      "href",
+      "https://www.w3.org/TR/WCAG22/",
+    );
   });
 
   it("has no accessibility violations on empty state", async () => {
