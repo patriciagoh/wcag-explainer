@@ -1,0 +1,27 @@
+{
+  "inputHash": "ccd3148e93912531f06a276a8cc01362d63c2b23ce17cd6cb6a76288377a23c1",
+  "plainEnglish": "Any feature you can operate with a multi-finger or path-based gesture (pinch-zoom, swipe, drag along a path) must also work with a single tap or click. Many people can't perform complex gestures, so provide simple single-pointer alternatives like buttons.",
+  "whyItMatters": "Users with motor disabilities, or those using a head pointer or switch, can't perform multipoint or path-based gestures like pinch or swipe and need a single-pointer alternative.",
+  "quickCheck": "For every swipe, pinch, or path gesture, confirm there's a simple single-tap/click control (such as buttons) that does the same thing.",
+  "commonMistakes": [
+    "Carousels or galleries that can only be advanced by swiping, with no previous/next buttons.",
+    "Pinch-to-zoom as the only way to zoom, with no zoom buttons.",
+    "Path-based gestures (like drawing a shape) with no single-pointer equivalent."
+  ],
+  "codeExamples": [
+    {
+      "label": "Swipe plus single-pointer buttons",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<div onTouchMove={handleSwipe}>\n  <button onClick={prev} aria-label=\"Previous slide\">‹</button>\n  <button onClick={next} aria-label=\"Next slide\">›</button>\n</div>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Advancing requires a swipe gesture",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Only advances via touch swipe — no button alternative */}\n<div onTouchMove={handleSwipe}>{/* slides */}</div>",
+      "source": "synthesized"
+    }
+  ]
+}

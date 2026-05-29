@@ -1,0 +1,27 @@
+{
+  "inputHash": "520edbd9dd8dac9808ed2f68b27b6fd7ad4cea959979d9e78a65fbbf49149719",
+  "plainEnglish": "At Level AAA, don't lock users into one input method. People may switch between touch, mouse, keyboard, and stylus—even mid-task—so your content shouldn't restrict which input modalities work, unless the restriction is essential or needed for security.",
+  "whyItMatters": "Users who switch input methods—for example from touch to an attached keyboard—are blocked when content is hard-coded to accept only one modality.",
+  "quickCheck": "Try operating the app with touch, mouse, and keyboard interchangeably and confirm none are artificially disabled.",
+  "commonMistakes": [
+    "Detecting a 'touch device' and then disabling mouse or keyboard handlers.",
+    "Building interactions that assume only one input type will ever be used.",
+    "Removing hover or keyboard support on touch devices."
+  ],
+  "codeExamples": [
+    {
+      "label": "Supports pointer and keyboard regardless of device",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<div\n  onPointerDown={handleActivate}\n  onKeyDown={(e) => e.key === \"Enter\" && handleActivate(e)}\n  tabIndex={0}\n  role=\"button\"\n/>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Disables keyboard when touch is detected",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Removes keyboard handling on touch devices\nif (isTouchDevice) element.onkeydown = null;",
+      "source": "synthesized"
+    }
+  ]
+}

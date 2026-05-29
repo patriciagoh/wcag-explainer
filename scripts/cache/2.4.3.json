@@ -1,0 +1,28 @@
+{
+  "inputHash": "00d9700bd0e57db316c16d470ee1bf0d1849ef22aa70658c72ae0ce48b0004b0",
+  "plainEnglish": "When users tab through a page, focus must move in an order that makes sense and preserves meaning—generally matching the visual reading order. Don't let focus jump around unpredictably. Avoid positive tabindex values, which override the natural DOM order and cause confusing jumps.",
+  "whyItMatters": "Keyboard and screen reader users get confused, and can submit forms incorrectly, when Tab moves focus in an illogical order that doesn't match the visual layout.",
+  "quickCheck": "Tab through the page and confirm focus moves in a logical order matching the visual flow; search your code for any tabindex value greater than 0.",
+  "commonMistakes": [
+    "Using positive tabindex (tabindex=\"1\", \"2\"...), which hijacks the tab order and causes jumps.",
+    "A DOM order that doesn't match the visual order, so focus appears to jump around.",
+    "Opening a modal without moving focus into it, leaving focus behind on the page.",
+    "Inserting new content (like an expanded panel) without placing focus logically."
+  ],
+  "codeExamples": [
+    {
+      "label": "Focus follows the natural DOM and visual order",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* No tabindex overrides: focus order matches the visual order */}\n<input name=\"first\" />\n<input name=\"last\" />\n<button type=\"submit\">Next</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Positive tabindex forces a confusing order",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Focus jumps 3 → 1 → 2 because of positive tabindex */}\n<input name=\"first\" tabIndex={3} />\n<input name=\"last\" tabIndex={1} />\n<button type=\"submit\" tabIndex={2}>Next</button>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "inputHash": "9b0dc93b252d306c4c99b4148719ec33c7c27a603c491d1c776f0954498d1fec",
+  "plainEnglish": "If a keyboard user can Tab into a component, they must be able to Tab back out using standard keys. A 'keyboard trap' is when focus gets stuck—often in custom modals, embedded widgets, or media players—so the user can't move on. If exiting requires a non-standard key, you must tell the user how.",
+  "whyItMatters": "Keyboard-only users get completely stuck on the page when focus enters a component—like a modal or embedded widget—that it can't escape from.",
+  "quickCheck": "Tab through every widget, modal, and embed and confirm you can always Tab (or Shift+Tab) back out without reaching for the mouse.",
+  "commonMistakes": [
+    "A custom modal that holds focus but provides no Escape key or keyboard-reachable close button.",
+    "Embedded third-party widgets (date pickers, video players) that capture Tab and never release it.",
+    "A focus-trap implementation that keeps looping focus inside a component even after it's closed.",
+    "Calling preventDefault on the Tab keydown without redirecting focus, swallowing the key."
+  ],
+  "codeExamples": [
+    {
+      "label": "Modal you can escape with the keyboard",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "function Modal({ onClose, children }) {\n  return (\n    <div\n      role=\"dialog\"\n      aria-modal=\"true\"\n      onKeyDown={(e) => e.key === \"Escape\" && onClose()}\n    >\n      {children}\n      <button onClick={onClose}>Close</button>\n    </div>\n  );\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Modal that traps keyboard focus",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "function Modal({ children }) {\n  // No way out: focus is trapped with no Escape handler or close control\n  return (\n    <div\n      role=\"dialog\"\n      aria-modal=\"true\"\n      onKeyDown={(e) => e.key === \"Tab\" && e.preventDefault()}\n    >\n      {children}\n    </div>\n  );\n}",
+      "source": "synthesized"
+    }
+  ]
+}

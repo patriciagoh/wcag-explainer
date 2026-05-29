@@ -1,0 +1,27 @@
+{
+  "inputHash": "f0755db3b8b41ae048f629ae7fd69f76393584d2493f35f294d4614c48993db8",
+  "plainEnglish": "Any feature that uses dragging—reordering a list, a slider, drag-and-drop—must also be operable with a single pointer without dragging, for example tap-to-select then tap-destination, or up/down buttons. Dragging is hard for many people with motor disabilities.",
+  "whyItMatters": "Users with motor disabilities, tremors, or who use a head pointer often can't perform a sustained drag and need a no-drag alternative.",
+  "quickCheck": "For every drag interaction (reorder, slider, drag-drop), confirm there's a no-drag alternative such as click-to-move buttons or tap targets.",
+  "commonMistakes": [
+    "Drag-and-drop reordering with no up/down buttons or other alternative.",
+    "Sliders that can only be set by dragging the thumb, with no clickable track or text input.",
+    "Kanban-style boards where cards can only be moved by dragging."
+  ],
+  "codeExamples": [
+    {
+      "label": "Reorder via buttons, not just dragging",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<li>\n  Task 1\n  <button onClick={moveUp} aria-label=\"Move Task 1 up\">↑</button>\n  <button onClick={moveDown} aria-label=\"Move Task 1 down\">↓</button>\n</li>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Reordering only possible by dragging",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Cards can only be reordered by dragging */}\n<li draggable onDragStart={onDragStart}>Task 1</li>",
+      "source": "synthesized"
+    }
+  ]
+}

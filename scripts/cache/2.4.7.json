@@ -1,0 +1,28 @@
+{
+  "inputHash": "4152aca12118fdf47f46387fa0b3a621908d81c5431e05b1c40a2bcb117c62d6",
+  "plainEnglish": "When a keyboard user tabs to an element, there must be a visible focus indicator showing where they are. Don't remove the browser's default focus outline (outline: none) without providing a clearly visible replacement, or keyboard users get lost.",
+  "whyItMatters": "Keyboard users can't tell which element is focused—and so can't navigate at all—when the focus indicator is removed or invisible.",
+  "quickCheck": "Tab through the page and confirm every focused element shows a clearly visible outline or highlight; search your CSS for 'outline: none' or 'outline: 0'.",
+  "commonMistakes": [
+    "Setting outline: none (or 0) on :focus with no visible replacement style.",
+    "A focus style so faint or low-contrast it's hard to see.",
+    "Applying focus styles only for mouse interaction, or relying solely on :hover.",
+    "Custom controls that never receive a visible focus state."
+  ],
+  "codeExamples": [
+    {
+      "label": "Clearly visible focus indicator",
+      "kind": "pass",
+      "language": "css",
+      "code": ".btn:focus-visible {\n  outline: 2px solid #1a73e8;\n  outline-offset: 2px;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Focus ring removed with no replacement",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* Keyboard users can no longer see where focus is */\n.btn:focus { outline: none; }",
+      "source": "synthesized"
+    }
+  ]
+}

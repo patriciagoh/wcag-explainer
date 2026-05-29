@@ -1,0 +1,28 @@
+{
+  "inputHash": "8d8892396b0bca909360cbbd1917325943fbbd29fab37cc4e4c1676efaaeb748",
+  "plainEnglish": "At Level AA, tap and click targets must be at least 24×24 CSS pixels, or have enough spacing that a 24px circle centered on each doesn't overlap a neighbor. Tiny, crowded controls are hard to hit accurately, especially on touchscreens.",
+  "whyItMatters": "Touchscreen users and people with motor disabilities or tremors mis-tap controls that are smaller than 24×24px or packed too closely together.",
+  "quickCheck": "Measure interactive targets in DevTools and confirm each is at least 24×24 CSS pixels or has adequate spacing; axe's target-size rule flags small ones.",
+  "commonMistakes": [
+    "Buttons, links, or icons smaller than 24×24px (axe target-size).",
+    "Adjacent small targets with no spacing between them.",
+    "Tiny close (×) buttons or icon-only toolbar buttons.",
+    "Small inline checkboxes or radios with cramped clickable areas."
+  ],
+  "codeExamples": [
+    {
+      "label": "Target meets the 24px minimum size",
+      "kind": "pass",
+      "language": "css",
+      "code": ".tag-remove {\n  min-width: 24px;\n  min-height: 24px;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Target below the 24px minimum size",
+      "kind": "fail",
+      "language": "css",
+      "code": ".tag-remove {\n  width: 16px;\n  height: 16px;\n}",
+      "source": "synthesized"
+    }
+  ]
+}

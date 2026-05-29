@@ -1,0 +1,27 @@
+{
+  "inputHash": "685b945ed98faa95b0cc51b0dee6d646411758c4eca6a68ff859b5174faa1695",
+  "plainEnglish": "At Level AAA, warn users up front how long inactivity can last before they lose data—unless you preserve their data for more than 20 hours. People may step away mid-task, and they need to know whether their work will survive.",
+  "whyItMatters": "Users who need to pause a task—for a break or due to a disability—lose unsaved data without warning if they don't know the inactivity limit.",
+  "quickCheck": "Confirm the app warns users about the inactivity-timeout duration up front, or that data is preserved for 20+ hours.",
+  "commonMistakes": [
+    "Setting an inactivity data-loss timeout with no advance warning of its duration.",
+    "Assuming users know how long they can be idle before losing work.",
+    "Not preserving in-progress data across the timeout, so idle users lose everything."
+  ],
+  "codeExamples": [
+    {
+      "label": "Warn about the inactivity limit up front",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p role=\"note\">\n  For your security, you'll be signed out after 15 minutes of\n  inactivity. Unsaved changes will be lost.\n</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Silent data loss after idle time",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Clears the draft after idle time with no prior warning\nsetTimeout(() => clearDraft(), 15 * 60 * 1000);",
+      "source": "synthesized"
+    }
+  ]
+}

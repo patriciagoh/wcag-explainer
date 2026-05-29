@@ -1,0 +1,27 @@
+{
+  "inputHash": "c50f598a7faf0184d5585357e728afc024d72bfa0b2ac8741f8f28b151ca826c",
+  "plainEnglish": "Actions should fire on the up-event (release), not the down-event (press), so a user who presses by mistake can slide off the target to cancel. Alternatively, provide undo. This lets people with motor difficulties recover from accidental presses.",
+  "whyItMatters": "Users with motor disabilities who press a control by accident can't cancel the action if it fires immediately on the down-press instead of on release.",
+  "quickCheck": "Confirm actions trigger on the click/up-event (not mousedown/touchstart) so users can drag off to abort, or that an undo is available.",
+  "commonMistakes": [
+    "Triggering actions on onMouseDown or onTouchStart instead of onClick (the up-event).",
+    "Providing no way to abort an action by moving off the control before releasing.",
+    "Drag actions that commit on the down-event with no undo."
+  ],
+  "codeExamples": [
+    {
+      "label": "Fires on release, so it can be aborted",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* onClick fires on the up-event; slide off to cancel */}\n<button onClick={deleteItem}>Delete</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Fires on press with no chance to cancel",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Commits the instant it is pressed */}\n<button onMouseDown={deleteItem}>Delete</button>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "99841dc4669b456487d386f191175ab17504091a95a33066b86e6b41c4c3439c",
+  "plainEnglish": "This is the Level AAA version of 2.1.1: all functionality must be keyboard operable with no exceptions—even path-dependent actions like freehand drawing need a keyboard-operable alternative. Aim for full keyboard parity across the entire interface.",
+  "whyItMatters": "Keyboard-only users are excluded from any feature—including path-based ones like drawing or signature capture—that has no keyboard-operable alternative.",
+  "quickCheck": "Tab through the whole app and confirm every feature, including drag and draw interactions, has a keyboard-operable path with no mouse-only exceptions.",
+  "commonMistakes": [
+    "Freehand drawing or signature tools with no keyboard alternative for entering the same data.",
+    "Drag-and-drop reordering that can't be performed with keyboard keys.",
+    "Relying on the 2.1.1 path-dependent exception, which does not apply at Level AAA."
+  ],
+  "codeExamples": [
+    {
+      "label": "Drag to reorder, with keyboard buttons as an equivalent",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<li>\n  Item A\n  <button aria-label=\"Move Item A up\" onClick={moveUp}>↑</button>\n  <button aria-label=\"Move Item A down\" onClick={moveDown}>↓</button>\n</li>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Reordering only possible by mouse drag",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<li draggable onDragStart={handleDragStart} onDrop={handleDrop}>\n  Item A\n</li>",
+      "source": "synthesized"
+    }
+  ]
+}

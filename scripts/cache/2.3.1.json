@@ -1,0 +1,27 @@
+{
+  "inputHash": "8f7f9c192f504f227b962e014abaa2f22589f2f4cf9857b373a8294be30a5948",
+  "plainEnglish": "Nothing on the page may flash more than three times per second, unless the flash is small and dim enough to stay below the established flash thresholds. Rapid flashing can trigger seizures in people with photosensitive epilepsy.",
+  "whyItMatters": "Content flashing more than three times per second can trigger seizures in people with photosensitive epilepsy.",
+  "quickCheck": "Review animations, GIFs, and video for anything flashing more than three times per second, and analyze suspect media with a tool like PEAT (the Photosensitive Epilepsy Analysis Tool).",
+  "commonMistakes": [
+    "Auto-playing GIFs or videos with rapid flashing or strobe effects.",
+    "CSS or JS animations that rapidly flash large areas more than three times per second.",
+    "Flashing alerts or attention-grabbing effects above the flash threshold."
+  ],
+  "codeExamples": [
+    {
+      "label": "Gentle pulse, well under 3 flashes/second",
+      "kind": "pass",
+      "language": "css",
+      "code": "@keyframes pulse {\n  from { opacity: 1; }\n  to   { opacity: 0.6; }\n}\n.alert { animation: pulse 2s ease-in-out infinite; }",
+      "source": "synthesized"
+    },
+    {
+      "label": "Strobe flashing ~10 times/second",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* ~10 flashes per second — a seizure risk */\n@keyframes strobe {\n  50% { background: #fff; }\n}\n.alert { animation: strobe 0.1s steps(1) infinite; }",
+      "source": "synthesized"
+    }
+  ]
+}

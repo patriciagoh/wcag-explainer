@@ -1,0 +1,27 @@
+{
+  "inputHash": "bf5a8b6b7833f03ec7914a36f912c01f3eb2ffa4d847ae4636b2ba7da4eaf428",
+  "plainEnglish": "At Level AAA, your content imposes no time limits at all on interactions (except non-interactive media and real-time events like a live webinar). Users can take as long as they need to read content and complete tasks.",
+  "whyItMatters": "Users who need significantly more time—due to cognitive, motor, or reading disabilities—are excluded by any non-essential time limit on a task.",
+  "quickCheck": "Confirm no interactive task in your app imposes a time limit other than live or real-time events.",
+  "commonMistakes": [
+    "Imposing a countdown on quizzes or checkout flows that isn't strictly essential.",
+    "Auto-logging out idle users when the activity doesn't truly require it.",
+    "Auto-advancing slideshows or steps that move on before the user has finished."
+  ],
+  "codeExamples": [
+    {
+      "label": "No countdown — the user submits when ready",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "// No timer: the form is submitted only when the user chooses\n<form onSubmit={handleSubmit}>{/* ... */}</form>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Quiz that auto-submits on a timer",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Quiz auto-submits after 60s regardless of the user\nuseEffect(() => {\n  const id = setTimeout(submitQuiz, 60000);\n  return () => clearTimeout(id);\n}, []);",
+      "source": "synthesized"
+    }
+  ]
+}

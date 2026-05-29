@@ -1,0 +1,27 @@
+{
+  "inputHash": "1a489920b239fc9849a118bf7c724368a77ad93861acd7f0b5b8423b290952e0",
+  "plainEnglish": "Within a set of pages, offer more than one way to find a given page—for example a navigation menu plus a search box, a sitemap, or an A–Z index. Different users navigate differently, so don't force everyone through a single rigid path. Steps within a process, like checkout, are exempt.",
+  "whyItMatters": "Users with cognitive disabilities, and anyone who navigates differently, may be unable to find content if the only path to it is one fixed navigation menu.",
+  "quickCheck": "Confirm at least two ways to reach key pages exist—e.g., navigation plus search, a sitemap, or an index.",
+  "commonMistakes": [
+    "Providing only a single nav menu with no search, sitemap, or index.",
+    "A search box that doesn't actually cover the site's content.",
+    "Burying pages so deep they're only reachable through one specific click path."
+  ],
+  "codeExamples": [
+    {
+      "label": "Navigation plus a search form",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<nav aria-label=\"Primary\">{/* menu links */}</nav>\n<form role=\"search\" action=\"/search\">\n  <label htmlFor=\"q\">Search</label>\n  <input id=\"q\" name=\"q\" type=\"search\" />\n</form>",
+      "source": "synthesized"
+    },
+    {
+      "label": "A single menu is the only way to navigate",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No search, sitemap, or index — just one menu */}\n<nav aria-label=\"Primary\">{/* menu links */}</nav>",
+      "source": "synthesized"
+    }
+  ]
+}

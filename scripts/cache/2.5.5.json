@@ -1,0 +1,27 @@
+{
+  "inputHash": "9a7c3cac9d97575da515c27e4245083dfa2a5a18148922d72814b804e45d4565",
+  "plainEnglish": "At Level AAA, tap and click targets should be at least 44×44 CSS pixels, with some exceptions for inline links and equivalent controls. Larger targets are much easier to hit for people with motor difficulties or anyone using touch.",
+  "whyItMatters": "Users with motor disabilities or tremors, and touchscreen users, frequently miss targets smaller than 44×44 pixels.",
+  "quickCheck": "Measure interactive targets in DevTools and confirm each is at least 44×44 CSS pixels, or qualifies for an exception.",
+  "commonMistakes": [
+    "Icon buttons or close (×) buttons smaller than 44×44px.",
+    "Tightly packed small tap targets with no padding to enlarge the hit area.",
+    "Relying on a tiny visual icon without expanding its clickable region."
+  ],
+  "codeExamples": [
+    {
+      "label": "Target meets the 44px enhanced size",
+      "kind": "pass",
+      "language": "css",
+      "code": ".icon-button {\n  min-width: 44px;\n  min-height: 44px;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Target below the 44px enhanced size",
+      "kind": "fail",
+      "language": "css",
+      "code": ".icon-button {\n  width: 24px;\n  height: 24px;\n}",
+      "source": "synthesized"
+    }
+  ]
+}

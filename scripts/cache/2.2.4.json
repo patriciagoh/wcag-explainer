@@ -1,0 +1,27 @@
+{
+  "inputHash": "b6897b92a032ee40effb11f508456e25ffe4b5cd07f1c0fe110d7361f4f32e0c",
+  "plainEnglish": "At Level AAA, users can postpone or suppress interruptions—popups, toast notifications, auto-updates, chat nudges—except genuine emergencies. Unexpected interruptions disrupt people who are concentrating or using assistive technology.",
+  "whyItMatters": "Users with cognitive disabilities, and those using screen readers, lose their place and focus when notifications or auto-updates interrupt them unexpectedly.",
+  "quickCheck": "Confirm users can mute or defer notifications and auto-updates, and check there's no <meta http-equiv=\"refresh\"> (axe meta-refresh-no-exceptions).",
+  "commonMistakes": [
+    "Toast notifications or modals that pop up unprompted with no way to mute them.",
+    "Using <meta http-equiv=\"refresh\"> to reload content (axe meta-refresh-no-exceptions).",
+    "Pushing live updates that steal focus or shift content while the user is reading."
+  ],
+  "codeExamples": [
+    {
+      "label": "Respect a user preference before interrupting",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{notificationsEnabled && <Toast>{message}</Toast>}\n<label>\n  <input\n    type=\"checkbox\"\n    checked={notificationsEnabled}\n    onChange={toggleNotifications}\n  />\n  Show notifications\n</label>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Unconditional, unsuppressable interruptions",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Pops up every 10s with no way to suppress\nsetInterval(() => showToast(\"New activity!\"), 10000);",
+      "source": "synthesized"
+    }
+  ]
+}

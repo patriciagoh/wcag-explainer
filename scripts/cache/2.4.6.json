@@ -1,0 +1,27 @@
+{
+  "inputHash": "8a56f505b0ac8ad220cfc34ecf55ffda0f8d637a6c7a71d46b44fe7783eae633",
+  "plainEnglish": "Headings and form labels must clearly describe the topic or purpose of what they introduce. Vague headings like 'More' or labels like 'Field 1' don't help anyone scan a page or fill out a form. Write descriptive, specific text.",
+  "whyItMatters": "Screen reader users navigate by headings and rely on labels to fill in forms; vague text like 'More' or 'Field 1' leaves them unable to understand the structure or what to enter.",
+  "quickCheck": "Scan your headings and form labels in isolation and confirm each clearly describes the section or field it names.",
+  "commonMistakes": [
+    "Vague headings like 'Information', 'More', or 'Section 2' that don't describe the content.",
+    "Form labels like 'Field 1' or 'Input' that don't say what to enter.",
+    "Reusing identical heading text for sections with different content."
+  ],
+  "codeExamples": [
+    {
+      "label": "Descriptive heading and label",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<h2>Shipping address</h2>\n<label htmlFor=\"zip\">ZIP or postal code</label>\n<input id=\"zip\" name=\"zip\" />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Vague heading and label",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<h2>Section 2</h2>\n<label htmlFor=\"zip\">Field</label>\n<input id=\"zip\" name=\"zip\" />",
+      "source": "synthesized"
+    }
+  ]
+}

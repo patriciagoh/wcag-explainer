@@ -1,0 +1,27 @@
+{
+  "inputHash": "6cc880780dd99cce783b2a40c1884bfb5c1ca398d22197433bf518003b1b8491",
+  "plainEnglish": "At Level AAA, if an authenticated session expires while a user is working, they can log back in and continue without losing any data. Preserve form input and state across re-authentication so a timeout doesn't destroy someone's work.",
+  "whyItMatters": "Users who work slowly due to a disability are the most likely to hit a session timeout and lose everything they entered if data isn't preserved across re-login.",
+  "quickCheck": "Let a session expire mid-form, log back in, and confirm your entered data is still there.",
+  "commonMistakes": [
+    "Discarding form data when the session expires instead of restoring it after re-login.",
+    "Redirecting expired sessions to a login page that loses the user's place and input.",
+    "Showing a session-expired error that forces a full restart of a multi-step form."
+  ],
+  "codeExamples": [
+    {
+      "label": "Persist the draft so it survives re-authentication",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "// Persist input so it survives re-authentication\nconst onChange = (e) => {\n  setForm(e.target.value);\n  sessionStorage.setItem(\"draft\", e.target.value);\n};\n// After re-login, rehydrate from sessionStorage.getItem(\"draft\")",
+      "source": "synthesized"
+    },
+    {
+      "label": "Redirect on expiry, losing all in-memory state",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// On 401, redirect to login and lose all unsaved form state\nif (res.status === 401) window.location.href = \"/login\";",
+      "source": "synthesized"
+    }
+  ]
+}

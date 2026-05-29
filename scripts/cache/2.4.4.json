@@ -1,0 +1,28 @@
+{
+  "inputHash": "2eb3745a763d9dae53fbb7d36cdb738e6a280566e8a4d0a93865cd6126acd8b3",
+  "plainEnglish": "A link's purpose should be clear from its text, or from its text plus its immediate context (the sentence, list item, or table cell it sits in). Avoid bare 'click here' or 'read more' links that make no sense out of context—screen reader users often pull up a list of all links with no surrounding text.",
+  "whyItMatters": "Screen reader users who navigate by a list of links hear only the link text; a page full of 'click here' or 'read more' gives them no idea where each link goes.",
+  "quickCheck": "Read your link text out of context (e.g., in the browser's or screen reader's links list) and confirm each describes its destination; axe's link-name rule flags empty links.",
+  "commonMistakes": [
+    "Generic link text like 'click here', 'read more', or 'learn more' repeated across the page.",
+    "Icon-only links (a bare arrow or image) with no accessible name (axe link-name).",
+    "Image links and image-map <area>s with no alt text (axe area-alt).",
+    "Multiple 'Read more' links that are indistinguishable to a screen reader."
+  ],
+  "codeExamples": [
+    {
+      "label": "Self-describing link text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<a href=\"/report-2024.pdf\">Download the 2024 annual report (PDF)</a>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Link purpose hidden behind 'click here'",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "To get the 2024 annual report, <a href=\"/report-2024.pdf\">click here</a>.",
+      "source": "synthesized"
+    }
+  ]
+}

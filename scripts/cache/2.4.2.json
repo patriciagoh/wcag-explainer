@@ -1,0 +1,28 @@
+{
+  "inputHash": "49584b067493a5457764a1057b56419dd4053150344041fc3ec67a9e41f37290",
+  "plainEnglish": "Every page needs a unique, descriptive <title> that says what the page is about. The title is the first thing a screen reader announces and what shows in browser tabs, history, and bookmarks, so 'Untitled' or a generic site name on every page leaves users lost.",
+  "whyItMatters": "Screen reader users rely on the page title—announced first on load—to know which page they're on; a missing or generic title leaves them disoriented, especially with many tabs open.",
+  "quickCheck": "Check the browser tab text and the <title> element and confirm it's non-empty and describes this specific page (axe's document-title rule).",
+  "commonMistakes": [
+    "A missing or empty <title> element (axe document-title).",
+    "Using the same generic title (like just the site name) on every page.",
+    "In single-page apps, never updating document.title on route changes.",
+    "Putting the brand name first so the unique part is cut off in the browser tab."
+  ],
+  "codeExamples": [
+    {
+      "label": "Descriptive, page-specific title",
+      "kind": "pass",
+      "language": "html",
+      "code": "<title>Checkout — Step 2 of 3 | Acme Store</title>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Generic title repeated on every page",
+      "kind": "fail",
+      "language": "html",
+      "code": "<title>Acme Store</title>",
+      "source": "synthesized"
+    }
+  ]
+}

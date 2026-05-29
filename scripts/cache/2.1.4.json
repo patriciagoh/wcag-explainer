@@ -1,0 +1,27 @@
+{
+  "inputHash": "102efc2b6398e6b94b53d3ff154fa575ebc8374f44e7639682f2cb3863cc9a07",
+  "plainEnglish": "If you add single-character keyboard shortcuts (like pressing 'j' to jump to the next item), give users a way to turn them off, remap them, or make them active only when the relevant component has focus. Otherwise people using speech input, or who bump keys accidentally, trigger actions they never intended.",
+  "whyItMatters": "Speech-input users (whose spoken words emit keystrokes) and people with tremors accidentally trigger single-key shortcuts, firing unintended actions.",
+  "quickCheck": "List any single-character shortcuts in your app and confirm each can be disabled, remapped, or only fires when its component has focus.",
+  "commonMistakes": [
+    "Adding global single-key shortcuts (e.g., 'r' to reply) with no way to disable or remap them.",
+    "Binding shortcuts to document-level keydown so they fire even while the user is typing elsewhere.",
+    "Not requiring a modifier (Ctrl/Alt) and not scoping the shortcut to a focused component."
+  ],
+  "codeExamples": [
+    {
+      "label": "Shortcut requires a modifier and a focused component",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "// Shortcut only fires while the editor has focus\n<div\n  role=\"textbox\"\n  onKeyDown={(e) => {\n    if (e.key === \"b\" && (e.ctrlKey || e.metaKey)) toggleBold();\n  }}\n/>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Global single-key shortcut with no opt-out",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Fires on any \"b\" keypress anywhere on the page\nuseEffect(() => {\n  const onKey = (e) => { if (e.key === \"b\") toggleBold(); };\n  document.addEventListener(\"keydown\", onKey);\n  return () => document.removeEventListener(\"keydown\", onKey);\n}, []);",
+      "source": "synthesized"
+    }
+  ]
+}

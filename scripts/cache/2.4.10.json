@@ -1,0 +1,27 @@
+{
+  "inputHash": "5675500d33c399cb1064feef2643a72b15831bacbdc4bd8b4710a21b81ca8121",
+  "plainEnglish": "At Level AAA, use headings to organize content into labeled sections. A clear heading structure (properly nested <h1>–<h6>) lets people scan and jump to the part they need, especially in long documents.",
+  "whyItMatters": "Screen reader users (and anyone skimming) navigate long content by jumping between headings; without section headings they must read everything linearly.",
+  "quickCheck": "Confirm long content is broken into sections with descriptive headings and that heading levels nest logically with no skipped levels.",
+  "commonMistakes": [
+    "Long pages with no headings to break up the content.",
+    "Skipping heading levels (jumping from <h2> to <h4>).",
+    "Using headings for visual styling rather than to mark real sections."
+  ],
+  "codeExamples": [
+    {
+      "label": "Content organized with nested headings",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<h2>Installation</h2>\n<p>...</p>\n<h3>Requirements</h3>\n<p>...</p>\n<h2>Configuration</h2>\n<p>...</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "A wall of text with no section headings",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* One long block with nothing to navigate by */}\n<p>Installation... Requirements... Configuration...</p>",
+      "source": "synthesized"
+    }
+  ]
+}

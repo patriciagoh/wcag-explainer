@@ -1,0 +1,27 @@
+{
+  "inputHash": "359c8dc1c2ffdc0f32d6dfc2c336ac642fe7c2a924963ea594fb660d1e4cdf58",
+  "plainEnglish": "When an element receives keyboard focus, it must not be entirely hidden behind other content you've added—like a sticky header, footer, or cookie banner. At minimum the focused element has to be at least partially visible so keyboard users can see where they are.",
+  "whyItMatters": "Keyboard users lose track of focus when the focused element scrolls completely behind a sticky header, footer, or floating banner.",
+  "quickCheck": "Tab through the page with sticky headers and footers present and confirm the focused element is never completely hidden behind them.",
+  "commonMistakes": [
+    "Sticky headers or footers that cover the focused element as you tab down the page.",
+    "Cookie banners or chat widgets that overlap focused controls.",
+    "Not adding scroll-margin so anchored or focused elements clear fixed overlays."
+  ],
+  "codeExamples": [
+    {
+      "label": "Scroll-margin keeps focus clear of the sticky header",
+      "kind": "pass",
+      "language": "css",
+      "code": ":target,\n:focus-visible { scroll-margin-top: 5rem; }\n.site-header { position: sticky; top: 0; height: 4rem; }",
+      "source": "synthesized"
+    },
+    {
+      "label": "Sticky header hides elements as they get focus",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* No scroll-margin: focused elements scroll under the header */\n.site-header { position: sticky; top: 0; height: 6rem; }",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "inputHash": "2b03025f8cff79ce598b808a59aa4138aa1fbfc316995519e09994e33ca49efa",
+  "plainEnglish": "Everything a user can do with a mouse must also work with the keyboard alone—activating buttons and links, opening menus, operating custom widgets. Keyboard users tab to elements and press Enter, Space, or arrow keys, so don't build interactions that respond only to mouse events. The one exception is functionality that inherently depends on the path of movement, like freehand drawing.",
+  "whyItMatters": "Keyboard-only users—including people with motor disabilities and blind users who rely on screen readers—can't use any control that responds only to a mouse click or hover.",
+  "quickCheck": "Put your mouse away and Tab through the page, confirming you can reach and operate every interactive element with Tab, Enter, Space, and the arrow keys.",
+  "commonMistakes": [
+    "Building clickable controls from <div> or <span> with onClick instead of <button>, so they can't be focused or activated by keyboard.",
+    "Custom widgets (menus, tabs, sliders) that respond to mouse events but have no keydown handlers for Enter, Space, or arrow keys.",
+    "Using onMouseOver/hover to reveal content with no keyboard-focus equivalent.",
+    "Scrollable regions with no focusable element, so keyboard users can't scroll them (axe scrollable-region-focusable).",
+    "Custom controls with a missing or positive tabindex that drops them out of the natural tab order."
+  ],
+  "codeExamples": [
+    {
+      "label": "Real button, operable by keyboard",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<button onClick={handleSave}>Save</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Clickable div that keyboard users can't reach",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<div className=\"btn\" onClick={handleSave}>Save</div>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "dff9835c32f02e5509b98bfffe07f8899c921583dcd30b07d46d63c2f0a66578",
+  "plainEnglish": "This is the stricter Level AAA version of 2.4.4: each link's purpose must be clear from its link text alone, with no surrounding context needed. And links that share the same text should go to the same place. Write self-describing link text everywhere.",
+  "whyItMatters": "Screen reader users navigating by link text alone can't distinguish destinations when text is generic, and are misled when identical link text leads to different places.",
+  "quickCheck": "Read each link's text completely on its own and confirm it identifies the destination; axe's identical-links-same-purpose flags same-text links that go to different targets.",
+  "commonMistakes": [
+    "Generic link text ('read more') that needs surrounding context to make sense.",
+    "Two links with identical text that lead to different destinations (axe identical-links-same-purpose).",
+    "Relying on aria-describedby context instead of making the link text itself descriptive."
+  ],
+  "codeExamples": [
+    {
+      "label": "Distinct, self-describing links",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<a href=\"/pricing\">View pricing plans</a>\n<a href=\"/pricing/enterprise\">View enterprise pricing</a>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Identical text, different destinations",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<a href=\"/pricing\">Learn more</a>\n<a href=\"/security\">Learn more</a>",
+      "source": "synthesized"
+    }
+  ]
+}

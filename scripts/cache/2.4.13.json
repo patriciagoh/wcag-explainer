@@ -1,0 +1,27 @@
+{
+  "inputHash": "92c1195a579aa4efc53766dc2dd9036496fceda09b7794c25b363062a0dba638",
+  "plainEnglish": "At Level AAA, the keyboard focus indicator must be substantial: at least as large as a 2px-thick outline around the element, and with at least 3:1 contrast between the focused and unfocused states. A thin, faint focus ring isn't enough—make it large and high-contrast.",
+  "whyItMatters": "Users with low vision can't perceive a thin or low-contrast focus indicator and lose track of their keyboard position.",
+  "quickCheck": "Inspect your focus styles and confirm the indicator is at least 2 CSS px thick (or equivalent area) with at least 3:1 contrast against the unfocused state.",
+  "commonMistakes": [
+    "A 1px focus outline that's too thin to meet the minimum area.",
+    "A focus color with less than 3:1 contrast against the component's normal state.",
+    "Relying on a subtle color shift instead of a clearly visible outline."
+  ],
+  "codeExamples": [
+    {
+      "label": "Thick, high-contrast focus indicator",
+      "kind": "pass",
+      "language": "css",
+      "code": ".btn:focus-visible {\n  outline: 3px solid #0b5fff;   /* thick, ≥3:1 contrast */\n  outline-offset: 2px;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Thin, low-contrast focus indicator",
+      "kind": "fail",
+      "language": "css",
+      "code": ".btn:focus-visible {\n  outline: 1px solid #c8c8d0;   /* too thin and too low-contrast */\n}",
+      "source": "synthesized"
+    }
+  ]
+}

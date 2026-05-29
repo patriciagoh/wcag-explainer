@@ -1,0 +1,28 @@
+{
+  "inputHash": "9fc0033d94834a96a516a3cf529554f46d30e9e27d773f08eb0697cff2a00202",
+  "plainEnglish": "A control's accessible name must include the visible text label users see. If a button shows 'Search' but its aria-label is 'Submit', speech-input users who say 'click Search' can't activate it. Keep the visible text and the accessible name in sync.",
+  "whyItMatters": "Speech-input users say a control's visible label to activate it; if the accessible name doesn't contain that visible text, the voice command fails.",
+  "quickCheck": "Compare each control's visible text to its accessible name and confirm the visible text is included; axe's label-content-name-mismatch rule flags mismatches.",
+  "commonMistakes": [
+    "An aria-label that replaces the visible text with different wording (axe label-content-name-mismatch).",
+    "A button showing 'Search' but named 'Submit' or 'Go' via aria-label.",
+    "Icon-plus-text buttons whose aria-label omits the visible word.",
+    "Visible label text that isn't part of the computed accessible name."
+  ],
+  "codeExamples": [
+    {
+      "label": "Accessible name contains the visible text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Name \"Search products\" starts with the visible \"Search\" */}\n<button aria-label=\"Search products\">Search</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Accessible name doesn't match visible text",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Visible text says \"Search\" but the name is \"Submit\" */}\n<button aria-label=\"Submit\">Search</button>",
+      "source": "synthesized"
+    }
+  ]
+}

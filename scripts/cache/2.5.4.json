@@ -1,0 +1,27 @@
+{
+  "inputHash": "927a06102053639861d3cf987af12444330d243930b4f52a38f2c2309e9e8a87",
+  "plainEnglish": "If a feature can be triggered by moving the device (shake to undo) or by user motion (tilt), also provide a regular UI control for it, and let users disable motion triggering. Otherwise people who can't move the device—or who move it involuntarily—are excluded or trigger things by accident.",
+  "whyItMatters": "Users with motor or mobility disabilities who can't shake or tilt a device—or who move it involuntarily—need a UI-control alternative and a way to disable motion triggers.",
+  "quickCheck": "For any shake/tilt/motion feature, confirm there's an on-screen control that does the same thing and a setting to disable motion actuation.",
+  "commonMistakes": [
+    "'Shake to undo' or tilt-to-scroll with no equivalent on-screen button.",
+    "No setting to turn off motion-based actuation, causing accidental triggers.",
+    "Relying on device motion as the only way to perform an action."
+  ],
+  "codeExamples": [
+    {
+      "label": "Motion shortcut plus an on-screen button",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* A button does the same thing as the shake gesture */}\n<button onClick={undo}>Undo</button>\n{/* devicemotion also calls undo(), and can be disabled in settings */}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Action only available via device motion",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Undo only possible by physically shaking the device */}\nwindow.addEventListener(\"devicemotion\", maybeUndoOnShake);",
+      "source": "synthesized"
+    }
+  ]
+}

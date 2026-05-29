@@ -1,0 +1,28 @@
+{
+  "inputHash": "238913d8c2b3c22d3fe99349bb8d4935547c1f22695158060de56a5e8bc7ce6b",
+  "plainEnglish": "Any content that moves, blinks, scrolls, or auto-updates—carousels, animations, news tickers, live feeds—that starts automatically, lasts more than 5 seconds, and sits alongside other content must have a control to pause, stop, or hide it. Motion is distracting or disabling for many users, so give them an off switch.",
+  "whyItMatters": "Users with attention-related, cognitive, or vestibular disabilities can't focus on or read a page when auto-playing motion or auto-updating content can't be paused.",
+  "quickCheck": "Look for any auto-starting motion or auto-updating content lasting over 5 seconds and confirm there's a visible pause/stop/hide control; axe flags <blink> and <marquee>.",
+  "commonMistakes": [
+    "Auto-rotating carousels or sliders with no pause button.",
+    "Using <marquee> or <blink>, or CSS animations that loop indefinitely with no control (axe blink/marquee).",
+    "Auto-refreshing feeds or live tickers with no way to pause or slow the updates.",
+    "Background video or animation that loops with no stop control."
+  ],
+  "codeExamples": [
+    {
+      "label": "Carousel with a pause control",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<div aria-roledescription=\"carousel\">\n  <button onClick={() => setPaused((p) => !p)}>\n    {paused ? \"Play\" : \"Pause\"} slideshow\n  </button>\n  {/* auto-advances only while !paused */}\n</div>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Carousel that auto-advances with no pause",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "// Slides auto-advance forever with no way to pause\nuseEffect(() => {\n  const id = setInterval(next, 3000);\n  return () => clearInterval(id);\n}, []);",
+      "source": "synthesized"
+    }
+  ]
+}

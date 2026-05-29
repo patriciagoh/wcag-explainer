@@ -1,0 +1,27 @@
+{
+  "inputHash": "b51656d061c019641bcb396ce5494cb2ab4ec63e0f7f57e5dd7300cb6b13a754",
+  "plainEnglish": "At Level AAA, motion animations triggered by user interaction—parallax, large transitions, movement on scroll—can be turned off, unless the animation is essential. Honor the prefers-reduced-motion setting so people with vestibular disorders aren't made dizzy.",
+  "whyItMatters": "Users with vestibular disorders can feel dizziness or nausea from large motion animations (parallax, scroll effects) that they can't disable.",
+  "quickCheck": "Enable 'reduce motion' in your OS and confirm non-essential animations are reduced or removed; check that your CSS honors @media (prefers-reduced-motion: reduce).",
+  "commonMistakes": [
+    "Parallax scrolling or large transition animations with no prefers-reduced-motion fallback.",
+    "Ignoring the @media (prefers-reduced-motion: reduce) media query entirely.",
+    "Motion triggered on scroll or hover that can't be turned off."
+  ],
+  "codeExamples": [
+    {
+      "label": "Animation disabled when reduced motion is preferred",
+      "kind": "pass",
+      "language": "css",
+      "code": ".panel { transition: transform 0.4s ease; }\n@media (prefers-reduced-motion: reduce) {\n  .panel { transition: none; }\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Large parallax motion with no opt-out",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* Big scroll-driven motion, no reduced-motion fallback */\n.hero {\n  transform: translateY(var(--scroll));\n  transition: transform 0.1s;\n}",
+      "source": "synthesized"
+    }
+  ]
+}

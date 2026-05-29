@@ -1,0 +1,27 @@
+{
+  "inputHash": "cb003c20ba8a9405e872b14ba5346e72ca925bb419497f42ab7db72ad620b8ee",
+  "plainEnglish": "This is the stricter Level AAA rule: nothing flashes more than three times in any one second—period, with no 'below threshold' exception based on size or brightness. Avoid all rapid flashing.",
+  "whyItMatters": "Even small or dim flashing above three times per second can trigger seizures in highly photosensitive users, who get no exception at this level.",
+  "quickCheck": "Confirm no content—regardless of how small or dim—flashes more than three times in any one-second period.",
+  "commonMistakes": [
+    "Relying on the 2.3.1 'below threshold' allowance, which does not exist at Level AAA.",
+    "Small flashing indicators or animated cursors that exceed three flashes per second.",
+    "Spinners or loaders that strobe rapidly rather than animate smoothly."
+  ],
+  "codeExamples": [
+    {
+      "label": "Smooth animation, no rapid flashing",
+      "kind": "pass",
+      "language": "css",
+      "code": "@keyframes fade {\n  from { opacity: 1; }\n  to   { opacity: 0.7; }\n}\n.badge { animation: fade 1.5s ease-in-out infinite alternate; }",
+      "source": "synthesized"
+    },
+    {
+      "label": "Rapid flashing regardless of size",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* Flashes well over 3 times per second */\n@keyframes blinkFast {\n  50% { opacity: 0; }\n}\n.badge { animation: blinkFast 0.15s steps(1) infinite; }",
+      "source": "synthesized"
+    }
+  ]
+}

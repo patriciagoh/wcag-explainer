@@ -1,0 +1,28 @@
+{
+  "inputHash": "9ac9cbc40544706c81963126c8754f2ef019db6cc67916ce80efca321ea72e65",
+  "plainEnglish": "If your content imposes a time limit—a session timeout, an expiring form, a countdown—let users turn it off, adjust it, or extend it (with a warning and at least 20 seconds to respond). People who read slowly or use assistive tech need more time. A few real-time exceptions like auctions apply.",
+  "whyItMatters": "Users with cognitive disabilities, low vision, or motor impairments who need more time lose their work or get logged out when a time limit can't be extended.",
+  "quickCheck": "Identify every time limit (session timeout, redirect, countdown) and confirm users can turn it off, extend it, or are warned with 20+ seconds to act; check for <meta http-equiv=\"refresh\"> (axe meta-refresh).",
+  "commonMistakes": [
+    "Using <meta http-equiv=\"refresh\"> to auto-redirect or reload on a timer (axe meta-refresh).",
+    "Session timeouts that log users out with no warning or way to extend.",
+    "Forms that silently expire and discard input after a fixed time.",
+    "Auto-advancing carousels or quizzes with a countdown that can't be paused or extended."
+  ],
+  "codeExamples": [
+    {
+      "label": "Warn before timeout and let the user extend",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "function SessionTimer({ onExtend }) {\n  return (\n    <div role=\"alertdialog\" aria-label=\"Session expiring\">\n      <p>Your session expires in 60 seconds.</p>\n      <button onClick={onExtend}>Stay signed in</button>\n    </div>\n  );\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Forced timed redirect with no user control",
+      "kind": "fail",
+      "language": "html",
+      "code": "<!-- Redirects after 30s with no way to stop or extend it -->\n<meta http-equiv=\"refresh\" content=\"30; url=/timed-out\" />",
+      "source": "synthesized"
+    }
+  ]
+}

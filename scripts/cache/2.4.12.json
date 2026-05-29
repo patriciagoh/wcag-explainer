@@ -1,0 +1,27 @@
+{
+  "inputHash": "0cbbdd1d6df364772c9d1176ea8a7df12fa830f1280cf23e9014a126b7f4c13d",
+  "plainEnglish": "This is the stricter Level AAA version of 2.4.11: when an element receives keyboard focus, no part of it may be hidden by author content. The entire focused element must be visible, not just partly.",
+  "whyItMatters": "Keyboard users can't fully see the focused control—and may miss part of its state or label—if any portion is covered by sticky or floating content.",
+  "quickCheck": "Tab through the page and confirm the focused element is fully visible, with no part covered by sticky or overlapping content.",
+  "commonMistakes": [
+    "Sticky elements that partially overlap the focused control (allowed at AA, but not at AAA).",
+    "Insufficient scroll-margin, so the top or bottom edge of the focused element is clipped.",
+    "Floating chat or help widgets that cover part of the focused control."
+  ],
+  "codeExamples": [
+    {
+      "label": "Focused element is fully clear of overlays",
+      "kind": "pass",
+      "language": "css",
+      "code": ":focus-visible { scroll-margin: 6rem 0; }\n.site-header { position: sticky; top: 0; height: 4rem; }",
+      "source": "synthesized"
+    },
+    {
+      "label": "Overlay clips part of the focused element",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* scroll-margin too small: header still clips the focused element */\n:focus-visible { scroll-margin-top: 1rem; }\n.site-header { position: sticky; top: 0; height: 5rem; }",
+      "source": "synthesized"
+    }
+  ]
+}

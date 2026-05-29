@@ -1,0 +1,28 @@
+{
+  "inputHash": "ab2f5c6695983015dce8792e99eeba90f72096e7ce790c5b30d5411421eb7bba",
+  "plainEnglish": "Give users a way to skip past content repeated on every page—like the header and nav—straight to the main content. A 'skip to main content' link or proper landmark regions (<main>, <nav>) lets keyboard and screen reader users avoid tabbing through the same menu on every page.",
+  "whyItMatters": "Keyboard and screen reader users otherwise have to tab through dozens of repeated navigation links on every single page before reaching the content.",
+  "quickCheck": "Tab once from the top of the page and confirm a 'Skip to main content' link appears, or verify there are <main>/<nav> landmarks (axe's bypass rule).",
+  "commonMistakes": [
+    "No skip link and no landmark regions, so users must tab through the full nav on every page.",
+    "A skip link permanently hidden with display:none instead of visually-hidden-until-focused.",
+    "A skip link whose target has no id or isn't focusable, so it doesn't actually move focus.",
+    "Wrapping everything in <div>s instead of using <main>, <nav>, and <header> landmarks."
+  ],
+  "codeExamples": [
+    {
+      "label": "Skip link plus a main landmark",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<a href=\"#main\" className=\"skip-link\">Skip to main content</a>\n<nav>{/* repeated navigation */}</nav>\n<main id=\"main\" tabIndex={-1}>{/* page content */}</main>",
+      "source": "synthesized"
+    },
+    {
+      "label": "No way to bypass the repeated nav",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<div className=\"nav\">{/* repeated navigation, no skip mechanism */}</div>\n<div className=\"content\">{/* page content */}</div>",
+      "source": "synthesized"
+    }
+  ]
+}

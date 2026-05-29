@@ -1,0 +1,27 @@
+{
+  "inputHash": "4efc188cd5e0ae65993cf67636173b0383d25da063f1fbaf506417b40fb4261b",
+  "plainEnglish": "At Level AAA, help users understand where they are within a site—through breadcrumbs, a highlighted current item in the navigation, or a sitemap. Orientation cues prevent people from getting lost in a large site.",
+  "whyItMatters": "Users with cognitive disabilities easily get lost in a large site without orientation cues like breadcrumbs or a marked current page.",
+  "quickCheck": "Confirm the current page is indicated—via breadcrumbs, an aria-current marker in the nav, or a sitemap.",
+  "commonMistakes": [
+    "No breadcrumbs or current-page indicator in deep site hierarchies.",
+    "Not marking the active nav item with aria-current=\"page\".",
+    "Breadcrumbs that don't reflect the actual page hierarchy."
+  ],
+  "codeExamples": [
+    {
+      "label": "Breadcrumb with the current page marked",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<nav aria-label=\"Breadcrumb\">\n  <ol>\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"/docs\">Docs</a></li>\n    <li><a href=\"/docs/forms\" aria-current=\"page\">Forms</a></li>\n  </ol>\n</nav>",
+      "source": "synthesized"
+    },
+    {
+      "label": "No location cue anywhere",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* No breadcrumb or current-page marker */}\n<nav aria-label=\"Primary\"><a href=\"/docs/forms\">Forms</a></nav>",
+      "source": "synthesized"
+    }
+  ]
+}
