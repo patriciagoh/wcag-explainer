@@ -2,6 +2,12 @@
 
 A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React app.
 
+[![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/features.html)
+[![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/phase-2.html)
+[![WCAG 2.2](https://img.shields.io/badge/WCAG-2.2%20·%2087%20criteria-ffc861?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
+
+📖 **Live docs:** <https://patriciagoh.github.io/wcag-explainer/> — [App features](https://patriciagoh.github.io/wcag-explainer/features.html) · [Build pipeline](https://patriciagoh.github.io/wcag-explainer/phase-2.html)
+
 ## For end users (engineers being onboarded)
 
 In any Claude Code session, ask Claude to use the `wcag-explainer` skill. It scaffolds a React app into `./wcag-explainer/`, installs deps, and starts a dev server. Open the URL it prints.
@@ -68,4 +74,5 @@ The enrichment cache skips unchanged criteria automatically.
 - `SKILL.md` — what Claude does on user invocation
 - `template/` — the Vite + React + TS + Tailwind app, copied per invocation
 - `scripts/` — dataset build pipeline
+- `docs/` — visual docs (published via GitHub Pages): `features.html`, `phase-2.html`
 - `.github/workflows/check-updates.yml` — weekly upstream drift PR
