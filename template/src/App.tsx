@@ -19,6 +19,10 @@ function readHash(): string | null {
 
 type Mode = "reference" | "lookup" | "quiz" | "checklist";
 
+// Canonical hosted docs. Absolute so it resolves from the hosted app and from
+// any locally-scaffolded copy (which doesn't bundle the docs itself).
+const DOCS_URL = "https://patriciagoh.github.io/wcag-explainer/docs/";
+
 const TABS: { id: Mode; label: string }[] = [
   { id: "reference", label: "Reference" },
   { id: "lookup", label: "Rule lookup" },
@@ -87,6 +91,14 @@ export function App() {
             );
           })}
         </nav>
+        <a
+          href={DOCS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-auto text-sm text-blue-700 hover:underline"
+        >
+          Docs &amp; how it's built ↗
+        </a>
       </header>
 
       <div className="flex flex-1 min-h-0">
