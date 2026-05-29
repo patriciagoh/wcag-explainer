@@ -1,0 +1,27 @@
+{
+  "inputHash": "4c25c53179b60501d0ff37385ef8b51c2e284bc5bc2236612cd380dfd27dbca6",
+  "plainEnglish": "Live audio in video—webinars, live streams, broadcasts—needs real-time captions as it happens. People who are deaf or hard of hearing need to follow live content too, so caption it using a live captioning service (CART) or your streaming platform's real-time caption feature.",
+  "whyItMatters": "Deaf and hard-of-hearing viewers can't follow a live webinar or stream that has no real-time captions.",
+  "quickCheck": "Join your own live stream as a viewer and confirm captions appear in near-real-time; there's no automated check for live captioning.",
+  "commonMistakes": [
+    "Planning to publish captions only after the event instead of captioning it live.",
+    "Relying solely on a platform's automatic captions, with no human captioner, for technical or heavily-named content.",
+    "Forgetting to turn on the streaming platform's caption feature before going live."
+  ],
+  "codeExamples": [
+    {
+      "label": "Live player wired to a real-time caption track",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video controls src=\"/live-stream.m3u8\">\n  <track\n    kind=\"captions\"\n    src=\"/live-captions.vtt\"\n    srcLang=\"en\"\n    label=\"Live captions\"\n    default\n  />\n</video>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Live stream with no captions",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/live-stream.m3u8\" />",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "fa4da94b24c386d4c93834eaa3dbfa334d0bd356dc463fc8a2d2b53d63de4e7e",
+  "plainEnglish": "Don't lock your content to only portrait or only landscape. Users with a device mounted in a fixed position (for example, on a wheelchair) may not be able to rotate it, so your layout must work in both orientations—unless a specific orientation is genuinely essential, like a piano app.",
+  "whyItMatters": "Users who mount a phone or tablet in a fixed orientation—common for people with motor disabilities—can't use an app that forces a single orientation.",
+  "quickCheck": "Rotate your device, or toggle orientation in Chrome DevTools' device toolbar, and confirm the content still works in both portrait and landscape; axe's css-orientation-lock rule flags locking.",
+  "commonMistakes": [
+    "Using a CSS transform or an @media (orientation) rule to lock or hide content in one orientation.",
+    "Setting a native orientation lock that carries into a web view.",
+    "Showing a 'please rotate your device' wall instead of supporting both orientations."
+  ],
+  "codeExamples": [
+    {
+      "label": "Layout adapts to any orientation",
+      "kind": "pass",
+      "language": "css",
+      "code": "/* Layout reflows for whatever orientation the user is in */\n.app {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Content locked to landscape",
+      "kind": "fail",
+      "language": "css",
+      "code": "/* Hides the app and forces rotation in portrait */\n@media (orientation: portrait) {\n  .app { display: none; }\n  .rotate-warning { display: block; }\n}",
+      "source": "synthesized"
+    }
+  ]
+}

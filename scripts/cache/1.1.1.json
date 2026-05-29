@@ -1,0 +1,29 @@
+{
+  "inputHash": "19b05a8e5824c80c2fe83c79c9605b7c684b475f45872b9bad5d2f962945d791",
+  "plainEnglish": "Every image, icon, chart, or other non-text element needs a text alternative that conveys the same meaning. Informative images get descriptive alt text; purely decorative ones get an empty alt (alt=\"\") so screen readers skip them; icon buttons and controls need an accessible name. The goal is that someone who can't see the visual still gets the equivalent information or function.",
+  "whyItMatters": "Screen reader users—including the roughly 250 million people worldwide with significant vision loss—get nothing useful when an image has no alt text, or hear a meaningless filename like \"IMG_4032.jpg\" read aloud.",
+  "quickCheck": "In Chrome DevTools, inspect each <img> and icon button in the Elements panel and confirm it has meaningful alt text or an aria-label, or run the axe DevTools extension, which flags image-alt violations instantly.",
+  "commonMistakes": [
+    "Leaving the alt attribute off an <img> entirely, so screen readers announce the file name instead.",
+    "Using a <div onClick> or an icon <span> as a button with no aria-label, so it's announced as nothing or as 'group'.",
+    "Writing redundant alt text like alt=\"image of a chart\" instead of describing what the chart actually shows.",
+    "Giving decorative images descriptive alt text instead of alt=\"\", forcing screen reader users to hear clutter.",
+    "Embedding meaningful text in an SVG or icon font with no accessible name (role=\"img\" plus aria-label)."
+  ],
+  "codeExamples": [
+    {
+      "label": "Informative image with descriptive alt text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<img\n  src=\"newsletter.gif\"\n  alt=\"Free newsletter. Get free recipes, news, and more. Learn more.\"\n/>",
+      "source": "H37"
+    },
+    {
+      "label": "Image with no text alternative",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<img src=\"newsletter.gif\" />",
+      "source": "synthesized"
+    }
+  ]
+}

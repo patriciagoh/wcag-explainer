@@ -1,0 +1,28 @@
+{
+  "inputHash": "06e16de55cc137ea305a7cc7763d4b8f4937ff4d570da9391fdcae4852ab747b",
+  "plainEnglish": "Text must have enough contrast against its background: at least 4.5:1 for normal text and 3:1 for large text (about 24px, or 19px bold). Low-contrast gray-on-white or light-on-light text is hard to read for people with low vision, aging eyes, or in bright sunlight. Logos and disabled controls are exempt.",
+  "whyItMatters": "People with low vision, and the many users over 40 with reduced contrast sensitivity, can't read text whose contrast ratio falls below 4.5:1.",
+  "quickCheck": "Use Chrome DevTools' color picker (it shows the contrast ratio with AA/AAA checkmarks) or run axe DevTools' color-contrast rule on the text in question.",
+  "commonMistakes": [
+    "Light-gray placeholder or helper text (e.g., #999 on white) that falls below 4.5:1.",
+    "White text on a light brand color or over a busy image with no backing or overlay.",
+    "Assuming large headings are fine when they're actually below the 3:1 large-text threshold.",
+    "Hover or visited link colors that drop below the contrast minimum."
+  ],
+  "codeExamples": [
+    {
+      "label": "Body text with sufficient contrast",
+      "kind": "pass",
+      "language": "css",
+      "code": ".note {\n  color: #595959;   /* ~7:1 on white — passes AA */\n  background: #ffffff;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Body text below the 4.5:1 minimum",
+      "kind": "fail",
+      "language": "css",
+      "code": ".note {\n  color: #999999;   /* ~2.8:1 on white — fails */\n  background: #ffffff;\n}",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "54aad56569d7668f5d431ee9d2fe3290f842c1e5b3f1c03c5cfd391fda64712b",
+  "plainEnglish": "Instructions must not rely only on shape, size, color, position, or sound. Saying 'click the round green button on the right' fails people who can't perceive those cues; instead refer to the control by its text label too, like 'click the Submit button.' Combine any sensory cue with a name or text reference.",
+  "whyItMatters": "Blind users and people with low vision can't act on instructions like 'press the button on the right' or 'click the green icon' that rely only on shape, position, or color.",
+  "quickCheck": "Scan instructional text for words like 'above', 'on the right', 'round', or 'green' used alone—each should also name the element (e.g., its label) so it's identifiable without seeing it.",
+  "commonMistakes": [
+    "Writing 'click the button below' or 'see the box on the right' with no other identifier.",
+    "Referring to controls only by color, like 'the items marked in red are required.'",
+    "Using only a shape or icon ('tap the play icon') with no accompanying accessible name or text."
+  ],
+  "codeExamples": [
+    {
+      "label": "Instruction references the control by its label",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p>To save your work, select the <strong>Save</strong> button at the bottom of the form.</p>\n<button type=\"submit\">Save</button>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Instruction relies only on color and position",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p>To save your work, click the green button on the right.</p>\n<button type=\"submit\">Save</button>",
+      "source": "synthesized"
+    }
+  ]
+}

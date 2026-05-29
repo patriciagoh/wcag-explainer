@@ -1,0 +1,27 @@
+{
+  "inputHash": "f5c90fa4644eed08ed8637e6c779ee9413dfffbe680004b7276a4aec6af485f8",
+  "plainEnglish": "This is the Level AAA version of 1.4.5, with no 'customizable' exception: images of text are only allowed for pure decoration or when a specific presentation is truly essential (logos count as essential). In practice, render all meaningful text as real text.",
+  "whyItMatters": "Low-vision and screen reader users can't resize, recolor, or read any meaningful text that's delivered as an image rather than as real text.",
+  "quickCheck": "Try to select the text in any image-like element; meaningful text that can't be selected should be real text, with images reserved for logos and decoration.",
+  "commonMistakes": [
+    "Using images of text for headings or pull-quotes to get a specific font, instead of loading that font as a web font.",
+    "Image-based buttons or navigation labels.",
+    "Rasterizing styled text into an image because a designer handed off a PNG, rather than reproducing it with CSS."
+  ],
+  "codeExamples": [
+    {
+      "label": "Quote rendered as real, styled text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<blockquote className=\"pull-quote\">Design is how it works.</blockquote>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Quote delivered as an image of text",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<img src=\"/pull-quote.png\" alt=\"Design is how it works.\" />",
+      "source": "synthesized"
+    }
+  ]
+}

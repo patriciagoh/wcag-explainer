@@ -1,0 +1,28 @@
+{
+  "inputHash": "a289174edf79466e2e0a26062216aa82f5d75279c22f2640e64252ba3a658759",
+  "plainEnglish": "Color can't be the only way you communicate something. If links are set apart from text only by color, required fields are marked only in red, or a chart's series differ only by hue, then colorblind users and people in high-contrast modes miss the message. Add a second cue: an underline, an icon, text, or a pattern.",
+  "whyItMatters": "Roughly 1 in 12 men is colorblind and can't tell, for example, a red 'error' field from a normal one when color is the only signal.",
+  "quickCheck": "View the page in grayscale (Chrome DevTools > Rendering > Emulate vision deficiencies > Achromatopsia) and confirm links, states, and meanings are still distinguishable.",
+  "commonMistakes": [
+    "Removing link underlines so links differ from body text by color alone (axe's link-in-text-block rule flags this).",
+    "Marking required or invalid form fields only with red, with no icon or text.",
+    "Charts and graphs whose data series are separable only by color, with no labels or patterns.",
+    "Showing status (online/offline, pass/fail) with a colored dot and no accompanying text."
+  ],
+  "codeExamples": [
+    {
+      "label": "Error conveyed with an icon and text, not just color",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<p className=\"error\" style={{ color: \"#b00020\" }}>\n  <span aria-hidden=\"true\">⚠ </span>\n  Error: enter a valid email address.\n</p>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Error conveyed by color alone",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<p style={{ color: \"#b00020\" }}>Enter a valid email address.</p>",
+      "source": "synthesized"
+    }
+  ]
+}

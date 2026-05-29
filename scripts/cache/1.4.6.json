@@ -1,0 +1,27 @@
+{
+  "inputHash": "935c9fb5aa2792d09cca234a498def303eabfb39f0da09b92049ef87684c0593",
+  "plainEnglish": "This is the stricter Level AAA version of contrast: normal text needs at least 7:1 and large text at least 4.5:1 against its background. It's aimed at giving people with moderately low vision (around 20/80) readable text without assistive technology. The same exemptions as 1.4.3 apply (logos, disabled controls).",
+  "whyItMatters": "Users with moderately low vision (around 20/80) need a 7:1 contrast ratio to read normal-size text comfortably without assistive technology.",
+  "quickCheck": "Use Chrome DevTools' color picker and confirm the contrast meets the AAA threshold (7:1 for normal text, 4.5:1 for large); axe's color-contrast-enhanced rule checks AAA.",
+  "commonMistakes": [
+    "Designing only to the AA 4.5:1 minimum when AAA conformance requires 7:1.",
+    "Mid-gray body text that passes AA but falls short of 7:1.",
+    "Brand colors used for text that can't reach 7:1 without adjustment."
+  ],
+  "codeExamples": [
+    {
+      "label": "Body text meeting the AAA 7:1 threshold",
+      "kind": "pass",
+      "language": "css",
+      "code": ".body-text {\n  color: #404040;   /* ~10:1 on white — passes AAA */\n  background: #ffffff;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Body text that passes AA but fails AAA",
+      "kind": "fail",
+      "language": "css",
+      "code": ".body-text {\n  color: #767676;   /* ~4.5:1 — passes AA, fails AAA */\n  background: #ffffff;\n}",
+      "source": "synthesized"
+    }
+  ]
+}

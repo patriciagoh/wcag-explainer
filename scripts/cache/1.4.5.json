@@ -1,0 +1,27 @@
+{
+  "inputHash": "41689f1b531e7ec344ea95b8738930b1a8167dfeb19b89251821875949e615cb",
+  "plainEnglish": "Use real text, not pictures of text, whenever your technology can produce the same visual result with CSS. Text baked into an image can't be resized crisply, recolored, translated, or read by a screen reader. Logos and cases where an exact presentation is essential are exempt.",
+  "whyItMatters": "Low-vision users who enlarge or recolor text, and screen reader users, can't access words that are baked into an image instead of being real text.",
+  "quickCheck": "Look for headings, buttons, or banners that are images and try to select their text—if you can't, it's an image of text that should be real text styled with CSS.",
+  "commonMistakes": [
+    "Exporting headings or marketing banners as PNG/JPG instead of styling real text with a web font.",
+    "Putting button or navigation labels inside background images.",
+    "Using an image of text for pricing tables or feature lists that change often."
+  ],
+  "codeExamples": [
+    {
+      "label": "Heading rendered as real, styled text",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<h2 className=\"headline\">Summer sale — 50% off everything</h2>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Heading delivered as an image of text",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<img src=\"/headline.png\" alt=\"Summer sale — 50% off everything\" />",
+      "source": "synthesized"
+    }
+  ]
+}

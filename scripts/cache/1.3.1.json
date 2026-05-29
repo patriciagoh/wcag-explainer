@@ -1,0 +1,29 @@
+{
+  "inputHash": "94e76d159974ab22aa5f8baeace8b5eed7163391fab50597b5de8a109286d375",
+  "plainEnglish": "Visual structure—headings, lists, tables, form labels, grouped fields—must be expressed in the markup, not just with styling. If something looks like a heading, use an <h2>; if it's a list, use <ul>/<li>; associate every form input with a <label>. That way screen readers can convey the same structure that sighted users see.",
+  "whyItMatters": "Screen reader users navigate by headings, lists, and labels; when structure is faked with CSS instead of semantic HTML, they can't understand relationships or jump around the page.",
+  "quickCheck": "Open the Chrome DevTools Accessibility tree (or run axe DevTools) and confirm headings, lists, tables, and form labels are real semantic elements, not styled <div>s.",
+  "commonMistakes": [
+    "Styling a <div> or <p> with big, bold text to look like a heading instead of using <h1>–<h6>.",
+    "Building a list out of <div>s and line breaks instead of <ul>/<ol> and <li>.",
+    "Using a placeholder as the only label for an input instead of an associated <label>.",
+    "Laying out tabular data with <div>s, or a <table> with no <th> headers, so cell relationships are lost.",
+    "Grouping radio buttons or checkboxes with no <fieldset> and <legend>."
+  ],
+  "codeExamples": [
+    {
+      "label": "Input with a properly associated label",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label htmlFor=\"email\">Email address</label>\n<input id=\"email\" type=\"email\" name=\"email\" />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Placeholder used as the only label",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<input type=\"email\" name=\"email\" placeholder=\"Email address\" />",
+      "source": "synthesized"
+    }
+  ]
+}

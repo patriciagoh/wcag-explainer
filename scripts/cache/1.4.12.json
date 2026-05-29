@@ -1,0 +1,27 @@
+{
+  "inputHash": "732dbdac4676a133641497b6786c630b2c293a02bab3fefaf9f2e942169a8542",
+  "plainEnglish": "Users must be able to override text spacing—line height to 1.5x, paragraph spacing to 2x, letter spacing to 0.12x, and word spacing to 0.16x the font size—without losing content or breaking the layout. Don't trap text in tight containers that clip or overlap when a user's stylesheet bumps the spacing up.",
+  "whyItMatters": "People with dyslexia and low vision who increase text spacing to read more easily lose content when it gets clipped or overlaps in rigid containers.",
+  "quickCheck": "Apply a text-spacing bookmarklet (or set line-height:1.5; letter-spacing:.12em; word-spacing:.16em via DevTools) and confirm nothing clips or overlaps; axe's avoid-inline-spacing flags inline !important spacing.",
+  "commonMistakes": [
+    "Fixed-height buttons or containers with overflow: hidden that clip text when spacing increases.",
+    "Setting line-height or letter-spacing inline with !important, which blocks user overrides (axe avoid-inline-spacing).",
+    "Truncating text with fixed dimensions that can't grow to accommodate more spacing."
+  ],
+  "codeExamples": [
+    {
+      "label": "Container that grows with increased spacing",
+      "kind": "pass",
+      "language": "css",
+      "code": ".badge {\n  min-height: 24px;   /* expands to fit increased spacing */\n  overflow: visible;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Fixed-height container that clips spaced text",
+      "kind": "fail",
+      "language": "css",
+      "code": ".badge {\n  height: 24px;\n  overflow: hidden;   /* clips text when spacing grows */\n}",
+      "source": "synthesized"
+    }
+  ]
+}

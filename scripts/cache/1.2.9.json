@@ -1,0 +1,27 @@
+{
+  "inputHash": "d0f15766ff8869072cc49b02a1d6b31463f08d5b1d8babbd7cdb435f0132bde6",
+  "plainEnglish": "At Level AAA, live audio-only broadcasts (like a live radio stream) provide a text alternative such as real-time captions or a live text feed. This gives deaf and hard-of-hearing listeners equivalent access to live audio that has no accompanying video.",
+  "whyItMatters": "Deaf and hard-of-hearing users can't follow a live audio-only broadcast unless it has an accompanying real-time text feed.",
+  "quickCheck": "Confirm your live audio stream has an accompanying real-time text transcript feed that updates as people speak.",
+  "commonMistakes": [
+    "Offering a transcript only after the broadcast has ended.",
+    "Assuming an audio-only live stream is exempt from providing a text alternative.",
+    "Streaming live captions into a region that isn't an aria-live area, so screen readers never announce updates."
+  ],
+  "codeExamples": [
+    {
+      "label": "Live audio with a real-time text feed",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<audio controls src=\"/live-radio.m3u8\" />\n<div aria-live=\"polite\" className=\"live-transcript\">\n  {/* real-time captions are streamed into this region */}\n</div>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Live audio with no real-time text",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<audio controls src=\"/live-radio.m3u8\" />",
+      "source": "synthesized"
+    }
+  ]
+}

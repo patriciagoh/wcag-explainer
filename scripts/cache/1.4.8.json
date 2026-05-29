@@ -1,0 +1,27 @@
+{
+  "inputHash": "86f3fa31294d0ff6a5d9cedb1430c6d0e0e4afea29122eac9474290dad114f61",
+  "plainEnglish": "At Level AAA, blocks of text must let users control presentation for readability: selectable foreground/background colors, lines no wider than 80 characters, no full justification, line spacing of at least 1.5 within paragraphs (with larger gaps between paragraphs), and resizing to 200% without horizontal scrolling. Provide these defaults or a mechanism to set them.",
+  "whyItMatters": "People with dyslexia and low vision lose their place in text that is fully justified, too wide, or tightly spaced, and need control over these presentation settings.",
+  "quickCheck": "Check body-text blocks: max width around 80 characters, line-height at least 1.5, not justified, and readable at 200% zoom without horizontal scrolling.",
+  "commonMistakes": [
+    "Using text-align: justify on body copy, creating uneven 'rivers' of whitespace.",
+    "Full-width lines that far exceed 80 characters because there's no max-width.",
+    "Cramped line-height below 1.5 in long-form content."
+  ],
+  "codeExamples": [
+    {
+      "label": "Readable text block: left-aligned, ~80 chars, 1.5 line-height",
+      "kind": "pass",
+      "language": "css",
+      "code": ".article {\n  text-align: left;\n  line-height: 1.5;\n  max-width: 70ch;   /* ~80 characters or fewer per line */\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Justified, full-width, tightly-spaced text",
+      "kind": "fail",
+      "language": "css",
+      "code": ".article {\n  text-align: justify;\n  line-height: 1.2;\n  /* no max-width: lines run the full viewport width */\n}",
+      "source": "synthesized"
+    }
+  ]
+}

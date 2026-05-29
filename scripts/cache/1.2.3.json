@@ -1,0 +1,27 @@
+{
+  "inputHash": "8b50222e0eecae17ea8e873a87f5bb0d05df0897230f8e81c14f62569eae4f4e",
+  "plainEnglish": "For pre-recorded video with audio, give people who can't see the screen a way to get the visual information: either an audio description track that narrates important visual details during pauses, or a full text alternative (a document describing both audio and visuals). This covers things shown on screen but never spoken aloud.",
+  "whyItMatters": "Blind and low-vision users miss on-screen information—like text, charts, or actions that aren't spoken—when a video has no audio description or text alternative.",
+  "quickCheck": "Watch the video with your eyes closed: if you lose track of important visual information, it needs an audio description track or a full text alternative.",
+  "commonMistakes": [
+    "Assuming captions are enough—captions help deaf users, but blind users need the visuals described.",
+    "Skipping audio description because 'the narrator explains everything,' without verifying on-screen text and actions are covered.",
+    "Providing a transcript of only the dialogue, omitting any description of the visual content."
+  ],
+  "codeExamples": [
+    {
+      "label": "Video with both captions and an audio-description track",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video controls src=\"/tutorial.mp4\">\n  <track kind=\"captions\" src=\"/tutorial.en.vtt\" srcLang=\"en\" label=\"English\" default />\n  <track kind=\"descriptions\" src=\"/tutorial.desc.vtt\" srcLang=\"en\" label=\"Audio description\" />\n</video>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with captions only, no description of visuals",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/tutorial.mp4\">\n  <track kind=\"captions\" src=\"/tutorial.en.vtt\" srcLang=\"en\" label=\"English\" default />\n</video>",
+      "source": "synthesized"
+    }
+  ]
+}

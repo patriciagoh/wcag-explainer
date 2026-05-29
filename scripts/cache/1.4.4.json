@@ -1,0 +1,28 @@
+{
+  "inputHash": "997673bd0489640dc5370df75924ab1dc2fedfbd436a7cd68e530714dc332080",
+  "plainEnglish": "Users must be able to zoom text up to 200% without losing content or breaking functionality. Don't disable zoom, and avoid fixed pixel heights or absolute units that cause text to overlap or get clipped when enlarged. Use relative units (rem/em) and flexible containers.",
+  "whyItMatters": "Low-vision users who enlarge text to 200% lose content or functionality when layouts are built with fixed sizes or zooming is disabled.",
+  "quickCheck": "Zoom the browser to 200% (Cmd/Ctrl +) and confirm no text is clipped or overlapping; check that <meta name=\"viewport\"> doesn't set user-scalable=no or maximum-scale (axe's meta-viewport rule).",
+  "commonMistakes": [
+    "Setting user-scalable=no or maximum-scale=1 in the viewport meta tag, disabling zoom.",
+    "Fixed-height containers with overflow: hidden that clip text when it grows.",
+    "Sizing text and containers in px so enlarged text overflows or overlaps.",
+    "Using viewport units (vw) for font size, which don't respond to the user's zoom or font settings."
+  ],
+  "codeExamples": [
+    {
+      "label": "Viewport that allows zooming",
+      "kind": "pass",
+      "language": "html",
+      "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Viewport that disables zooming",
+      "kind": "fail",
+      "language": "html",
+      "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" />",
+      "source": "synthesized"
+    }
+  ]
+}

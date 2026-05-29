@@ -1,0 +1,28 @@
+{
+  "inputHash": "aec5d778a7a3f9f8d97ae68ecf214cd172dce61ecdaccfd23de0467a9b324913",
+  "plainEnglish": "Extra content that appears on hover or focus—tooltips, popovers, custom dropdowns—must be dismissible (you can close it, e.g., with Escape, without moving the pointer or focus), hoverable (you can move the mouse onto it without it vanishing), and persistent (it stays until you dismiss it or move away). This helps people who zoom, use a keyboard, or have hand tremors.",
+  "whyItMatters": "Low-vision users who zoom in and keyboard users lose access to tooltips and popovers that vanish the moment the pointer moves or that can't be dismissed.",
+  "quickCheck": "Trigger a tooltip or popover, then try to move the mouse onto it (it should stay), press Escape (it should close), and confirm it doesn't auto-disappear while you're reading.",
+  "commonMistakes": [
+    "Tooltips that disappear the instant the pointer leaves the trigger, so users can't move onto them.",
+    "No way to dismiss a popover with the keyboard (Escape).",
+    "Hover content that auto-hides on a timer while the user is still reading it.",
+    "Using the native title attribute for important info, which isn't hoverable or dismissible and is invisible to touch and keyboard."
+  ],
+  "codeExamples": [
+    {
+      "label": "Tooltip that is hoverable, dismissible, and persistent",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "function Field() {\n  const [open, setOpen] = useState(false);\n  return (\n    <span\n      onMouseEnter={() => setOpen(true)}\n      onMouseLeave={() => setOpen(false)}\n      onKeyDown={(e) => e.key === \"Escape\" && setOpen(false)}\n    >\n      <button\n        aria-describedby=\"hint\"\n        onFocus={() => setOpen(true)}\n        onBlur={() => setOpen(false)}\n      >\n        Username\n      </button>\n      {open && (\n        // Tooltip lives inside the hover target, so it stays until dismissed\n        <span id=\"hint\" role=\"tooltip\">Must be 3–20 characters.</span>\n      )}\n    </span>\n  );\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "title attribute: not hoverable or dismissible",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<button title=\"Your username must be 3–20 characters.\">Username</button>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "inputHash": "42962075feda715cf1b7c2b15fceebd293bba56ceddc2506f353355934401107",
+  "plainEnglish": "At Level AA, pre-recorded video with audio must include an audio description track—narration during natural pauses that describes important visual details. Unlike 1.2.3 (which also allows a text-only alternative), this criterion specifically requires audio description, so blind users get the visual information through sound.",
+  "whyItMatters": "Blind users miss critical on-screen action and text when a video lacks an audio description track narrating the visuals.",
+  "quickCheck": "Confirm the video offers an audio-described version or a <track kind=\"descriptions\">, and verify it by listening with the screen off.",
+  "commonMistakes": [
+    "Treating audio description as optional because captions already exist.",
+    "Adding descriptions that talk over the dialogue instead of fitting them into pauses.",
+    "Providing only a text transcript, which doesn't satisfy 1.2.5's specific requirement for audio description."
+  ],
+  "codeExamples": [
+    {
+      "label": "Video offering an audio-description track",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video controls src=\"/feature.mp4\">\n  <track kind=\"captions\" src=\"/feature.en.vtt\" srcLang=\"en\" label=\"English\" default />\n  <track kind=\"descriptions\" src=\"/feature.desc.vtt\" srcLang=\"en\" label=\"Audio description\" />\n</video>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with no audio description",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/feature.mp4\">\n  <track kind=\"captions\" src=\"/feature.en.vtt\" srcLang=\"en\" label=\"English\" default />\n</video>",
+      "source": "synthesized"
+    }
+  ]
+}

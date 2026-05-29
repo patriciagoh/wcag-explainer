@@ -1,0 +1,27 @@
+{
+  "inputHash": "d12ebc691d716d2f52cb2b04050691281be6334993d50c361e63b424f1fc42e9",
+  "plainEnglish": "At Level AAA, every pre-recorded video-with-audio (and every silent video) provides a full text alternative—a document describing all the dialogue, sounds, and visual action in order. This serves people who are both deaf and blind (reading with a braille display) as well as anyone who prefers reading.",
+  "whyItMatters": "Deafblind users who rely on a braille display can only access your video through a complete text alternative.",
+  "quickCheck": "Confirm a full text alternative document—dialogue plus visual description—is linked near the video.",
+  "commonMistakes": [
+    "Providing captions and audio description but no single readable text document.",
+    "Writing a transcript that lists dialogue but omits the visual scene descriptions.",
+    "Putting the transcript behind a download instead of a readable, linkable page."
+  ],
+  "codeExamples": [
+    {
+      "label": "Video with a linked full text alternative",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<figure>\n  <video controls src=\"/keynote.mp4\">\n    <track kind=\"captions\" src=\"/keynote.en.vtt\" srcLang=\"en\" label=\"English\" default />\n  </video>\n  <figcaption>\n    <a href=\"/keynote-full-transcript.html\">Full transcript (dialogue and visual description)</a>\n  </figcaption>\n</figure>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with no full text alternative",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/keynote.mp4\">\n  <track kind=\"captions\" src=\"/keynote.en.vtt\" srcLang=\"en\" label=\"English\" default />\n</video>",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "inputHash": "a9a9249f4fbd6667181918b49101d3276e92b6052788fc4a9da5633ac457e92e",
+  "plainEnglish": "Important non-text visuals need at least 3:1 contrast against what's next to them. That includes UI component boundaries and states—a button's edge, an input's border, focus indicators, toggle states—and the meaningful parts of icons and graphics. Without it, users with low vision can't tell where controls are or what state they're in.",
+  "whyItMatters": "Low-vision users can't locate buttons, form fields, or focus indicators when their borders and states have less than 3:1 contrast with the surroundings.",
+  "quickCheck": "Run a contrast tool on control borders, focus outlines, and meaningful icon shapes against their adjacent colors and confirm each is at least 3:1.",
+  "commonMistakes": [
+    "Input fields whose only border is a faint light-gray line below 3:1 against the background.",
+    "Custom focus outlines that are too low-contrast, or removed entirely.",
+    "Toggle/switch components where on vs. off is shown only by a subtle low-contrast color shift.",
+    "Icon-only buttons whose glyph doesn't reach 3:1 against the button background."
+  ],
+  "codeExamples": [
+    {
+      "label": "Input border with sufficient contrast",
+      "kind": "pass",
+      "language": "css",
+      "code": ".input {\n  border: 1px solid #767676;   /* ~4.5:1 on white — passes */\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Input border too faint to perceive",
+      "kind": "fail",
+      "language": "css",
+      "code": ".input {\n  border: 1px solid #e0e0e0;   /* ~1.3:1 on white — fails */\n}",
+      "source": "synthesized"
+    }
+  ]
+}

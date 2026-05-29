@@ -1,0 +1,27 @@
+{
+  "inputHash": "7c70a32f1440ff9423fdaabb13b353cc581afaa3ebe789177c7906c495ea5828",
+  "plainEnglish": "For pre-recorded speech audio, background sounds should be absent, able to be switched off, or at least 20 dB quieter than the speech (about four times quieter). This helps people who are hard of hearing separate the foreground voice from music or noise.",
+  "whyItMatters": "Hard-of-hearing users struggle to separate speech from background music or noise unless the background is significantly quieter or can be turned off.",
+  "quickCheck": "Listen to speech recordings and confirm any background sound is clearly quieter than the voice, or that a version with the background removed is offered.",
+  "commonMistakes": [
+    "Mixing background music at nearly the same level as the narration.",
+    "Offering no version of the audio with the background music removed or lowered.",
+    "Keeping continuous background sound under speech instead of limiting it to brief, occasional moments."
+  ],
+  "codeExamples": [
+    {
+      "label": "Speech mixed well above a quiet background",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* Foreground speech mixed at least 20 dB above any background bed */}\n<audio controls>\n  <source src=\"/interview-clean-voice.mp3\" type=\"audio/mpeg\" />\n</audio>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Speech buried under a loud music bed",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<audio controls src=\"/interview-loud-music-bed.mp3\" />",
+      "source": "synthesized"
+    }
+  ]
+}

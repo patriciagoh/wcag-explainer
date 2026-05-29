@@ -1,0 +1,27 @@
+{
+  "inputHash": "ba8aacbe374575f1257e0e76dc718e38e92c4b6b18b7c1f9625c6f6595c73103",
+  "plainEnglish": "Sometimes a video's natural pauses are too short to describe everything visual. At Level AAA, you provide extended audio description: the video pauses to let the narration catch up, then resumes. This guarantees blind users get all the visual detail even in fast-paced, densely-narrated content.",
+  "whyItMatters": "Blind users miss visual detail in densely-narrated videos where there aren't enough pauses for standard audio description to fit.",
+  "quickCheck": "Check whether an extended-audio-description version is offered for any video whose pauses are too brief for full standard description.",
+  "commonMistakes": [
+    "Cramming descriptions into pauses that are too short, so the narration gets cut off.",
+    "Not offering an extended-description version for content-dense video.",
+    "Assuming standard audio description (1.2.5) is enough when the visuals are too dense for the available pauses."
+  ],
+  "codeExamples": [
+    {
+      "label": "Video offering an extended audio-description track",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video controls src=\"/demo.mp4\">\n  <track\n    kind=\"descriptions\"\n    src=\"/demo.extended-desc.vtt\"\n    srcLang=\"en\"\n    label=\"Extended audio description\"\n  />\n</video>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with no extended description for dense visuals",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/demo.mp4\" />",
+      "source": "synthesized"
+    }
+  ]
+}

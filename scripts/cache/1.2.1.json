@@ -1,0 +1,28 @@
+{
+  "inputHash": "ce1175d781ec6c4083c189c203370ee403c1f929f12ff0f55bcfb93830e97f05",
+  "plainEnglish": "Pre-recorded audio-only media (like a podcast) needs a text transcript that carries the same information. Pre-recorded video with no audio (like a silent screen recording) needs either a transcript or an audio track describing what happens. The point is that people who can't hear the audio, or can't see the video, can still get the content another way.",
+  "whyItMatters": "Deaf users can't access a podcast that has no transcript, and blind users can't follow a silent how-to video that has no audio description or text alternative.",
+  "quickCheck": "Confirm every <audio> podcast links to a transcript and every silent <video> has a transcript or descriptive audio track—there's no automated tool for this, so verify it manually.",
+  "commonMistakes": [
+    "Publishing a podcast or recorded interview with no transcript at all.",
+    "Assuming auto-generated captions count as a transcript for audio-only content—a transcript must be a separate, readable document.",
+    "Posting a silent product demo without any text or audio describing what's shown on screen.",
+    "Linking a transcript that omits speaker names or non-speech audio that carries meaning."
+  ],
+  "codeExamples": [
+    {
+      "label": "Audio with a linked transcript",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<figure>\n  <audio controls src=\"/podcast-ep12.mp3\" />\n  <figcaption>\n    <a href=\"/podcast-ep12-transcript.html\">Read the full transcript</a>\n  </figcaption>\n</figure>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Audio with no text alternative",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<audio controls src=\"/podcast-ep12.mp3\" />",
+      "source": "synthesized"
+    }
+  ]
+}

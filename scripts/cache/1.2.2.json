@@ -1,0 +1,28 @@
+{
+  "inputHash": "271edf3067614b7d7e54bfa7e39a91da19ae0878b68a2638b3047561f0c80880",
+  "plainEnglish": "Any pre-recorded video with sound needs synchronized captions—text that appears in time with the speech and important sounds. Captions let people who are deaf or hard of hearing follow dialogue and know about meaningful audio like a doorbell or laughter. Use a real caption track (a <track kind=\"captions\"> WebVTT file), not just a transcript.",
+  "whyItMatters": "About 1 in 5 people have some hearing loss, and without captions they miss the dialogue and meaningful sounds in your video.",
+  "quickCheck": "Play the video and confirm captions appear in sync; in markup, check that each <video> has a <track kind=\"captions\"> element—axe's video-caption rule flags missing ones.",
+  "commonMistakes": [
+    "Shipping a <video> with no <track kind=\"captions\"> element.",
+    "Providing only a transcript and assuming it satisfies the captions requirement—captions must be synchronized.",
+    "Using kind=\"subtitles\" (translation of dialogue) when you mean kind=\"captions\" (which also includes non-speech sounds).",
+    "Relying on inaccurate auto-generated captions that are never reviewed."
+  ],
+  "codeExamples": [
+    {
+      "label": "Video with a synchronized captions track",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video controls src=\"/intro.mp4\">\n  <track\n    kind=\"captions\"\n    src=\"/intro.en.vtt\"\n    srcLang=\"en\"\n    label=\"English\"\n    default\n  />\n</video>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with no captions track",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/intro.mp4\" />",
+      "source": "synthesized"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "inputHash": "e60e66f50392511362f4663747d1279fd05a3f7e7365810154a23205f89ecd84",
+  "plainEnglish": "Form fields that collect known information about the user (name, email, phone, address) should declare their purpose with the HTML autocomplete attribute. This lets browsers autofill correctly and lets assistive tech add familiar icons or personalize fields, reducing effort for users with cognitive or motor disabilities.",
+  "whyItMatters": "Users with cognitive disabilities or motor impairments rely on browser autofill and personalized field icons, which only work when inputs declare a valid autocomplete value.",
+  "quickCheck": "Inspect personal-data inputs and confirm each has a correct autocomplete value (e.g., autocomplete=\"email\"); axe's autocomplete-valid rule flags invalid tokens.",
+  "commonMistakes": [
+    "Omitting the autocomplete attribute on name, email, address, and phone fields.",
+    "Using a made-up or wrong autocomplete token, like autocomplete=\"username\" on a field that isn't a username.",
+    "Disabling autofill with autocomplete=\"off\" on personal-data fields out of habit.",
+    "Reusing one autocomplete value across multiple address lines instead of address-line1 and address-line2."
+  ],
+  "codeExamples": [
+    {
+      "label": "Phone field declaring its purpose",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<label htmlFor=\"tel\">Phone</label>\n<input id=\"tel\" name=\"tel\" type=\"tel\" autoComplete=\"tel\" />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Personal-data field with no autocomplete",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<label htmlFor=\"tel\">Phone</label>\n<input id=\"tel\" name=\"tel\" type=\"tel\" />",
+      "source": "synthesized"
+    }
+  ]
+}

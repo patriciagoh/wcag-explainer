@@ -1,0 +1,27 @@
+{
+  "inputHash": "338ee06eb34682689122b0c922c7d53c9c635c83aee5bae0485952eac8f1b84a",
+  "plainEnglish": "At Level AAA, pre-recorded video with audio includes a sign-language interpretation of the audio. Many people who are deaf from birth use a sign language as their first language and read written text more slowly, so a signed interpretation (often shown picture-in-picture) gives them fuller access than captions alone.",
+  "whyItMatters": "Deaf users whose first language is a sign language understand a signed interpretation far better than written captions, especially for complex content.",
+  "quickCheck": "Check whether the video provides a sign-language interpreter track or a picture-in-picture signed version.",
+  "commonMistakes": [
+    "Assuming captions remove the need for sign-language interpretation.",
+    "Showing the interpreter window so small or low-contrast that the signs are hard to read.",
+    "Cropping the interpreter so hands or facial expressions—which carry grammar—are cut off."
+  ],
+  "codeExamples": [
+    {
+      "label": "Main video with a synchronized sign-language video",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<div className=\"media\">\n  <video controls src=\"/lecture.mp4\">\n    <track kind=\"captions\" src=\"/lecture.en.vtt\" srcLang=\"en\" label=\"English\" default />\n  </video>\n  <video\n    className=\"sign-language-pip\"\n    src=\"/lecture-asl.mp4\"\n    aria-label=\"Sign language interpretation\"\n  />\n</div>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Video with no sign-language interpretation",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video controls src=\"/lecture.mp4\">\n  <track kind=\"captions\" src=\"/lecture.en.vtt\" srcLang=\"en\" label=\"English\" default />\n</video>",
+      "source": "synthesized"
+    }
+  ]
+}

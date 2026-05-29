@@ -1,0 +1,27 @@
+{
+  "inputHash": "62272b9decc6995122cd378407acc473f537a9fc681452ac0aff2923ad2b73da",
+  "plainEnglish": "When the order of content matters for understanding, the DOM order must match the reading order, because screen readers and keyboard users follow the source order, not the visual layout. Don't use CSS (flex/grid order, absolute positioning, floats) to visually reorder content in a way that makes the underlying sequence confusing.",
+  "whyItMatters": "Screen reader users hear content in DOM order, so CSS that visually reorders columns or steps can make them read instructions or data in a nonsensical sequence.",
+  "quickCheck": "Disable CSS (or just Tab through the page) and confirm the content still reads in a logical order; watch for flexbox/grid order properties that diverge from the DOM.",
+  "commonMistakes": [
+    "Using the CSS order property or flex-direction: row-reverse to reorder content visually while the DOM order stays illogical.",
+    "Absolutely positioning content so the visual order differs from the source order.",
+    "Placing a sidebar before the main content in the DOM just because it appears first visually."
+  ],
+  "codeExamples": [
+    {
+      "label": "DOM order matches reading order",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "{/* No reordering via CSS: source order is the reading order */}\n<ol>\n  <li>Step 1: Create an account</li>\n  <li>Step 2: Verify your email</li>\n  <li>Step 3: Sign in</li>\n</ol>",
+      "source": "synthesized"
+    },
+    {
+      "label": "CSS order makes the reading order illogical",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "{/* Reads visually as 1,2,3 but in the DOM as 3,1,2 */}\n<ol style={{ display: \"flex\", flexDirection: \"column\" }}>\n  <li style={{ order: 2 }}>Step 1: Create an account</li>\n  <li style={{ order: 3 }}>Step 2: Verify your email</li>\n  <li style={{ order: 1 }}>Step 3: Sign in</li>\n</ol>",
+      "source": "synthesized"
+    }
+  ]
+}

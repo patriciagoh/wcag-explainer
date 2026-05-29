@@ -1,0 +1,27 @@
+{
+  "inputHash": "0b643dc109fc3949664fa2aa702692153564d6a91e4a1edb20cdd08758b93f8e",
+  "plainEnglish": "If audio plays automatically for more than 3 seconds, give users a way to pause, stop, or mute it independently of their system volume. Auto-playing sound interferes with screen readers (which are also speech) and distracts everyone. The safest practice is not to autoplay audio at all.",
+  "whyItMatters": "Auto-playing audio drowns out a screen reader's speech, making the whole page unusable for blind users until they can stop it.",
+  "quickCheck": "Load the page and listen: if anything plays for over 3 seconds, confirm there's a visible pause/stop/mute control; axe's no-autoplay-audio rule flags autoplaying media.",
+  "commonMistakes": [
+    "Adding autoplay to a <video> or <audio> with background sound and no stop or mute control.",
+    "Relying on the browser to mute autoplay, which isn't guaranteed across browsers.",
+    "Hiding or delaying the pause control so users can't stop the audio quickly."
+  ],
+  "codeExamples": [
+    {
+      "label": "Media that doesn't autoplay audio",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<video src=\"/promo.mp4\" controls muted />",
+      "source": "synthesized"
+    },
+    {
+      "label": "Autoplaying looping video with sound and no control",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<video src=\"/promo.mp4\" autoPlay loop />",
+      "source": "synthesized"
+    }
+  ]
+}

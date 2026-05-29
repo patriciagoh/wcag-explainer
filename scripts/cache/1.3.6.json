@@ -1,0 +1,27 @@
+{
+  "inputHash": "f1057e725a328ace7f2e9155c5a43e2ce8fc214427a0f6718c3e85c987ae3cfd",
+  "plainEnglish": "At Level AAA, the purpose of UI components, icons, and page regions should be programmatically identifiable—using semantic landmark regions, ARIA, and (where supported) metadata like autocomplete and rel. This lets assistive tools and personalization extensions adapt the interface—swapping icons, hiding ads—to a user's needs.",
+  "whyItMatters": "Users with cognitive disabilities who rely on personalization tools to simplify or re-symbolize interfaces need components and regions to expose their purpose programmatically.",
+  "quickCheck": "Confirm landmarks (<header>, <nav>, <main>, <aside>), icon buttons, and inputs expose their purpose via semantic elements, ARIA roles, and autocomplete.",
+  "commonMistakes": [
+    "Using generic <div>s for page regions instead of landmark elements like <nav>, <main>, and <aside>.",
+    "Icon-only buttons with no role or accessible name describing their purpose.",
+    "Omitting autocomplete and rel metadata that lets tools identify a component's purpose."
+  ],
+  "codeExamples": [
+    {
+      "label": "Regions marked with semantic landmarks",
+      "kind": "pass",
+      "language": "jsx",
+      "code": "<header>{/* ... */}</header>\n<nav aria-label=\"Primary\">{/* ... */}</nav>\n<main>{/* ... */}</main>\n<aside aria-label=\"Related links\">{/* ... */}</aside>",
+      "source": "synthesized"
+    },
+    {
+      "label": "Regions built from generic divs",
+      "kind": "fail",
+      "language": "jsx",
+      "code": "<div className=\"header\">{/* ... */}</div>\n<div className=\"nav\">{/* ... */}</div>\n<div className=\"content\">{/* ... */}</div>\n<div className=\"sidebar\">{/* ... */}</div>",
+      "source": "synthesized"
+    }
+  ]
+}

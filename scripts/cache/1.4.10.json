@@ -1,0 +1,28 @@
+{
+  "inputHash": "9b739e44fd6fd84f8a41010b675fe4961908743c3c7b0d556cc0c07080274116",
+  "plainEnglish": "Content must reflow into a single column without requiring two-dimensional scrolling at a width of 320 CSS pixels (equivalent to 400% zoom on a 1280px screen). Users shouldn't have to scroll both horizontally and vertically to read. Use responsive, flexible layouts; only things like data tables or maps may scroll in two dimensions.",
+  "whyItMatters": "Low-vision users who zoom to 400% are forced to scroll back and forth on every line when content doesn't reflow to a single column.",
+  "quickCheck": "Set the viewport to 320px wide (Chrome DevTools device toolbar) or zoom to 400% and confirm no horizontal scrolling is needed to read the content.",
+  "commonMistakes": [
+    "Fixed-width (px) containers that don't shrink below the viewport, causing horizontal scroll.",
+    "Multi-column layouts that don't collapse to a single column on narrow viewports.",
+    "A min-width on the page, or large fixed-position elements, that overflow at 320px.",
+    "Using white-space: nowrap on long content so it can't wrap."
+  ],
+  "codeExamples": [
+    {
+      "label": "Layout that reflows to one column",
+      "kind": "pass",
+      "language": "css",
+      "code": ".layout {\n  display: flex;\n  flex-wrap: wrap;   /* columns stack into one at narrow widths */\n  max-width: 100%;\n}",
+      "source": "synthesized"
+    },
+    {
+      "label": "Fixed-width layout that forces horizontal scroll",
+      "kind": "fail",
+      "language": "css",
+      "code": ".layout {\n  width: 1024px;     /* forces horizontal scroll at 320px */\n  display: flex;\n}",
+      "source": "synthesized"
+    }
+  ]
+}
