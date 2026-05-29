@@ -61,10 +61,19 @@ export function App() {
 
   const selected = selectedId ? byId.get(selectedId) ?? null : null;
 
+  const goHome = () => {
+    window.location.hash = "";
+    setMode("reference");
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <header className="border-b px-4 py-2 flex items-center gap-4">
-        <h1 className="text-base font-semibold m-0">WCAG 2.2 Explainer</h1>
+        <h1 className="text-base font-semibold m-0">
+          <button type="button" onClick={goHome} className="hover:underline" title="Home">
+            WCAG 2.2 Explainer
+          </button>
+        </h1>
         <nav aria-label="Modes" className="flex gap-1">
           {TABS.map((t) => {
             const active = mode === t.id;

@@ -5,13 +5,23 @@ A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React ap
 [![Live app](https://img.shields.io/badge/▶%20live%20app-try%20it-57e08a?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
 [![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/features.html)
 [![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 🚀 **Live app:** <https://patriciagoh.github.io/wcag-explainer/>
 📖 **Docs:** [App features](https://patriciagoh.github.io/wcag-explainer/docs/features.html) · [Build pipeline](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
 
+[![WCAG 2.2 Explainer — welcome page](docs/screenshots/welcome.png)](https://patriciagoh.github.io/wcag-explainer/)
+
+Per-criterion: plain English, what the user experiences, pass/fail code (with a fail→pass diff), common mistakes, and the axe-core rules that catch it.
+
+[![A criterion detail page](docs/screenshots/criterion.png)](https://patriciagoh.github.io/wcag-explainer/#1.1.1)
+
 ## For end users (engineers being onboarded)
 
-In any Claude Code session, ask Claude to use the `wcag-explainer` skill. It scaffolds a React app into `./wcag-explainer/`, installs deps, and starts a dev server. Open the URL it prints.
+**Just want to look something up?** Use the hosted app — no setup:
+**<https://patriciagoh.github.io/wcag-explainer/>**
+
+**Want your own copy** (offline, editable, ownable by your team)? In any Claude Code session, ask Claude to use the `wcag-explainer` skill. It scaffolds a React app into `./wcag-explainer/`, installs deps, and starts a local dev server. Open the URL it prints.
 
 ## For skill authors (you, rebuilding the dataset)
 
@@ -77,3 +87,8 @@ The enrichment cache skips unchanged criteria automatically.
 - `scripts/` — dataset build pipeline
 - `docs/` — visual docs (published via GitHub Pages): `features.html`, `phase-2.html`
 - `.github/workflows/check-updates.yml` — weekly upstream drift PR
+- `.github/workflows/deploy-pages.yml` — builds the app + docs and deploys to GitHub Pages
+
+## License
+
+[MIT](LICENSE) © 2026 Patricia Goh
