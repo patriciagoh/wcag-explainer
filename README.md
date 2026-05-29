@@ -2,11 +2,12 @@
 
 A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React app.
 
-[![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/features.html)
-[![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/phase-2.html)
-[![WCAG 2.2](https://img.shields.io/badge/WCAG-2.2%20·%2087%20criteria-ffc861?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
+[![Live app](https://img.shields.io/badge/▶%20live%20app-try%20it-57e08a?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
+[![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/features.html)
+[![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
 
-📖 **Live docs:** <https://patriciagoh.github.io/wcag-explainer/> — [App features](https://patriciagoh.github.io/wcag-explainer/features.html) · [Build pipeline](https://patriciagoh.github.io/wcag-explainer/phase-2.html)
+🚀 **Live app:** <https://patriciagoh.github.io/wcag-explainer/>
+📖 **Docs:** [App features](https://patriciagoh.github.io/wcag-explainer/docs/features.html) · [Build pipeline](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
 
 ## For end users (engineers being onboarded)
 
