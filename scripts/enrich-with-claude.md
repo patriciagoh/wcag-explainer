@@ -4,8 +4,9 @@ Phase 2 enrichment is normally run with the scripted CLI:
 
 ```bash
 cd scripts
-ANTHROPIC_API_KEY=sk-... npm run enrich            # all criteria, incremental
-ANTHROPIC_API_KEY=sk-... npm run enrich -- --only=1  # one principle
+ANTHROPIC_API_KEY=sk-... npm run enrich              # all criteria, incremental
+ANTHROPIC_API_KEY=sk-... npm run enrich -- --only=1  # one principle (IDs 1–4)
+ANTHROPIC_API_KEY=sk-... npm run enrich -- --force   # re-enrich all, ignore hashes
 ```
 
 It reads `raw/criteria-raw.json`, calls the Claude API per criterion using the templates in

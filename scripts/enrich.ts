@@ -14,7 +14,9 @@ const CACHE_DIR = join(here, "cache");
 function parseArgs() {
   const args = process.argv.slice(2);
   return {
-    only: args.find((a) => a.startsWith("--only="))?.split("=")[1],
+    // `|| undefined` maps a bare `--only=` (empty value) to "no filter" rather
+    // than silently selecting everything.
+    only: args.find((a) => a.startsWith("--only="))?.slice("--only=".length) || undefined,
     force: args.includes("--force"),
     reconcile: args.includes("--reconcile"),
   };
@@ -52,6 +54,10 @@ async function main(): Promise<void> {
   const { only, force, reconcile } = parseArgs();
   const raw = JSON.parse(readFileSync(RAW_PATH, "utf8")) as RawCriterion[];
   const selected = only ? raw.filter((r) => r.principle.id === only) : raw;
+  if (only && selected.length === 0) {
+    console.error(`--only="${only}" matched no criteria. Valid principle IDs are: 1, 2, 3, 4.`);
+    process.exit(1);
+  }
 
   // --reconcile: recompute inputHash for existing cache files WITHOUT calling the API.
   // Used once to normalize legacy hashes to the canonical function. Content untouched.
@@ -87,4 +93,7 @@ async function main(): Promise<void> {
   });
 }
 
-await main();
+await main().catch((err: unknown) => {
+  console.error("Enrichment failed:", err instanceof Error ? err.message : err);
+  process.exit(1);
+});
