@@ -5,6 +5,7 @@
   "scripts": {
     "build:dataset": "tsx build-dataset.ts",
     "check-updates": "tsx check-updates.ts",
+    "enrich": "tsx enrich.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
