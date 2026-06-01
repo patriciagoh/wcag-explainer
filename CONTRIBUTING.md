@@ -39,7 +39,7 @@ The shipped dataset (`template/src/data/wcag-criteria.json`) is **committed**, s
 **not** need to regenerate it to work on the app. Regeneration is a three-phase,
 maintainer-only pipeline (fetch is deterministic; enrich calls the Claude API and needs
 `ANTHROPIC_API_KEY`; merge validates against a zod schema). See the
-"For skill authors" section of [README.md](README.md).
+"For skill authors" section of [README.md](README.md#for-skill-authors-you-rebuilding-the-dataset).
 
 If your change would alter the dataset, regenerate it intentionally and call that out in
 your PR — don't hand-edit `wcag-criteria.json`.

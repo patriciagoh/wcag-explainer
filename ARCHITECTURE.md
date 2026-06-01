@@ -3,7 +3,7 @@
 This repo is a Claude Code **skill** and the **source project** that builds its dataset.
 It's structured so the same layout can be reused for future skill projects.
 
-## The three surfaces
+## The four surfaces
 
 | Path        | What it is | Audience |
 |-------------|-----------|----------|
