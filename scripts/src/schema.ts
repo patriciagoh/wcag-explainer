@@ -9,6 +9,17 @@ export const codeExampleSchema = z.object({
   source: z.string().optional(),
 });
 
+export const cacheEntrySchema = z.object({
+  inputHash: z.string(),
+  plainEnglish: z.string(),
+  whyItMatters: z.string(),
+  quickCheck: z.string(),
+  commonMistakes: z.array(z.string()),
+  codeExamples: z.array(codeExampleSchema),
+});
+
+export type CacheEntry = z.infer<typeof cacheEntrySchema>;
+
 export const axeRuleSchema = z.object({
   ruleId: z.string(),
   impact: z.enum(["minor", "moderate", "serious", "critical"]),

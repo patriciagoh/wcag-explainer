@@ -63,3 +63,25 @@ describe("datasetSchema", () => {
     expect(() => datasetSchema.parse(ds)).not.toThrow();
   });
 });
+
+import { cacheEntrySchema } from "./schema.ts";
+
+describe("cacheEntrySchema", () => {
+  it("accepts a valid cache entry", () => {
+    const entry = {
+      inputHash: "abc123",
+      plainEnglish: "Images need alt text.",
+      whyItMatters: "Screen reader users get nothing otherwise.",
+      quickCheck: "Run axe DevTools.",
+      commonMistakes: ["Missing alt attribute."],
+      codeExamples: [
+        { label: "Pass", kind: "pass", language: "jsx", code: "<img alt='x' />", source: "H37" },
+      ],
+    };
+    expect(() => cacheEntrySchema.parse(entry)).not.toThrow();
+  });
+
+  it("rejects an entry missing inputHash", () => {
+    expect(() => cacheEntrySchema.parse({ plainEnglish: "x" })).toThrow();
+  });
+});
