@@ -16,5 +16,12 @@ It reads `raw/criteria-raw.json`, calls the Claude API per criterion using the t
 session: for each criterion in `raw/criteria-raw.json`, apply the `prompts/*.md` templates,
 and write a `cache/{id}.json` matching `cacheEntrySchema` in `src/schema.ts` (fields:
 `inputHash`, `plainEnglish`, `whyItMatters`, `quickCheck`, `commonMistakes[]`,
-`codeExamples[]`). Compute `inputHash` with `src/enrich/hash.ts`. Then run
-`npm run build:dataset -- --merge`.
+`codeExamples[]`).
+
+Don't try to compute `inputHash` by hand. Write the entry with `"inputHash": ""`, then let
+the canonical function fill it in (no API call):
+
+```bash
+npm run enrich -- --reconcile   # recomputes inputHash for every cache/{id}.json
+npm run build:dataset -- --merge
+```

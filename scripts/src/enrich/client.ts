@@ -12,6 +12,7 @@ const SYSTEM_PROMPT =
 
 export function createAnthropicClient(opts: { apiKey: string; model?: string }): EnrichmentClient {
   const anthropic = new Anthropic({ apiKey: opts.apiKey });
+  // Deliberate default; override per run via the ENRICH_MODEL env var (see enrich.ts).
   const model = opts.model ?? "claude-opus-4-8";
   return {
     async complete(prompt: string): Promise<string> {
