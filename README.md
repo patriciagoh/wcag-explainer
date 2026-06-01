@@ -2,6 +2,7 @@
 
 A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React app.
 
+[![CI](https://github.com/patriciagoh/wcag-explainer/actions/workflows/ci.yml/badge.svg)](https://github.com/patriciagoh/wcag-explainer/actions/workflows/ci.yml)
 [![Live app](https://img.shields.io/badge/▶%20live%20app-try%20it-57e08a?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
 [![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/features.html)
 [![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
@@ -88,6 +89,12 @@ The enrichment cache skips unchanged criteria automatically.
 - `docs/` — visual docs (published via GitHub Pages): `features.html`, `phase-2.html`
 - `.github/workflows/check-updates.yml` — weekly upstream drift PR
 - `.github/workflows/deploy-pages.yml` — builds the app + docs and deploys to GitHub Pages
+
+## Contributing
+
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) and
+[ARCHITECTURE.md](ARCHITECTURE.md). This project follows the
+[Contributor Covenant](CODE_OF_CONDUCT.md).
 
 ## License
 
