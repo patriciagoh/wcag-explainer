@@ -8,6 +8,10 @@ describe("stableStringify", () => {
   it("preserves array order", () => {
     expect(stableStringify([3, 1, 2])).toBe("[3,1,2]");
   });
+  it("serializes null like JSON", () => {
+    expect(stableStringify(null)).toBe("null");
+    expect(stableStringify({ a: null })).toBe('{"a":null}');
+  });
 });
 
 describe("inputHash", () => {
