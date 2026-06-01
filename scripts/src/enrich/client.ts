@@ -22,8 +22,12 @@ export function createAnthropicClient(opts: { apiKey: string; model?: string }):
         system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: prompt }],
       });
-      const text = res.content.find((b) => b.type === "text");
-      if (!text || text.type !== "text") throw new Error("No text block in model response");
+      const text = res.content.find((b): b is Anthropic.TextBlock => b.type === "text");
+      if (!text) {
+        throw new Error(
+          `No text block in model response (stop_reason=${res.stop_reason}, blocks=${res.content.length})`,
+        );
+      }
       return text.text.trim();
     },
   };
