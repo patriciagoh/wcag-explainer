@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Try the hosted app
+    url: https://patriciagoh.github.io/wcag-explainer/
+    about: Just want to look up a WCAG criterion? Use the hosted app — no setup needed.
