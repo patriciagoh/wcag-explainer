@@ -1,33 +1,21 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createRequire } from "node:module";
-import { datasetSchema, type Dataset } from "./schema.ts";
+import { datasetSchema, cacheEntrySchema, type Dataset, type CacheEntry } from "./schema.ts";
 import type { RawCriterion } from "./assemble-raw.ts";
 
 const require = createRequire(import.meta.url);
-
-type CacheEntry = {
-  inputHash: string;
-  plainEnglish: string;
-  whyItMatters: string;
-  quickCheck: string;
-  commonMistakes: string[];
-  codeExamples: Array<{
-    label: string;
-    kind: "pass" | "fail";
-    language: "jsx" | "tsx" | "html" | "css";
-    code: string;
-    note?: string;
-    source?: string;
-  }>;
-};
 
 function loadCache(cacheDir: string, id: string): CacheEntry {
   const path = join(cacheDir, `${id}.json`);
   if (!existsSync(path)) {
     throw new Error(`cache miss for ${id} at ${path} — run Phase 2 enrichment`);
   }
-  return JSON.parse(readFileSync(path, "utf8")) as CacheEntry;
+  const parsed = cacheEntrySchema.safeParse(JSON.parse(readFileSync(path, "utf8")));
+  if (!parsed.success) {
+    throw new Error(`cache file for ${id} failed validation: ${parsed.error.message}`);
+  }
+  return parsed.data;
 }
 
 function readAxeCoreVersion(): string {
