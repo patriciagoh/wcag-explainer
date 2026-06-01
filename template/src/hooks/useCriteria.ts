@@ -40,7 +40,7 @@ export function useCriteria() {
     const m = new Map<string, Criterion>();
     for (const c of all) m.set(c.id, c);
     return m;
-  }, []);
-  const grouped = useMemo(() => groupByPrincipleAndGuideline(all), []);
+  }, [all]);
+  const grouped = useMemo(() => groupByPrincipleAndGuideline(all), [all]);
   return { all, byId, grouped, sourceVersions: dataset.sourceVersions };
 }
