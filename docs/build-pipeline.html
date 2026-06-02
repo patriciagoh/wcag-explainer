@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How the dataset is built — WCAG Explainer</title>
+<meta name="description" content="How the WCAG 2.2 Explainer dataset is built: a three-phase pipeline that fetches the facts from W3C and axe-core, enriches each criterion with Claude via a scripted, cached, schema-validated step, then merges the result." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="WCAG 2.2 Explainer — How the dataset is built" />
+<meta property="og:description" content="Fetch the facts, enrich each criterion with Claude (scripted + cached), merge and validate. The build pipeline behind the WCAG 2.2 Explainer." />
+<meta property="og:url" content="https://patriciagoh.github.io/wcag-explainer/docs/build-pipeline.html" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap">
+    <nav aria-label="Docs">
+      <a href="../">▶ Live app</a>
+      <a href="build-pipeline.html" aria-current="page">How the dataset is built</a>
+      <a href="features.html">App features →</a>
+    </nav>
+    <span class="eyebrow">WCAG Explainer · Build pipeline</span>
+    <h1>How the dataset is built</h1>
+    <p class="lede">
+      The app ships a single file — <code class="inline">wcag-criteria.json</code>, all 87 success criteria, each in
+      plain English with pass/fail code and grounded common mistakes. It's produced by a three-phase pipeline:
+      <em>fetch</em> the facts, <em>enrich</em> each criterion with Claude, then <em>merge</em> and validate. This page
+      is mostly about the interesting middle phase.
+    </p>
+    <div class="pills">
+      <span class="pill"><b>87</b> criteria</span>
+      <span class="pill"><b>3</b> phases · fetch · enrich · merge</span>
+      <span class="pill"><b>5</b> fields generated each</span>
+      <span class="pill"><b>pass + fail</b> example each</span>
+    </div>
+    <nav class="toc" aria-label="On this page">
+      <a href="#why">Why a pipeline</a>
+      <a href="#phases">The three phases</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#built">What enrichment produces</a>
+      <a href="#how">How it runs</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#shape">Data shape</a>
+      <a href="#use">Run it yourself</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <h2><span class="num">01</span> Why a pipeline at all</h2>
+    <p class="section-intro">
+      Official WCAG text is precise but impenetrable to a working engineer. The pipeline separates the parts that are
+      <em>data</em> (fetch them, deterministically) from the part that is <em>judgement</em> (let an LLM translate) —
+      and keeps the judgement honest, cached, and validated.
+    </p>
+    <ul class="why-list">
+      <li>
+        <span class="dot" aria-hidden="true">◆</span>
+        <span><b>Turn legalese into action.</b> <span class="body">"Non-text content has a text alternative…" becomes
+        "every image needs alt text; decorative ones get <code class="inline">alt=""</code>." That rewrite is exactly
+        what an LLM is good at.</span></span>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true">◆</span>
+        <span><b>Teach with contrast.</b> <span class="body">Each criterion gets a <span style="color:var(--green)">passing</span>
+        and a <span style="color:var(--red)">failing</span> code example. Seeing both side by side teaches faster than prose.</span></span>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true">◆</span>
+        <span><b>Ground every claim.</b> <span class="body">"Common mistakes" are tied to the criterion's real axe-core
+        rules from the fetch phase, and any real example reuses an actual W3C technique snippet. Facts stay sourced.</span></span>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true">◆</span>
+        <span><b>Be cacheable &amp; resumable.</b> <span class="body">Each criterion is hashed against its inputs. Re-runs
+        skip anything unchanged, so a refresh only re-enriches what actually drifted.</span></span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE THREE PHASES -->
+<section id="phases">
+  <div class="wrap">
+    <h2><span class="num">02</span> The three phases</h2>
+    <p class="section-intro">
+      Everything lives in <code class="inline">scripts/</code> and is a skill-author task — end users of the app never
+      run it. Fetch and merge are deterministic automation; enrich is the LLM step.
+    </p>
+    <div class="grid g3">
+      <article class="card accent-teal">
+        <span class="tag">npm run build:dataset -- --fetch</span>
+        <h3>1 · Fetch the facts</h3>
+        <p>Scrapes the W3C Quickref, the linked technique pages, and axe-core rule metadata into
+        <code class="inline">scripts/raw/criteria-raw.json</code>. Deterministic; committed.</p>
+      </article>
+      <article class="card accent-violet">
+        <span class="tag">npm run enrich</span>
+        <h3>2 · Enrich with Claude</h3>
+        <p>For each raw criterion, a scripted call to the Claude API generates the teachable fields into
+        <code class="inline">scripts/cache/&#123;id&#125;.json</code>. Incremental — unchanged criteria are skipped.</p>
+      </article>
+      <article class="card accent-amber">
+        <span class="tag">npm run build:dataset -- --merge</span>
+        <h3>3 · Merge &amp; validate</h3>
+        <p>Joins raw facts + enriched cache, validates every record against a Zod schema, and writes the shipped
+        <code class="inline">template/src/data/wcag-criteria.json</code>.</p>
+      </article>
+    </div>
+    <div class="callout">
+      <b>The enrich phase used to be manual</b> — a human driving a Claude Code session by hand. It's now the scripted
+      <code class="inline">scripts/enrich.ts</code> (Anthropic SDK, model <code class="inline">claude-opus-4-8</code>),
+      behind a mockable client interface so its logic is unit-tested without ever calling the API.
+    </div>
+  </div>
+</section>
+
+<!-- DECISIONS -->
+<section id="decisions">
+  <div class="wrap">
+    <h2><span class="num">03</span> Key decisions in the enrich phase</h2>
+    <p class="section-intro">
+      Claude is the "LLM rewrite" step. A few choices keep that honest, reproducible, and reviewable.
+    </p>
+    <div class="grid g2 decisions">
+      <article class="card accent-violet decision">
+        <h3>Claude is the generator, via a scripted API call</h3>
+        <p><code class="inline">enrichCriterion()</code> fills each prompt template and calls the Claude API through a small
+        <code class="inline">EnrichmentClient</code> interface — the same seam a mock implements in the tests.</p>
+        <span class="because"><b>Why:</b> scripting the call (vs a hand-driven session) makes the whole pipeline reproducible
+        and lets CI exercise the logic against a mock with no API key.</span>
+      </article>
+      <article class="card accent-teal decision">
+        <h3>A deterministic <code class="inline">inputHash</code> per criterion</h3>
+        <p>SHA-256 over the normalized <code class="inline">{officialText, scrapedExamples, axeRules}</code> with recursively sorted keys.</p>
+        <span class="because"><b>Why:</b> a stable hash lets a run compare against the committed cache and <b>skip</b> criteria
+        whose facts haven't changed — true caching and resume. <code class="inline">--reconcile</code> recomputes hashes without calling the API.</span>
+      </article>
+      <article class="card accent-amber decision">
+        <h3>Incremental by default, principle at a time</h3>
+        <p>A bare <code class="inline">npm run enrich</code> only touches criteria whose inputs changed; <code class="inline">--only=2</code>
+        scopes to one principle, <code class="inline">--force</code> re-enriches everything.</p>
+        <span class="because"><b>Why:</b> a refresh after upstream drift re-bills only what actually changed, and large runs stay
+        easy to checkpoint and commit between principles.</span>
+      </article>
+      <article class="card accent-pink decision">
+        <h3>Real example when we have one, synthesize otherwise</h3>
+        <p>Where a criterion has a scraped W3C example, the pass reuses that real snippet; otherwise the pair is synthesized
+        and marked <code class="inline">source:"synthesized"</code>.</p>
+        <span class="because"><b>Why:</b> prefer sourced truth, but never ship a criterion without a teaching pair — and label
+        synthesized examples honestly.</span>
+      </article>
+      <article class="card accent-violet decision">
+        <h3>Pick the most natural language per example</h3>
+        <p>JSX for component/keyboard patterns, CSS for contrast/motion/target-size, HTML for <code class="inline">&lt;meta&gt;</code>/<code class="inline">&lt;title&gt;</code>.</p>
+        <span class="because"><b>Why:</b> forcing everything into JSX would misrepresent CSS-level criteria like contrast or reflow.</span>
+      </article>
+      <article class="card accent-teal decision">
+        <h3>Validate against the real schema before writing</h3>
+        <p>Each entry is parsed through the shared Zod <code class="inline">cacheEntrySchema</code> before it's written, and the merge
+        re-validates every record on read.</p>
+        <span class="because"><b>Why:</b> evidence before assertions — a cache file only counts as done if the production validator accepts it.</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT ENRICHMENT PRODUCES -->
+<section id="built">
+  <div class="wrap">
+    <h2><span class="num">04</span> What enrichment produces</h2>
+    <p class="section-intro">
+      For every one of the 87 criteria, a single cache file with six keys — one grounding hash plus five generated fields,
+      each from its own prompt template.
+    </p>
+    <div class="grid g3">
+      <article class="card file accent-teal">
+        <span class="tag">grounding key</span>
+        <code>inputHash</code>
+        <p class="role">SHA-256 of the criterion's facts. Drives skip/resume on re-runs.</p>
+      </article>
+      <article class="card file accent-violet">
+        <span class="tag">prompt → plain-english.md</span>
+        <code>plainEnglish</code>
+        <p class="role">2–4 plain sentences explaining what the criterion requires and why.</p>
+      </article>
+      <article class="card file accent-violet">
+        <span class="tag">prompt → why-it-matters.md</span>
+        <code>whyItMatters</code>
+        <p class="role">One concrete sentence on who is affected when it's violated.</p>
+      </article>
+      <article class="card file accent-violet">
+        <span class="tag">prompt → quick-check.md</span>
+        <code>quickCheck</code>
+        <p class="role">A one-line test an engineer can run now (DevTools / axe).</p>
+      </article>
+      <article class="card file accent-amber">
+        <span class="tag">prompt → common-mistakes.md</span>
+        <code>commonMistakes[]</code>
+        <p class="role">3–5 concrete failures, grounded in the criterion's axe rules.</p>
+      </article>
+      <article class="card file accent-pink">
+        <span class="tag">prompt → html-to-jsx.md</span>
+        <code>codeExamples[]</code>
+        <p class="role">One <span style="color:var(--green)">pass</span> + one <span style="color:var(--red)">fail</span> snippet, each labelled and sourced.</p>
+      </article>
+    </div>
+    <div class="callout">
+      <b>The deliverable:</b> 87 files at <code class="inline">scripts/cache/&#123;id&#125;.json</code>, committed alongside the
+      raw facts, then merged into <code class="inline">template/src/data/wcag-criteria.json</code> — 87 criteria, fully
+      Zod-validated, every one with a pass and a fail example.
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT RUNS -->
+<section id="how">
+  <div class="wrap">
+    <h2><span class="num">05</span> How enrichment runs, per criterion</h2>
+    <p class="section-intro">
+      <code class="inline">enrich.ts</code> walks the raw criteria; for each stale one it calls
+      <code class="inline">enrichCriterion()</code>, which runs the same loop.
+    </p>
+    <ol class="steps">
+      <li><div><b>Hash &amp; check the cache.</b> <span class="meta">inputHash</span><br>
+        Compute the criterion's <code class="inline">inputHash</code>. If a cache file exists and the hash matches, <b>skip</b> — already fresh (unless <code class="inline">--force</code>).</div></li>
+      <li><div><b>Generate the three short fields.</b> <span class="meta">plain-english · why-it-matters · quick-check</span><br>
+        Fill each prompt template with the criterion's id, title, level, and official text; the three independent calls run concurrently.</div></li>
+      <li><div><b>Ground the common mistakes.</b> <span class="meta">common-mistakes.md</span><br>
+        Feed the criterion's axe-rule descriptions into the template so the 3–5 mistakes reference real, flagged patterns — then parse the JSON array (fences tolerated, validated as strings).</div></li>
+      <li><div><b>Build the pass/fail pair.</b> <span class="meta">html-to-jsx.md</span><br>
+        Pick the best scraped pass &amp; fail examples by label; convert HTML → idiomatic JSX. Where none exist, synthesize a realistic pair and mark it <code class="inline">"synthesized"</code>.</div></li>
+      <li><div><b>Validate &amp; write.</b> <span class="meta">cacheEntrySchema → cache/&#123;id&#125;.json</span><br>
+        Parse the assembled entry through the Zod schema, then write it. A final <code class="inline">--merge</code> re-validates all 87 and ships the dataset.</div></li>
+    </ol>
+
+    <h3 style="margin-top:30px">The four principle groups (<code class="inline">--only=&lt;n&gt;</code>)</h3>
+    <div class="batches">
+      <div class="batch"><div class="p">Principle 1</div><div class="n">29</div><div class="lbl">Perceivable</div></div>
+      <div class="batch"><div class="p">Principle 2</div><div class="n">34</div><div class="lbl">Operable</div></div>
+      <div class="batch"><div class="p">Principle 3</div><div class="n">21</div><div class="lbl">Understandable</div></div>
+      <div class="batch"><div class="p">Principle 4</div><div class="n">3</div><div class="lbl">Robust</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="wrap">
+    <h2><span class="num">06</span> Architecture at a glance</h2>
+    <p class="section-intro">
+      Raw facts and prompt templates flow into a per-criterion loop driven by <code class="inline">scripts/enrich.ts</code>.
+      A hash gate skips unchanged work; Claude generates the fields; the result is one validated cache file per criterion,
+      ready for the merge.
+    </p>
+    <div class="diagram">
+      <svg viewBox="0 0 980 430" role="img" aria-labelledby="diagTitle diagDesc">
+        <title id="diagTitle">Enrichment data flow</title>
+        <desc id="diagDesc">criteria-raw.json and the prompt templates feed a per-criterion loop driven by enrich.ts. A hash
+        check skips criteria whose inputs are unchanged; otherwise Claude fills the prompt templates and an example selector to
+        produce six fields, validated and written to a per-criterion cache file. The cache files are then merged and validated
+        against a Zod schema into wcag-criteria.json, which the React app consumes.</desc>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"></path>
+          </marker>
+          <style>
+            .lbl { fill:#111827; font-family: var(--sans); font-size: 13.5px; font-weight:600; }
+            .sub { fill:#6b7280; font-family: ui-monospace, monospace; font-size: 10px; }
+            .phaselbl { fill:#94a3b8; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing:.12em; }
+            .edge { stroke:#94a3b8; stroke-width:2; fill:none; marker-end:url(#arrow); }
+          </style>
+        </defs>
+
+        <text x="40" y="20" class="phaselbl">INPUTS (FROM FETCH)</text>
+        <text x="360" y="20" class="phaselbl">PER-CRITERION LOOP · enrich.ts</text>
+        <text x="800" y="20" class="phaselbl">MERGE</text>
+        <line x1="300" y1="30" x2="300" y2="430" stroke="#e5e7eb" stroke-dasharray="4 6"></line>
+        <line x1="760" y1="30" x2="760" y2="430" stroke="#e5e7eb" stroke-dasharray="4 6"></line>
+
+        <!-- inputs -->
+        <rect rx="11" x="30" y="70" width="200" height="58" fill="#f9fafb" stroke="#059669"></rect>
+        <text x="46" y="95" class="lbl">criteria-raw.json</text>
+        <text x="46" y="113" class="sub">87 criteria · facts</text>
+
+        <rect rx="11" x="30" y="160" width="200" height="58" fill="#f9fafb" stroke="#d97706"></rect>
+        <text x="46" y="185" class="lbl">prompts/*.md</text>
+        <text x="46" y="203" class="sub">5 templates</text>
+
+        <!-- hash gate -->
+        <path d="M360,99 l26,-26 l26,26 l-26,26 z" fill="#eff6ff" stroke="#059669"></path>
+        <text x="356" y="150" class="sub">hash match?</text>
+        <text x="372" y="103" class="sub" fill="#111827">skip</text>
+
+        <!-- claude -->
+        <rect rx="11" x="345" y="175" width="120" height="64" fill="#f5f3ff" stroke="#7c3aed"></rect>
+        <text x="378" y="203" class="lbl">Claude</text>
+        <text x="361" y="221" class="sub">generate fields</text>
+
+        <!-- field outputs -->
+        <rect rx="11" x="500" y="60" width="210" height="200" fill="#ffffff" stroke="#e5e7eb"></rect>
+        <text x="516" y="82" class="sub" fill="#7c3aed">six keys →</text>
+        <text x="516" y="104" class="lbl" font-size="12">inputHash</text>
+        <text x="516" y="126" class="lbl" font-size="12">plainEnglish</text>
+        <text x="516" y="148" class="lbl" font-size="12">whyItMatters</text>
+        <text x="516" y="170" class="lbl" font-size="12">quickCheck</text>
+        <text x="516" y="192" class="lbl" font-size="12">commonMistakes[]</text>
+        <text x="516" y="214" class="lbl" font-size="12">codeExamples[]</text>
+        <text x="516" y="240" class="sub">pass + fail · jsx/css/html</text>
+
+        <!-- cache -->
+        <rect rx="11" x="500" y="290" width="210" height="58" fill="#f9fafb" stroke="#059669"></rect>
+        <text x="516" y="315" class="lbl">cache/&#123;id&#125;.json</text>
+        <text x="516" y="333" class="sub">validated · committed</text>
+
+        <!-- merge + shipped -->
+        <rect rx="11" x="790" y="160" width="160" height="60" fill="#fffbeb" stroke="#d97706"></rect>
+        <text x="806" y="186" class="lbl">merge + Zod</text>
+        <text x="806" y="204" class="sub">validate all 87</text>
+
+        <rect rx="11" x="790" y="70" width="160" height="58" fill="#f0fdf4" stroke="#16a34a"></rect>
+        <text x="806" y="95" class="lbl">wcag-criteria</text>
+        <text x="806" y="113" class="sub">.json → React app</text>
+
+        <!-- edges -->
+        <path class="edge" d="M230,99 L356,99"></path>
+        <path class="edge" d="M230,189 C300,189 320,160 343,150"></path>
+        <path class="edge" d="M412,99 C460,99 470,120 498,130"></path>
+        <path class="edge" d="M465,207 L498,180"></path>
+        <path class="edge" d="M386,125 C386,160 372,168 366,173"></path>
+        <path class="edge" d="M605,260 L605,288"></path>
+        <path class="edge" d="M710,312 C760,312 770,210 788,196"></path>
+        <path class="edge" d="M870,158 L870,130"></path>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:#059669"></i> deterministic / committed</span>
+      <span><i class="swatch" style="background:#7c3aed"></i> Claude (generative)</span>
+      <span><i class="swatch" style="background:#d97706"></i> templates / validation</span>
+      <span><i class="swatch" style="background:#16a34a"></i> consumer</span>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SHAPE -->
+<section id="shape">
+  <div class="wrap">
+    <h2><span class="num">07</span> What an enriched record looks like</h2>
+    <p class="section-intro">
+      The actual <code class="inline">scripts/cache/1.1.1.json</code> — same facts as the raw record underneath, now wrapped
+      in teachable guidance.
+    </p>
+    <pre aria-label="Enriched cache record for criterion 1.1.1"><span class="c">// scripts/cache/1.1.1.json</span>
+{
+  <span class="p">"inputHash"</span>: <span class="s">"19b05a8e…945d791"</span>,        <span class="c">// gate for skip/resume</span>
+  <span class="p">"plainEnglish"</span>: <span class="s">"Every image, icon, chart… needs a text alternative…"</span>,
+  <span class="p">"whyItMatters"</span>: <span class="s">"Screen reader users… get nothing useful when an image has no alt text…"</span>,
+  <span class="p">"quickCheck"</span>: <span class="s">"In Chrome DevTools, inspect each &lt;img&gt;… or run the axe DevTools extension."</span>,
+  <span class="p">"commonMistakes"</span>: [                          <span class="c">// 3–5, grounded in axe rules</span>
+    <span class="s">"Leaving the alt attribute off an &lt;img&gt; entirely…"</span>,
+    <span class="s">"Using a &lt;div onClick&gt; as a button with no aria-label…"</span>
+  ],
+  <span class="p">"codeExamples"</span>: [
+    { <span class="p">"kind"</span>: <span class="pass">"pass"</span>, <span class="p">"language"</span>: <span class="s">"jsx"</span>,
+      <span class="p">"code"</span>: <span class="s">"&lt;img src=\"newsletter.gif\" alt=\"Free newsletter…\" /&gt;"</span>,
+      <span class="p">"source"</span>: <span class="s">"H37"</span> },                       <span class="c">// real W3C technique</span>
+    { <span class="p">"kind"</span>: <span class="fail">"fail"</span>, <span class="p">"language"</span>: <span class="s">"jsx"</span>,
+      <span class="p">"code"</span>: <span class="s">"&lt;img src=\"newsletter.gif\" /&gt;"</span>,
+      <span class="p">"source"</span>: <span class="s">"synthesized"</span> }
+  ]
+}</pre>
+  </div>
+</section>
+
+<!-- RUN IT YOURSELF -->
+<section id="use">
+  <div class="wrap">
+    <h2><span class="num">08</span> Run it yourself</h2>
+    <p class="section-intro">
+      A <strong>skill-author</strong> task — only needed when rebuilding or refreshing the dataset. End users of the app
+      never run it. Enrichment calls the Claude API, so it needs an <code class="inline">ANTHROPIC_API_KEY</code>.
+    </p>
+    <div class="term" role="group" aria-label="Rebuilding the dataset from the terminal">
+      <div class="bar"><span class="dotrow"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i></span> scripts/ · terminal</div>
+      <pre><span class="out"># 1 · fetch the facts (deterministic)</span>
+<span class="cmd">npm</span> run build:dataset -- --fetch
+
+<span class="out"># 2 · enrich with Claude — incremental; skips unchanged criteria</span>
+<span class="cmd">ANTHROPIC_API_KEY</span>=sk-… npm run enrich
+<span class="out">#    one principle at a time:  npm run enrich -- --only=1</span>
+<span class="out">#    re-enrich everything:     npm run enrich -- --force</span>
+
+<span class="out"># 3 · merge &amp; validate → ships wcag-criteria.json</span>
+<span class="cmd">npm</span> run build:dataset -- --merge
+<span class="out">Wrote template/src/data/wcag-criteria.json with 87 criteria</span></pre>
+    </div>
+    <p class="note"><b>Incremental:</b> the <code class="inline">inputHash</code> gate means a re-run skips any criterion whose
+    facts are unchanged — so a refresh after upstream drift only re-enriches what actually changed.
+    <code class="inline">npm run enrich -- --reconcile</code> recomputes the hashes without calling the API.</p>
+
+    <div class="grid g3" style="margin-top:22px">
+      <article class="card accent-violet">
+        <span class="tag">Scope a run</span>
+        <p><code class="inline">--only=1</code> … <code class="inline">--only=4</code> enriches one principle; <code class="inline">--force</code> ignores the cache.</p>
+      </article>
+      <article class="card accent-teal">
+        <span class="tag">Verify</span>
+        <p><code class="inline">npm run build:dataset -- --merge</code> fails loudly if any field is missing or malformed.</p>
+      </article>
+      <article class="card accent-amber">
+        <span class="tag">No key? Fall back</span>
+        <p>Hand-write the cache entries and run <code class="inline">--reconcile</code> — see <code class="inline">scripts/enrich-with-claude.md</code>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This page documents the <strong>build pipeline</strong> behind <code class="inline">wcag-explainer</code> — fetch the
+    facts, enrich each criterion with Claude (scripted, cached, schema-validated), then merge into the 87-criterion
+    <code class="inline">wcag-criteria.json</code> the app ships.</p>
+    <div class="meta-grid" aria-label="Pipeline results">
+      <span>87 / 87 criteria</span>
+      <span>3 phases · fetch · enrich · merge</span>
+      <span>pass + fail example each</span>
+      <span>validated · Zod schema + unit tests</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

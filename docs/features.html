@@ -13,101 +13,7 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<style>
-  :root {
-    --bg: #0f1226; --bg-soft: #171b38; --panel: #1d2244; --panel-2: #232a54;
-    --ink: #e8eaf6; --ink-dim: #aab0d6; --line: #343b6e;
-    --teal: #3fd6c2; --teal-ink: #0a201d; --amber: #ffc861; --violet: #9d8cff;
-    --pink: #ff8fb3; --green: #57e08a; --red: #ff7a8a;
-    --radius: 14px;
-    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; font-family: var(--sans);
-    background: radial-gradient(1200px 700px at 80% -10%, #16324a 0%, var(--bg) 55%);
-    color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  a { color: var(--teal); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
-  .skip-link { position: absolute; left: -999px; top: 0; background: var(--teal); color: var(--teal-ink);
-    padding: 10px 16px; border-radius: 0 0 10px 0; font-weight: 700; z-index: 50; }
-  .skip-link:focus { left: 0; }
-
-  header.hero { padding: 60px 0 34px; border-bottom: 1px solid var(--line); }
-  .topnav { display: flex; gap: 14px; font-size: .85rem; margin-bottom: 26px; }
-  .topnav a { text-decoration: none; color: var(--ink-dim); }
-  .topnav a.active { color: var(--teal); font-weight: 600; }
-  .eyebrow { display: inline-block; font-family: var(--mono); font-size: .8rem;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
-    background: rgba(63,214,194,.1); border: 1px solid rgba(63,214,194,.35);
-    padding: 5px 12px; border-radius: 999px; }
-  h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin: 18px 0 10px; letter-spacing: -.02em; }
-  .lede { font-size: 1.18rem; color: var(--ink-dim); max-width: 64ch; }
-
-  /* mode-tab mock */
-  .tabsmock { display: inline-flex; gap: 4px; margin-top: 26px; background: var(--panel);
-    border: 1px solid var(--line); border-radius: 12px; padding: 6px; flex-wrap: wrap; }
-  .tabsmock span { font-size: .85rem; padding: 6px 12px; border-radius: 8px; color: var(--ink-dim); }
-  .tabsmock span.on { background: #2b62ff; color: #fff; }
-  .tabsmock .badge { background: rgba(255,255,255,.25); border-radius: 999px; padding: 0 6px; margin-left: 6px; font-size: .7rem; }
-
-  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
-  h2 { font-size: 1.55rem; margin: 0 0 4px; letter-spacing: -.01em; }
-  .group-tag { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--violet); margin: 0 0 18px; }
-  .section-intro { color: var(--ink-dim); max-width: 70ch; margin: 0 0 24px; }
-
-  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center;
-    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 22px; margin-bottom: 18px; }
-  .feature.rev { grid-template-columns: 1fr 1fr; }
-  @media (max-width: 800px){ .feature, .feature.rev { grid-template-columns: 1fr; } }
-  .feature .num { font-family: var(--mono); font-size: .8rem; color: var(--teal-ink);
-    background: var(--teal); border-radius: 6px; padding: 2px 8px; display: inline-block; }
-  .feature h3 { font-size: 1.15rem; margin: 10px 0 6px; }
-  .feature p { margin: 0 0 8px; color: var(--ink-dim); font-size: .97rem; }
-  .feature .where { font-size: .82rem; color: var(--ink); }
-  .feature .where b { color: var(--amber); }
-
-  /* little UI mockups */
-  .mock { background: #0c0f24; border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: .8rem; }
-  .mock .mhead { font-family: var(--mono); color: var(--ink-dim); font-size: .72rem; margin-bottom: 10px; }
-  .chip { display: inline-block; font-family: var(--mono); font-size: .72rem; padding: 3px 8px; border-radius: 6px;
-    border: 1px solid var(--line); margin: 2px; }
-  .chip.axe { background: rgba(255,200,97,.13); color: var(--amber); border-color: rgba(255,200,97,.4); }
-  .chip.lint { background: rgba(157,140,255,.13); color: var(--violet); border-color: rgba(157,140,255,.4); }
-  .chip.crit { background: rgba(63,214,194,.12); color: var(--teal); border-color: rgba(63,214,194,.4); }
-  .codeline { font-family: var(--mono); padding: 2px 8px; border-radius: 4px; white-space: pre-wrap; }
-  .codeline.del { background: rgba(255,122,138,.14); color: #ffb3bd; }
-  .codeline.add { background: rgba(87,224,138,.14); color: #aef0c6; }
-  .exp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .exp .bad { background: rgba(255,122,138,.1); border: 1px solid rgba(255,122,138,.35); border-radius: 8px; padding: 10px; }
-  .exp .good { background: rgba(87,224,138,.1); border: 1px solid rgba(87,224,138,.35); border-radius: 8px; padding: 10px; }
-  .exp h4 { margin: 0 0 5px; font-size: .8rem; }
-  .exp .bad h4 { color: #ffb3bd; } .exp .good h4 { color: #aef0c6; }
-  .exp p { font-size: .78rem; color: var(--ink); margin: 0; }
-  .quizmock button { font-family: var(--sans); font-size: .8rem; padding: 5px 12px; border-radius: 7px;
-    border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); margin-right: 8px; }
-  .quizmock .ok { border-color: rgba(87,224,138,.5); color: #aef0c6; }
-  .quizmock .no { border-color: rgba(255,122,138,.5); color: #ffb3bd; }
-  .checkline { font-family: var(--mono); font-size: .78rem; color: var(--ink-dim); }
-  .checkline b { color: var(--ink); }
-
-  pre { background: #0c0f24; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
-    overflow-x: auto; font-family: var(--mono); font-size: .78rem; line-height: 1.5; color: #d6dbff; margin: 0; }
-  pre .c { color: #6f78ad; } pre .k { color: var(--violet); } pre .s { color: var(--green); } pre .p { color: var(--amber); }
-  code.inline { font-family: var(--mono); background: var(--bg-soft); border: 1px solid var(--line);
-    padding: 1px 6px; border-radius: 6px; font-size: .85em; color: var(--amber); }
-
-  .diagram { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; }
-  .diagram svg { width: 100%; height: auto; display: block; }
-
-  footer { padding: 40px 0 70px; color: var(--ink-dim); font-size: .86rem; }
-  footer .meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-  footer .meta-grid span { font-family: var(--mono); background: var(--panel); border: 1px solid var(--line);
-    padding: 6px 11px; border-radius: 8px; }
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -116,7 +22,7 @@
   <div class="wrap">
     <nav class="topnav" aria-label="Docs">
       <a href="../">▶ Live app</a>
-      <a href="phase-2.html">Build pipeline (Phase 2)</a>
+      <a href="build-pipeline.html">How the dataset is built</a>
       <a href="features.html" class="active" aria-current="page">App features</a>
     </nav>
     <span class="eyebrow">WCAG Explainer · The App</span>
@@ -321,33 +227,33 @@ Text must have enough contrast…
         eslint-jsx-a11y) are composed by augment.ts and consumed by the React features.</desc>
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#5b63a0"></path>
+            <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"></path>
           </marker>
           <style>
-            .l { fill:#e8eaf6; font-family: var(--sans); font-size: 13px; font-weight:600; }
-            .s2 { fill:#aab0d6; font-family: ui-monospace, monospace; font-size: 10px; }
-            .e { stroke:#5b63a0; stroke-width:2; fill:none; marker-end:url(#ar); }
+            .l { fill:#111827; font-family: var(--sans); font-size: 13px; font-weight:600; }
+            .s2 { fill:#6b7280; font-family: ui-monospace, monospace; font-size: 10px; }
+            .e { stroke:#94a3b8; stroke-width:2; fill:none; marker-end:url(#ar); }
           </style>
         </defs>
-        <rect rx="10" x="20" y="30" width="190" height="50" fill="#202650" stroke="#57e08a"></rect>
+        <rect rx="10" x="20" y="30" width="190" height="50" fill="#f9fafb" stroke="#16a34a"></rect>
         <text x="34" y="52" class="l">wcag-criteria.json</text><text x="34" y="69" class="s2">87 · build pipeline</text>
-        <rect rx="10" x="20" y="95" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <rect rx="10" x="20" y="95" width="190" height="40" fill="#f9fafb" stroke="#059669"></rect>
         <text x="34" y="113" class="l" font-size="12">assistive-tech.json</text><text x="34" y="128" class="s2">#4</text>
-        <rect rx="10" x="20" y="150" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <rect rx="10" x="20" y="150" width="190" height="40" fill="#f9fafb" stroke="#059669"></rect>
         <text x="34" y="168" class="l" font-size="12">facets.json</text><text x="34" y="183" class="s2">#6</text>
-        <rect rx="10" x="20" y="205" width="190" height="40" fill="#202650" stroke="#3fd6c2"></rect>
+        <rect rx="10" x="20" y="205" width="190" height="40" fill="#f9fafb" stroke="#059669"></rect>
         <text x="34" y="223" class="l" font-size="12">eslint-jsx-a11y.json</text><text x="34" y="238" class="s2">#7</text>
 
-        <rect rx="10" x="380" y="110" width="160" height="55" fill="#232a54" stroke="#9d8cff"></rect>
+        <rect rx="10" x="380" y="110" width="160" height="55" fill="#f5f3ff" stroke="#7c3aed"></rect>
         <text x="402" y="135" class="l">augment.ts</text><text x="402" y="152" class="s2">compose by id</text>
 
-        <rect rx="10" x="700" y="40" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <rect rx="10" x="700" y="40" width="230" height="40" fill="#ffffff" stroke="#e5e7eb"></rect>
         <text x="716" y="65" class="l" font-size="12">Rule lookup · #1 #7</text>
-        <rect rx="10" x="700" y="92" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <rect rx="10" x="700" y="92" width="230" height="40" fill="#ffffff" stroke="#e5e7eb"></rect>
         <text x="716" y="117" class="l" font-size="12">Detail · experience, diff · #4 #5 #10</text>
-        <rect rx="10" x="700" y="144" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <rect rx="10" x="700" y="144" width="230" height="40" fill="#ffffff" stroke="#e5e7eb"></rect>
         <text x="716" y="169" class="l" font-size="12">Sidebar filters · #6</text>
-        <rect rx="10" x="700" y="196" width="230" height="40" fill="#1d2244" stroke="#343b6e"></rect>
+        <rect rx="10" x="700" y="196" width="230" height="40" fill="#ffffff" stroke="#e5e7eb"></rect>
         <text x="716" y="221" class="l" font-size="12">Quiz · #8 · Checklist · #9</text>
 
         <path class="e" d="M210,55 C300,55 320,120 378,128"></path>
@@ -367,7 +273,7 @@ Text must have enough contrast…
 
 <footer>
   <div class="wrap">
-    <p>These features layer on top of the <a href="phase-2.html">Phase&nbsp;2 enriched dataset</a> without changing its
+    <p>These features layer on top of the <a href="build-pipeline.html">enriched dataset</a> without changing its
     contract — new data lives in side files composed by <code class="inline">src/augment.ts</code>. Built into the
     skill's <code class="inline">template/</code>, type-checked, and covered by the app test suite.</p>
     <div class="meta-grid" aria-label="Feature summary">
