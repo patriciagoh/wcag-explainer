@@ -5,11 +5,11 @@ A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React ap
 [![CI](https://github.com/patriciagoh/wcag-explainer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/patriciagoh/wcag-explainer/actions/workflows/ci.yml)
 [![Live app](https://img.shields.io/badge/▶%20live%20app-try%20it-57e08a?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/)
 [![App features](https://img.shields.io/badge/docs-App%20features-3fd6c2?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/features.html)
-[![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
+[![Build pipeline](https://img.shields.io/badge/docs-Build%20pipeline-9d8cff?style=for-the-badge)](https://patriciagoh.github.io/wcag-explainer/docs/build-pipeline.html)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 🚀 **Live app:** <https://patriciagoh.github.io/wcag-explainer/>
-📖 **Docs:** [App features](https://patriciagoh.github.io/wcag-explainer/docs/features.html) · [Build pipeline](https://patriciagoh.github.io/wcag-explainer/docs/phase-2.html)
+📖 **Docs:** [App features](https://patriciagoh.github.io/wcag-explainer/docs/features.html) · [How the dataset is built](https://patriciagoh.github.io/wcag-explainer/docs/build-pipeline.html)
 
 [![WCAG 2.2 Explainer — welcome page](docs/screenshots/welcome.png)](https://patriciagoh.github.io/wcag-explainer/)
 
@@ -44,13 +44,14 @@ npm run build:dataset -- --fetch
 
 Writes `scripts/raw/criteria-raw.json`. Deterministic; commit it.
 
-### Phase 2: enrich (Claude Code session)
+### Phase 2: enrich (scripted)
 
-Open a Claude Code session in this skill directory and say:
+```bash
+cd scripts
+ANTHROPIC_API_KEY=sk-... npm run enrich
+```
 
-> Follow `scripts/enrich-with-claude.md`. Start with principle 1.
-
-Claude reads each raw criterion and writes per-criterion `scripts/cache/{id}.json`. Cached per input hash; re-runs only re-enrich criteria with changed inputs. Recommended: one CC session per principle (~10–32 criteria each), commit between batches.
+Calls the Claude API per criterion and writes `scripts/cache/{id}.json`. Incremental: cached per input hash, so re-runs only re-enrich criteria with changed inputs. Scope to one principle with `--only=1` (…`4`), re-enrich everything with `--force`, or recompute hashes without the API via `--reconcile`. No API key? See `scripts/enrich-with-claude.md` for the manual fallback.
 
 ### Phase 3: merge (automated)
 
@@ -74,9 +75,9 @@ Diffs upstream WCAG + axe-core against the shipped dataset. Exits non-zero if an
 
 ```bash
 cd scripts
-npm run build:dataset -- --fetch    # re-fetch
-# Open a Claude Code session, follow enrich-with-claude.md
-npm run build:dataset -- --merge    # re-merge
+npm run build:dataset -- --fetch         # re-fetch
+ANTHROPIC_API_KEY=sk-... npm run enrich  # re-enrich changed criteria
+npm run build:dataset -- --merge         # re-merge
 ```
 
 The enrichment cache skips unchanged criteria automatically.
@@ -86,7 +87,7 @@ The enrichment cache skips unchanged criteria automatically.
 - `SKILL.md` — what Claude does on user invocation
 - `template/` — the Vite + React + TS + Tailwind app, copied per invocation
 - `scripts/` — dataset build pipeline
-- `docs/` — visual docs (published via GitHub Pages): `features.html`, `phase-2.html`
+- `docs/` — visual docs (published via GitHub Pages): `features.html`, `build-pipeline.html`
 - `.github/workflows/check-updates.yml` — weekly upstream drift PR
 - `.github/workflows/deploy-pages.yml` — builds the app + docs and deploys to GitHub Pages
 

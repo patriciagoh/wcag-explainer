@@ -9,7 +9,7 @@ const require = createRequire(import.meta.url);
 function loadCache(cacheDir: string, id: string): CacheEntry {
   const path = join(cacheDir, `${id}.json`);
   if (!existsSync(path)) {
-    throw new Error(`cache miss for ${id} at ${path} — run Phase 2 enrichment`);
+    throw new Error(`cache miss for ${id} at ${path} — run enrichment (npm run enrich)`);
   }
   const parsed = cacheEntrySchema.safeParse(JSON.parse(readFileSync(path, "utf8")));
   if (!parsed.success) {
