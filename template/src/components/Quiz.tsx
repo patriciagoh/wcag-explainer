@@ -49,7 +49,7 @@ export function Quiz({ all, onSelect }: Props) {
     <div className="max-w-3xl mx-auto p-6">
       <div className="flex items-baseline justify-between">
         <h1 className="text-2xl font-semibold">Spot the violation</h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600" role="status" aria-live="polite">
           Score: {score.right}/{score.total}
         </p>
       </div>
@@ -57,7 +57,12 @@ export function Quiz({ all, onSelect }: Props) {
         Does this snippet <strong>pass</strong> or <strong>fail</strong> its WCAG criterion?
       </p>
 
-      <pre className="mt-4 p-3 rounded-md bg-gray-900 text-gray-100 text-sm overflow-x-auto">
+      <pre
+        className="mt-4 p-3 rounded-md bg-gray-900 text-gray-100 text-sm overflow-x-auto"
+        tabIndex={0}
+        role="region"
+        aria-label="Code snippet to evaluate"
+      >
         <code>{card.example.code}</code>
       </pre>
       <p className="text-xs text-gray-500 mt-1">
@@ -83,7 +88,7 @@ export function Quiz({ all, onSelect }: Props) {
           </button>
         </div>
       ) : (
-        <div className="mt-4 border rounded-md p-4">
+        <div className="mt-4 border rounded-md p-4" role="status" aria-live="polite">
           <p className={`font-semibold ${correct ? "text-green-800" : "text-red-800"}`}>
             {correct ? "Correct!" : "Not quite."} This example is a{" "}
             <strong>{card.example.kind.toUpperCase()}</strong>.

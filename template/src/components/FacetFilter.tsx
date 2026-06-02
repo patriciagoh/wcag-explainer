@@ -14,7 +14,6 @@ export function FacetFilter({ component, role, onComponent, onRole }: Props) {
       <label className="text-xs text-gray-700">
         <span className="block mb-1 font-medium">Component</span>
         <select
-          aria-label="Filter by component"
           value={component ?? ""}
           onChange={(e) => onComponent(e.target.value || null)}
           className="w-full border rounded px-2 py-1 text-sm bg-white"
@@ -30,7 +29,6 @@ export function FacetFilter({ component, role, onComponent, onRole }: Props) {
       <label className="text-xs text-gray-700">
         <span className="block mb-1 font-medium">Your role</span>
         <select
-          aria-label="Filter by role"
           value={role ?? ""}
           onChange={(e) => onRole(e.target.value || null)}
           className="w-full border rounded px-2 py-1 text-sm bg-white"

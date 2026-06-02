@@ -19,7 +19,7 @@ export function CopyButton({ text, label = "Copy", className = "" }: Props) {
     <button
       type="button"
       onClick={copy}
-      className={`text-xs px-2 py-0.5 rounded border bg-white hover:bg-gray-50 ${className}`}
+      className={`inline-flex items-center min-h-6 text-xs px-2 py-1 rounded border bg-white hover:bg-gray-50 ${className}`}
     >
       {copied ? "Copied ✓" : label}
     </button>

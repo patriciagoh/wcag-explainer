@@ -5,3 +5,22 @@
 :root {
   color-scheme: light dark;
 }
+
+/* Visible focus indicator for keyboard users (WCAG 2.4.7). blue-700 reads
+   >=3:1 against white and against the blue-600 active controls (1.4.11). */
+:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* Honor reduced-motion preferences (2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

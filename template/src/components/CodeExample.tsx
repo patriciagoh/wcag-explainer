@@ -20,7 +20,12 @@ export function CodeExample({ example }: Props) {
           <CopyButton text={example.code} label="Copy" />
         </span>
       </figcaption>
-      <pre className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm">
+      <pre
+        className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm"
+        tabIndex={0}
+        role="region"
+        aria-label={`${example.kind === "pass" ? "Passing" : "Failing"} code example${example.label ? `: ${example.label}` : ""}`}
+      >
         <code>{example.code}</code>
       </pre>
       {example.note && (

@@ -71,7 +71,7 @@ export function Checklist({
                     type="button"
                     onClick={() => onToggle(c.id)}
                     aria-label={`Remove ${c.id} from checklist`}
-                    className="text-red-700 hover:bg-red-50 rounded px-1"
+                    className="inline-flex items-center justify-center min-w-6 min-h-6 text-red-700 hover:bg-red-50 rounded"
                   >
                     ✕
                   </button>
@@ -93,7 +93,7 @@ export function Checklist({
                 type="button"
                 onClick={() => setFormat("checklist")}
                 aria-pressed={format === "checklist"}
-                className={`px-3 py-1 ${format === "checklist" ? "bg-blue-600 text-white" : "bg-white"}`}
+                className={`px-3 py-1 ${format === "checklist" ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700" : "bg-white"}`}
               >
                 Checklist
               </button>
@@ -101,14 +101,19 @@ export function Checklist({
                 type="button"
                 onClick={() => setFormat("pr")}
                 aria-pressed={format === "pr"}
-                className={`px-3 py-1 border-l ${format === "pr" ? "bg-blue-600 text-white" : "bg-white"}`}
+                className={`px-3 py-1 border-l ${format === "pr" ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700" : "bg-white"}`}
               >
                 PR template
               </button>
             </div>
             <CopyButton text={output} label="Copy Markdown" className="text-sm px-3 py-1" />
           </div>
-          <pre className="mt-3 p-3 rounded-md bg-gray-50 border text-sm overflow-x-auto whitespace-pre-wrap">
+          <pre
+            className="mt-3 p-3 rounded-md bg-gray-50 border text-sm overflow-x-auto whitespace-pre-wrap"
+            tabIndex={0}
+            role="region"
+            aria-label="Markdown export"
+          >
             {output}
           </pre>
         </>

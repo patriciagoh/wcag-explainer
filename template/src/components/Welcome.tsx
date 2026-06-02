@@ -132,7 +132,7 @@ export function Welcome({ byId, total, onSelect, onMode }: Props) {
           href="https://patriciagoh.github.io/wcag-explainer/docs/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700 hover:underline"
+          className="text-blue-700 underline"
         >
           Read the docs ↗
         </a>{" "}
