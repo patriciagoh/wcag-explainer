@@ -19,7 +19,12 @@ function DiffView({ fail, pass }: { fail: CodeExampleType; pass: CodeExampleType
           <CopyButton text={pass.code} label="Copy fixed code" />
         </span>
       </figcaption>
-      <pre className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm">
+      <pre
+        className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm"
+        tabIndex={0}
+        role="region"
+        aria-label="Fail to pass code diff"
+      >
         <code>
           {diff.map((line, i) => {
             const cls =
@@ -31,7 +36,7 @@ function DiffView({ fail, pass }: { fail: CodeExampleType; pass: CodeExampleType
             const sign = line.type === "add" ? "+" : line.type === "del" ? "-" : " ";
             return (
               <div key={i} className={cls}>
-                <span className="select-none opacity-60 mr-2">{sign}</span>
+                <span className="select-none mr-2">{sign}</span>
                 {line.text || " "}
               </div>
             );

@@ -43,14 +43,14 @@ export function RuleLookup({ all, byId, onSelect }: Props) {
             key={e}
             type="button"
             onClick={() => setQuery(e)}
-            className="px-2 py-0.5 rounded border bg-white hover:bg-gray-50 font-mono"
+            className="inline-flex items-center min-h-6 px-2 py-1 rounded border bg-white hover:bg-gray-50 font-mono"
           >
             {e}
           </button>
         ))}
       </div>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 space-y-3" role="status" aria-live="polite">
         {query && hits.length === 0 && (
           <p className="text-gray-600">
             No matching axe-core or jsx-a11y rule. Try a partial id like <code>aria</code> or{" "}

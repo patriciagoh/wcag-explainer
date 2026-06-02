@@ -68,6 +68,12 @@ export function App() {
 
   return (
     <div className="flex flex-col h-screen">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded focus:shadow focus:outline focus:outline-2 focus:outline-blue-700"
+      >
+        Skip to main content
+      </a>
       <header className="border-b px-4 py-2 flex items-center gap-4">
         <h1 className="text-base font-semibold m-0">
           <button type="button" onClick={goHome} className="hover:underline" title="Home">
@@ -82,9 +88,11 @@ export function App() {
                 key={t.id}
                 type="button"
                 onClick={() => setMode(t.id)}
-                aria-current={active ? "page" : undefined}
+                aria-current={active ? "true" : undefined}
                 className={`text-sm px-3 py-1 rounded ${
-                  active ? "bg-blue-600 text-white" : "hover:bg-gray-100"
+                  active
+                    ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700"
+                    : "hover:bg-gray-100"
                 }`}
               >
                 {t.label}
@@ -123,8 +131,11 @@ export function App() {
                 onRole={setRole}
               />
               <Sidebar grouped={grouped} selectedId={selectedId} onSelect={select} />
+              <div role="status" aria-live="polite" className="sr-only">
+                {facetFiltered.length} of {all.length} criteria match
+              </div>
             </aside>
-            <main className="flex-1 overflow-y-auto p-6">
+            <main id="main" tabIndex={-1} className="flex-1 overflow-y-auto p-6">
               {selected ? (
                 <CriterionDetail
                   criterion={selected}
@@ -137,7 +148,7 @@ export function App() {
             </main>
           </>
         ) : (
-          <main className="flex-1 overflow-y-auto">
+          <main id="main" tabIndex={-1} className="flex-1 overflow-y-auto">
             {mode === "lookup" && <RuleLookup all={all} byId={byId} onSelect={select} />}
             {mode === "quiz" && <Quiz all={all} onSelect={select} />}
             {mode === "checklist" && (

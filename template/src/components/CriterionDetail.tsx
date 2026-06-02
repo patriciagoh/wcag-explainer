@@ -50,9 +50,9 @@ export function CriterionDetail({ criterion, inChecklist, onToggleChecklist }: P
             type="button"
             onClick={() => onToggleChecklist(criterion.id)}
             aria-pressed={inChecklist}
-            className={`text-xs px-2 py-0.5 rounded border ${
+            className={`inline-flex items-center min-h-6 text-xs px-2 py-1 rounded border ${
               inChecklist
-                ? "bg-blue-600 text-white border-blue-600"
+                ? "bg-blue-600 text-white border-blue-600 font-semibold ring-1 ring-inset ring-blue-700"
                 : "bg-white hover:bg-gray-50"
             }`}
           >
