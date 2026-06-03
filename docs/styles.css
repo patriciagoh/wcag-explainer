@@ -293,7 +293,7 @@ pre .fail { color: var(--bad); font-weight: 700; }
   display: block; text-decoration: none; color: inherit;
   transition: transform var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
-.hub .card:hover { border-color: var(--line-2); box-shadow: var(--shadow-card); transform: translateY(-3px); }
+.hub .card:hover { border-color: var(--matcha-tint-border); box-shadow: var(--shadow-card); transform: translateY(-3px); }
 .hub .card h2 { font-size: 1.2rem; display: block; }
 .hub .card p { color: var(--ink-2); }
 
