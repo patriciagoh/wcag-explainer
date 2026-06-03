@@ -1,0 +1,87 @@
+/* ============================================================
+   Matcha Oat — Design Tokens
+   The system behind patriciagoh.com.
+   Framework-agnostic CSS custom properties. Drop into :root
+   (or map into Tailwind theme / CSS-in-JS / SwiftUI as needed).
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces & ink ---- */
+  --oat:          #FAF7EF; /* page background */
+  --paper:        #FFFFFF; /* cards, raised surfaces */
+  --ink:          #23211B; /* primary text */
+  --ink-2:        #4C483E; /* secondary text, body copy */
+  --muted:        #777165; /* tertiary text, meta, captions — WCAG AA 4.5:1 on oat/paper */
+  --line:         #E8E2D5; /* hairline dividers */
+  --line-2:       #DAD3C3; /* card borders (slightly stronger) */
+
+  /* ---- Matcha (brand) ---- */
+  --matcha:       #6E8B57; /* brand green: rules, dots, accents */
+  --matcha-deep:  #4E6B3A; /* eyebrows, links, hover text */
+  --matcha-tint:  #EDF1E5; /* chip / tag / soft callout fields */
+  --matcha-tint-border: #DBE3CF; /* border on matcha-tint fields */
+
+  /* ---- Yolk (single accent — use sparingly) ---- */
+  --yolk:         #E8B23C; /* underlines, active states, washes */
+  --yolk-deep:    #8E6416; /* "Why" labels, accent text — WCAG AA 4.9:1 on oat/paper, 4.5:1 on yolk-tint */
+  --yolk-tint:    #FBEDC6; /* "Why this matters" callout field */
+  --yolk-tint-text: #6A5320; /* text on yolk-tint — AA 6.3:1 */
+
+  /* ---- Semantic status (shared by audit / checklist UIs: pass/fail/na/needs-investigation) ----
+     Text colors are AA (>=4.5:1) on their own *-bg field. ok/warn/neutral reuse the brand
+     palette; only the warm "bad" red is new (it stays in the warm Matcha Oat family). */
+  --ok:            var(--matcha-deep);    /* pass    — 5.25:1 on --ok-bg */
+  --ok-bg:         var(--matcha-tint);
+  --ok-border:     var(--matcha-tint-border);
+  --bad:           #9B3D2E;               /* fail    — 5.97:1 on --bad-bg, 6.3:1 on oat */
+  --bad-bg:        #FBEEEA;
+  --bad-border:    #C0533A;               /* rust edge — 4.3:1 on oat (non-text) */
+  --warn:          var(--yolk-tint-text); /* needs-investigation — 6.3:1 on --warn-bg */
+  --warn-bg:       var(--yolk-tint);
+  --warn-border:   var(--yolk-deep);
+  --neutral:       var(--ink-2);          /* n/a — 7:1 on --neutral-bg */
+  --neutral-bg:    #F1ECDF;
+  --neutral-border:var(--line-2);
+
+  /* ---- Terminal (dark surface, used by the git-log motif) ---- */
+  --term-bg:      #26241D;
+  --term-bar:     #1F1D17;
+  --term-line:    #34322A;
+  --term-text:    #D8D3C6;
+
+  /* ---- Type families ---- */
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;          /* headlines, ideas */
+  --sans:  "Hanken Grotesk", system-ui, -apple-system, sans-serif;   /* UI + body */
+  --mono:  "Space Mono", ui-monospace, SFMono-Regular, monospace;    /* code, meta, stats */
+  --script:"Sacramento", cursive;                                    /* signature moments only */
+
+  /* ---- Radii ---- */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   14px;
+  --r-xl:   16px;
+  --r-pill: 999px;
+
+  /* ---- Elevation (brown-tinted, never black) ---- */
+  --shadow-card:     0 14px 30px rgba(60, 50, 30, 0.10);
+  --shadow-portrait: 0 24px 60px rgba(60, 48, 28, 0.16);
+  --shadow-badge:    0 8px 22px rgba(60, 48, 28, 0.16);
+
+  /* ---- Motion ---- */
+  --dur-color: .18s;  /* color-only shifts */
+  --dur-base:  .20s;  /* lifts, arrows, buttons, indents */
+  --dur-row:   .22s;  /* list rows: slide + wash */
+  --dur-ul:    .25s;  /* underline grow */
+  --ease: ease;       /* everything uses plain ease */
+
+  /* ---- Focus (WCAG 2.2 — 2.4.7 Focus Visible) ---- */
+  --focus:        2px solid var(--matcha-deep); /* 5.6:1 on oat — visible ring */
+  --focus-offset: 2px;
+
+  /* ---- Layout ---- */
+  --maxw: 1180px;     /* content max width */
+  --gutter: 48px;     /* desktop side padding (26px on mobile) */
+}
+
+/* Language dot colors (repo / lesson cards) — not tokens, but documented:
+   Markdown #6E8B57 · TypeScript #3178C6 · MDX #F9AC00 · Docs #E8B23C */
