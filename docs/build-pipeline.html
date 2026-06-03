@@ -71,8 +71,8 @@
       </li>
       <li>
         <span class="dot" aria-hidden="true">◆</span>
-        <span><b>Teach with contrast.</b> <span class="body">Each criterion gets a <span style="color:var(--green)">passing</span>
-        and a <span style="color:var(--red)">failing</span> code example. Seeing both side by side teaches faster than prose.</span></span>
+        <span><b>Teach with contrast.</b> <span class="body">Each criterion gets a <span style="color:var(--ok)">passing</span>
+        and a <span style="color:var(--bad)">failing</span> code example. Seeing both side by side teaches faster than prose.</span></span>
       </li>
       <li>
         <span class="dot" aria-hidden="true">◆</span>
@@ -107,7 +107,7 @@
         <span class="tag">npm run enrich</span>
         <h3>2 · Enrich with Claude</h3>
         <p>For each raw criterion, a scripted call to the Claude API generates the teachable fields into
-        <code class="inline">scripts/cache/&#123;id&#125;.json</code>. Incremental — unchanged criteria are skipped.</p>
+        <code class="inline">scripts/cache/{id}.json</code>. Incremental — unchanged criteria are skipped.</p>
       </article>
       <article class="card accent-amber">
         <span class="tag">npm run build:dataset -- --merge</span>
@@ -211,11 +211,11 @@
       <article class="card file accent-pink">
         <span class="tag">prompt → html-to-jsx.md</span>
         <code>codeExamples[]</code>
-        <p class="role">One <span style="color:var(--green)">pass</span> + one <span style="color:var(--red)">fail</span> snippet, each labelled and sourced.</p>
+        <p class="role">One <span style="color:var(--ok)">pass</span> + one <span style="color:var(--bad)">fail</span> snippet, each labelled and sourced.</p>
       </article>
     </div>
     <div class="callout">
-      <b>The deliverable:</b> 87 files at <code class="inline">scripts/cache/&#123;id&#125;.json</code>, committed alongside the
+      <b>The deliverable:</b> 87 files at <code class="inline">scripts/cache/{id}.json</code>, committed alongside the
       raw facts, then merged into <code class="inline">template/src/data/wcag-criteria.json</code> — 87 criteria, fully
       Zod-validated, every one with a pass and a fail example.
     </div>
@@ -239,7 +239,7 @@
         Feed the criterion's axe-rule descriptions into the template so the 3–5 mistakes reference real, flagged patterns — then parse the JSON array (fences tolerated, validated as strings).</div></li>
       <li><div><b>Build the pass/fail pair.</b> <span class="meta">html-to-jsx.md</span><br>
         Pick the best scraped pass &amp; fail examples by label; convert HTML → idiomatic JSX. Where none exist, synthesize a realistic pair and mark it <code class="inline">"synthesized"</code>.</div></li>
-      <li><div><b>Validate &amp; write.</b> <span class="meta">cacheEntrySchema → cache/&#123;id&#125;.json</span><br>
+      <li><div><b>Validate &amp; write.</b> <span class="meta">cacheEntrySchema → cache/{id}.json</span><br>
         Parse the assembled entry through the Zod schema, then write it. A final <code class="inline">--merge</code> re-validates all 87 and ships the dataset.</div></li>
     </ol>
 
@@ -271,44 +271,54 @@
         against a Zod schema into wcag-criteria.json, which the React app consumes.</desc>
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"></path>
+            <path d="M0,0 L10,5 L0,10 z" class="phaselbl" style="stroke:none"></path>
           </marker>
           <style>
-            .lbl { fill:#111827; font-family: var(--sans); font-size: 13.5px; font-weight:600; }
-            .sub { fill:#6b7280; font-family: ui-monospace, monospace; font-size: 10px; }
-            .phaselbl { fill:#94a3b8; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing:.12em; }
-            .edge { stroke:#94a3b8; stroke-width:2; fill:none; marker-end:url(#arrow); }
+            .lbl { fill: var(--ink); font-family: var(--sans); font-size: 13.5px; font-weight:600; }
+            .sub { fill: var(--muted); font-family: var(--mono); font-size: 10px; }
+            .phaselbl { fill: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing:.12em; }
+            .edge { stroke: var(--muted); stroke-width:2; fill:none; marker-end:url(#arrow); }
+            .n-fill { fill: var(--paper); }
+            .n-tint-matcha { fill: var(--matcha-tint); }
+            .n-tint-yolk { fill: var(--warn-bg); }
+            .n-det { stroke: var(--matcha); }
+            .n-gen { stroke: var(--yolk-deep); }
+            .n-tmpl { stroke: var(--yolk); }
+            .n-cons { stroke: var(--matcha-deep); }
+            .n-plain { stroke: var(--line); }
+            .guide { stroke: var(--line); }
+            .em-gen { fill: var(--matcha-deep); }
           </style>
         </defs>
 
         <text x="40" y="20" class="phaselbl">INPUTS (FROM FETCH)</text>
         <text x="360" y="20" class="phaselbl">PER-CRITERION LOOP · enrich.ts</text>
         <text x="800" y="20" class="phaselbl">MERGE</text>
-        <line x1="300" y1="30" x2="300" y2="430" stroke="#e5e7eb" stroke-dasharray="4 6"></line>
-        <line x1="760" y1="30" x2="760" y2="430" stroke="#e5e7eb" stroke-dasharray="4 6"></line>
+        <line x1="300" y1="30" x2="300" y2="430" class="guide" stroke-dasharray="4 6"></line>
+        <line x1="760" y1="30" x2="760" y2="430" class="guide" stroke-dasharray="4 6"></line>
 
         <!-- inputs -->
-        <rect rx="11" x="30" y="70" width="200" height="58" fill="#f9fafb" stroke="#059669"></rect>
+        <rect rx="11" x="30" y="70" width="200" height="58" class="n-fill n-det"></rect>
         <text x="46" y="95" class="lbl">criteria-raw.json</text>
         <text x="46" y="113" class="sub">87 criteria · facts</text>
 
-        <rect rx="11" x="30" y="160" width="200" height="58" fill="#f9fafb" stroke="#d97706"></rect>
+        <rect rx="11" x="30" y="160" width="200" height="58" class="n-fill n-tmpl"></rect>
         <text x="46" y="185" class="lbl">prompts/*.md</text>
         <text x="46" y="203" class="sub">5 templates</text>
 
         <!-- hash gate -->
-        <path d="M360,99 l26,-26 l26,26 l-26,26 z" fill="#eff6ff" stroke="#059669"></path>
+        <path d="M360,99 l26,-26 l26,26 l-26,26 z" class="n-tint-matcha n-det"></path>
         <text x="356" y="150" class="sub">hash match?</text>
-        <text x="372" y="103" class="sub" fill="#111827">skip</text>
+        <text x="372" y="103" class="sub" style="fill:var(--ink)">skip</text>
 
         <!-- claude -->
-        <rect rx="11" x="345" y="175" width="120" height="64" fill="#f5f3ff" stroke="#7c3aed"></rect>
+        <rect rx="11" x="345" y="175" width="120" height="64" class="n-fill n-gen"></rect>
         <text x="378" y="203" class="lbl">Claude</text>
         <text x="361" y="221" class="sub">generate fields</text>
 
         <!-- field outputs -->
-        <rect rx="11" x="500" y="60" width="210" height="200" fill="#ffffff" stroke="#e5e7eb"></rect>
-        <text x="516" y="82" class="sub" fill="#7c3aed">six keys →</text>
+        <rect rx="11" x="500" y="60" width="210" height="200" class="n-fill n-plain"></rect>
+        <text x="516" y="82" class="sub em-gen">six keys →</text>
         <text x="516" y="104" class="lbl" font-size="12">inputHash</text>
         <text x="516" y="126" class="lbl" font-size="12">plainEnglish</text>
         <text x="516" y="148" class="lbl" font-size="12">whyItMatters</text>
@@ -318,16 +328,16 @@
         <text x="516" y="240" class="sub">pass + fail · jsx/css/html</text>
 
         <!-- cache -->
-        <rect rx="11" x="500" y="290" width="210" height="58" fill="#f9fafb" stroke="#059669"></rect>
-        <text x="516" y="315" class="lbl">cache/&#123;id&#125;.json</text>
+        <rect rx="11" x="500" y="290" width="210" height="58" class="n-fill n-det"></rect>
+        <text x="516" y="315" class="lbl">cache/{id}.json</text>
         <text x="516" y="333" class="sub">validated · committed</text>
 
         <!-- merge + shipped -->
-        <rect rx="11" x="790" y="160" width="160" height="60" fill="#fffbeb" stroke="#d97706"></rect>
+        <rect rx="11" x="790" y="160" width="160" height="60" class="n-tint-yolk n-tmpl"></rect>
         <text x="806" y="186" class="lbl">merge + Zod</text>
         <text x="806" y="204" class="sub">validate all 87</text>
 
-        <rect rx="11" x="790" y="70" width="160" height="58" fill="#f0fdf4" stroke="#16a34a"></rect>
+        <rect rx="11" x="790" y="70" width="160" height="58" class="n-tint-matcha n-cons"></rect>
         <text x="806" y="95" class="lbl">wcag-criteria</text>
         <text x="806" y="113" class="sub">.json → React app</text>
 
@@ -343,10 +353,10 @@
       </svg>
     </div>
     <div class="legend">
-      <span><i class="swatch" style="background:#059669"></i> deterministic / committed</span>
-      <span><i class="swatch" style="background:#7c3aed"></i> Claude (generative)</span>
-      <span><i class="swatch" style="background:#d97706"></i> templates / validation</span>
-      <span><i class="swatch" style="background:#16a34a"></i> consumer</span>
+      <span><i class="swatch s-det"></i> deterministic / committed</span>
+      <span><i class="swatch s-gen"></i> Claude (generative)</span>
+      <span><i class="swatch s-tmpl"></i> templates / validation</span>
+      <span><i class="swatch s-cons"></i> consumer</span>
     </div>
   </div>
 </section>
@@ -390,7 +400,7 @@
       never run it. Enrichment calls the Claude API, so it needs an <code class="inline">ANTHROPIC_API_KEY</code>.
     </p>
     <div class="term" role="group" aria-label="Rebuilding the dataset from the terminal">
-      <div class="bar"><span class="dotrow"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i></span> scripts/ · terminal</div>
+      <div class="bar"><span class="dotrow"><i></i><i></i><i></i></span> scripts/ · terminal</div>
       <pre><span class="out"># 1 · fetch the facts (deterministic)</span>
 <span class="cmd">npm</span> run build:dataset -- --fetch
 
