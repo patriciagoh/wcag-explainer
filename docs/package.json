@@ -1,0 +1,15 @@
+{
+  "name": "wcag-explainer-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static GitHub Pages docs for wcag-explainer, skinned with the Matcha Oat design system (matcha-oat-design-system tokens, synced in).",
+  "type": "module",
+  "scripts": {
+    "sync-tokens": "node scripts/sync-tokens.mjs",
+    "test": "node scripts/sync-tokens.mjs && git diff --exit-code tokens.css fonts.css && node node_modules/matcha-oat-design-system/scripts/check-no-raw-values.mjs index.html features.html build-pipeline.html styles.css"
+  },
+  "engines": { "node": ">=18" },
+  "devDependencies": {
+    "matcha-oat-design-system": "github:patriciagoh/matcha-oat-design-system"
+  }
+}
