@@ -41,7 +41,7 @@ jobs:
           rm -rf _site
           mkdir -p _site/docs
           cp -r template/dist/. _site/
-          cp docs/*.html docs/styles.css _site/docs/
+          cp docs/*.html docs/styles.css docs/tokens.css docs/fonts.css _site/docs/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
