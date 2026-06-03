@@ -34,7 +34,7 @@ The Matcha preset (`matcha-oat-design-system/tailwind-preset`) exposes these col
 | `border-gray-200/300` (dividers, card borders) | `border-line-2` |
 | form-control borders (inputs/search/select) | `border-muted` (≥3:1, WCAG 1.4.11) |
 | `text-white` on dark/accent fills | `text-oat` |
-| accent `bg-blue-600`/`ring-blue-700` (primary action) | primary button `bg-ink text-oat`; active *tab* `bg-matcha-tint text-matcha-deep border-matcha-tint-border` |
+| accent `bg-blue-600`/`ring-blue-700` (primary action) | primary button `bg-ink text-oat`; active *tab* → **ink text + bold + 2px yolk underline** (NOT a tinted pill — mirror the design-system `.sw-links a.active` idiom: `text-ink font-bold` with a `border-b-2 border-yolk`), inactive tab `text-ink-2 font-medium`. Nav uses `font-sans` (13px), not mono. |
 | `bg-blue-50`/`bg-blue-100` (selected sidebar item, info chips) | `bg-matcha-tint` (selected nav also `border-l` `border-matcha`, `text-matcha-deep`) |
 | `text-blue-900/700/600` (links, accent text) | `text-matcha-deep` |
 | `border-blue-200/300` | `border-matcha-tint-border` |
@@ -46,7 +46,13 @@ The Matcha preset (`matcha-oat-design-system/tailwind-preset`) exposes these col
 
 **Conformance badges (CriterionDetail):** graded by level (user-approved) — **Level A → `neutral` family**, **Level AA → `ok` family** (matcha-tint), **Level AAA → `warn` family** (yolk-tint). Principle badge → `neutral` family. WCAG-version badge → `warn` family. All use `font-mono`, uppercase, `rounded-pill`.
 
-**Typography:** headings (`h1`/`h2`/section titles, the app brand) → `font-serif`; code, criterion numbers, eyebrows, badges, tabs, footer meta → `font-mono`; body default → `font-sans` (set as base in `index.css`). Links → `text-matcha-deep underline`.
+**Typography (mirror the design-system idioms in `matcha-oat-design-system/styles.css`):**
+- Display title (`h1`) → `font-serif font-normal` (weight **400**, not bold), large, `tracking-tight`; an emphasized word may be `italic text-matcha-deep`. Section headings (`h2`) → `font-serif font-medium text-ink`.
+- **Eyebrow** (principle/section label above a title) → `font-sans` uppercase, `tracking-[0.18em]`, `text-matcha-deep font-semibold`, preceded by a short matcha rule (a `before:` 22px×1.5px `bg-matcha`, or a small `<span>` rule element).
+- Criterion numbers, badges, footer meta, code, stats → `font-mono`. **Nav links → `font-sans`** (13px), not mono.
+- Body default → `font-sans text-ink-2` (set as base in `index.css`).
+- Prominent links → `text-matcha-deep font-semibold` with a **yolk underline** (`border-b-[1.5px] border-yolk`, no `text-decoration`); plain inline links may use `underline` + `text-matcha-deep`.
+- **"Why this matters" callout** → flat `bg-warn-bg` (yolk-tint) box, `rounded-md`, **no border / no left bar**; a small uppercase `font-bold tracking-wider text-warn` (yolk-deep) label + `text-warn` body. (Mirror `.d2-why`, not a bordered alert.)
 
 ---
 
@@ -183,8 +189,8 @@ git commit -m "feat: consume matcha-oat-design-system (preset + tokens + fonts)"
 
 - [ ] **Step 1: Reskin `App.tsx`** — the root layout + header + nav tabs:
   - Root container background → `bg-oat` (and `text-ink-2`), via the existing root `div`.
-  - Header: `bg-paper`, bottom border `border-line-2`. App title/brand → `font-serif text-ink`; any eyebrow/subtitle → `font-mono text-muted uppercase`.
-  - Nav tabs: inactive → `text-muted font-mono` (uppercase) with `hover:text-ink`; active (`aria-current`/selected) → `bg-matcha-tint text-matcha-deep border-matcha-tint-border rounded-pill` (replace `bg-blue-600 text-white ring-1 ring-blue-700`).
+  - Header: `bg-paper`, bottom border `border-line` (66px tall, like `.sw-nav`). App title/brand → `font-serif font-medium text-ink` (~21px).
+  - Nav tabs (`font-sans`, 13px, sentence case): inactive → `text-ink-2 font-medium hover:text-ink`; active (`aria-current="page"`) → `text-ink font-bold` with a **2px yolk underline** (`border-b-2 border-yolk` or a `::after` rule) — replace `bg-blue-600 text-white ring-1 ring-blue-700`. No tinted pill.
   - Skip link keeps its `sr-only focus:*` pattern; its visible focus styles use Matcha (`bg-matcha-deep text-oat` if it had a colored background).
 
 - [ ] **Step 2: Reskin `Sidebar.tsx`** — section eyebrows → `font-mono text-muted uppercase tracking-wide`; list items → `text-ink-2`; criterion numbers → `font-mono text-muted`; hover → `hover:bg-matcha-tint`; selected (was `bg-blue-50 font-medium`) → `bg-matcha-tint text-matcha-deep font-semibold` + left accent `border-l-2 border-matcha`.
@@ -224,7 +230,7 @@ git commit -m "feat: reskin app shell to Matcha Oat (header, sidebar, footer, we
   - **Conformance badges** (graded, user-approved): Level **A** → `bg-neutral-bg text-neutral border-neutral-border`; Level **AA** → `bg-ok-bg text-ok border-ok-border`; Level **AAA** → `bg-warn-bg text-warn border-warn-border`. Principle badge → `neutral` family; WCAG-version badge → `warn` family. All `font-mono text-xs font-bold uppercase rounded-pill border px-2.5 py-1`. (Find the existing A/AA/AAA level→class logic — was blue/purple/emerald — and map by level, not by a single color.)
   - Section background washes (`bg-amber-50`/`bg-sky-50`/`bg-emerald-50`) → `bg-warn-bg` (caution), `bg-matcha-tint` (info), `bg-ok-bg` (success) per meaning.
 
-- [ ] **Step 2: Reskin `ExperienceCallout.tsx`** — the callout (`border-l-4 border-blue-500 bg-blue-50`): if it's an informational "experience" note → `bg-matcha-tint border-matcha border-l-4 text-ink-2`; if it reads as caution/"why this matters" → `bg-warn-bg border-warn-border border-l-4 text-warn` with a `font-mono uppercase` label. Match the preview's "Why this matters" treatment for the caution variant.
+- [ ] **Step 2: Reskin `ExperienceCallout.tsx`** — the callout (`border-l-4 border-blue-500 bg-blue-50`): make it the **flat "Why this matters"** treatment from the preview — `bg-warn-bg rounded-md` (yolk-tint), **no border, no left bar**; a small uppercase `font-bold tracking-wider text-warn` label + `text-warn` body (mirror `.d2-why`). If a variant is purely informational rather than caution, use `bg-matcha-tint text-ink-2 rounded-md` (still flat, no left bar).
 
 - [ ] **Step 3: Reskin `RelatedCriteria.tsx`** — related-criteria chips/links (`text-blue-600 hover:underline`) → `bg-matcha-tint text-matcha-deep border-matcha-tint-border rounded-pill font-mono` chips (match preview), or plain `text-matcha-deep underline` if rendered as inline links.
 
