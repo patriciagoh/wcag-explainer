@@ -8,7 +8,7 @@ export function RelatedCriteria({ ids }: Props) {
         <li key={id}>
           <a
             href={`#${id}`}
-            className="inline-block px-2 py-1 rounded text-sm border border-blue-300 text-blue-900 bg-blue-50 hover:bg-blue-100"
+            className="inline-block px-2 py-1 rounded-pill text-sm font-mono border border-matcha-tint-border text-matcha-deep bg-matcha-tint hover:bg-oat"
           >
             {id}
           </a>

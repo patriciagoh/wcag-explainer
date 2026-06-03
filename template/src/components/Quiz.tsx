@@ -48,24 +48,24 @@ export function Quiz({ all, onSelect }: Props) {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <div className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold">Spot the violation</h1>
-        <p className="text-sm text-gray-600" role="status" aria-live="polite">
+        <h1 className="text-2xl font-semibold font-serif text-ink">Spot the violation</h1>
+        <p className="text-sm text-ink-2" role="status" aria-live="polite">
           Score: {score.right}/{score.total}
         </p>
       </div>
-      <p className="text-gray-600 mt-1">
+      <p className="text-ink-2 mt-1">
         Does this snippet <strong>pass</strong> or <strong>fail</strong> its WCAG criterion?
       </p>
 
       <pre
-        className="mt-4 p-3 rounded-md bg-gray-900 text-gray-100 text-sm overflow-x-auto"
+        className="mt-4 p-3 rounded-md bg-term-bg text-term-text font-mono text-sm overflow-x-auto"
         tabIndex={0}
         role="region"
         aria-label="Code snippet to evaluate"
       >
         <code>{card.example.code}</code>
       </pre>
-      <p className="text-xs text-gray-500 mt-1">
+      <p className="text-xs text-muted mt-1">
         Language: {card.example.language}
         {card.example.label ? ` · ${card.example.label}` : ""}
       </p>
@@ -75,39 +75,39 @@ export function Quiz({ all, onSelect }: Props) {
           <button
             type="button"
             onClick={() => guess("pass")}
-            className="px-4 py-2 rounded border bg-green-50 hover:bg-green-100 border-green-300 font-medium"
+            className="px-4 py-2 rounded-md border bg-ok-bg hover:border-ok border-ok-border text-ok font-medium"
           >
             ✓ Pass
           </button>
           <button
             type="button"
             onClick={() => guess("fail")}
-            className="px-4 py-2 rounded border bg-red-50 hover:bg-red-100 border-red-300 font-medium"
+            className="px-4 py-2 rounded-md border bg-bad-bg hover:border-bad border-bad-border text-bad font-medium"
           >
             ✕ Fail
           </button>
         </div>
       ) : (
-        <div className="mt-4 border rounded-md p-4" role="status" aria-live="polite">
-          <p className={`font-semibold ${correct ? "text-green-800" : "text-red-800"}`}>
+        <div className="mt-4 border border-line rounded-md p-4" role="status" aria-live="polite">
+          <p className={`font-semibold ${correct ? "text-ok" : "text-bad"}`}>
             {correct ? "Correct!" : "Not quite."} This example is a{" "}
             <strong>{card.example.kind.toUpperCase()}</strong>.
           </p>
-          <p className="text-sm text-gray-700 mt-2">
+          <p className="text-sm text-ink-2 mt-2">
             Criterion{" "}
             <button
               type="button"
               onClick={() => onSelect(card.criterion.id)}
-              className="text-blue-700 hover:underline font-medium"
+              className="text-matcha-deep hover:underline font-medium"
             >
               {card.criterion.id} — {card.criterion.title} →
             </button>
           </p>
-          <p className="text-sm text-gray-600 mt-1">{card.criterion.plainEnglish}</p>
+          <p className="text-sm text-ink-2 mt-1">{card.criterion.plainEnglish}</p>
           <button
             type="button"
             onClick={next}
-            className="mt-4 px-4 py-2 rounded border bg-white hover:bg-gray-50 font-medium"
+            className="mt-4 px-4 py-2 rounded-pill bg-ink text-oat font-semibold font-sans hover:bg-ink-2"
           >
             Next →
           </button>

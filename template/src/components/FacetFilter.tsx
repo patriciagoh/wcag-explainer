@@ -10,13 +10,13 @@ type Props = {
 /** #6 Component- and role-based filtering. */
 export function FacetFilter({ component, role, onComponent, onRole }: Props) {
   return (
-    <div className="px-3 py-2 border-b grid grid-cols-2 gap-2">
-      <label className="text-xs text-gray-700">
-        <span className="block mb-1 font-medium">Component</span>
+    <div className="px-3 py-2 border-b border-line grid grid-cols-2 gap-2">
+      <label className="text-xs text-ink-2">
+        <span className="block mb-1 font-mono text-muted">Component</span>
         <select
           value={component ?? ""}
           onChange={(e) => onComponent(e.target.value || null)}
-          className="w-full border rounded px-2 py-1 text-sm bg-white"
+          className="w-full border border-muted rounded-md px-2 py-1 text-sm bg-paper text-ink"
         >
           <option value="">All</option>
           {allComponents.map((c) => (
@@ -26,12 +26,12 @@ export function FacetFilter({ component, role, onComponent, onRole }: Props) {
           ))}
         </select>
       </label>
-      <label className="text-xs text-gray-700">
-        <span className="block mb-1 font-medium">Your role</span>
+      <label className="text-xs text-ink-2">
+        <span className="block mb-1 font-mono text-muted">Your role</span>
         <select
           value={role ?? ""}
           onChange={(e) => onRole(e.target.value || null)}
-          className="w-full border rounded px-2 py-1 text-sm bg-white"
+          className="w-full border border-muted rounded-md px-2 py-1 text-sm bg-paper text-ink"
         >
           <option value="">All</option>
           {allRoles.map((r) => (
@@ -48,7 +48,7 @@ export function FacetFilter({ component, role, onComponent, onRole }: Props) {
             onComponent(null);
             onRole(null);
           }}
-          className="col-span-2 text-xs text-blue-700 hover:underline text-left"
+          className="col-span-2 text-xs text-matcha-deep hover:underline text-left"
         >
           Clear filters
         </button>

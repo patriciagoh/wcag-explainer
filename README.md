@@ -13,7 +13,7 @@ A Claude Code skill that scaffolds a local WCAG 2.2 criterion-explainer React ap
 
 [![WCAG 2.2 Explainer — welcome page](docs/screenshots/welcome.png)](https://patriciagoh.github.io/wcag-explainer/)
 
-Per-criterion: plain English, what the user experiences, pass/fail code (with a fail→pass diff), common mistakes, and the axe-core rules that catch it.
+Per-criterion: plain English, what the user experiences, pass/fail code (with a fail→pass diff), common mistakes, and the axe-core rules that catch it. The UI is styled with the [matcha-oat-design-system](https://github.com/patriciagoh/matcha-oat-design-system) tokens (single source of truth) via its Tailwind preset.
 
 [![A criterion detail page](docs/screenshots/criterion.png)](https://patriciagoh.github.io/wcag-explainer/#1.1.1)
 

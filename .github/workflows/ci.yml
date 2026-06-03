@@ -31,3 +31,12 @@ jobs:
         run: npm run build
       - name: Test
         run: npm test
+      - name: No hardcoded design values (tokens only, template)
+        if: matrix.package == 'template'
+        run: node node_modules/matcha-oat-design-system/scripts/check-no-raw-values.mjs src/index.css
+      - name: No stock Tailwind color utilities (semantic tokens only, template)
+        if: matrix.package == 'template'
+        run: |
+          if grep -REn '\b(bg|text|border|ring|from|to|via|divide|fill|stroke|placeholder|decoration|caret|accent)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|[1-9]00|950)\b' --include='*.tsx' --include='*.ts' --include='*.css' src | grep -v '\.test\.'; then
+            echo "Found stock Tailwind color utilities — use Matcha semantic tokens (bg-oat, text-matcha-deep, ...)"; exit 1;
+          fi

@@ -8,13 +8,13 @@ export function ExperienceCallout({ criterionId }: Props) {
   if (!exp) return null;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 not-prose">
-      <div className="border rounded p-3 bg-red-50 border-red-200">
-        <h3 className="text-sm font-semibold m-0 mb-1 text-red-900">😣 When it's broken</h3>
-        <p className="text-sm m-0 text-red-950">{exp.fail}</p>
+      <div className="rounded-md p-3 bg-warn-bg">
+        <h3 className="text-xs font-bold uppercase tracking-wider m-0 mb-1 text-warn">😣 When it's broken</h3>
+        <p className="text-sm m-0 text-warn">{exp.fail}</p>
       </div>
-      <div className="border rounded p-3 bg-green-50 border-green-200">
-        <h3 className="text-sm font-semibold m-0 mb-1 text-green-900">🙂 When it's done right</h3>
-        <p className="text-sm m-0 text-green-950">{exp.pass}</p>
+      <div className="rounded-md p-3 bg-matcha-tint">
+        <h3 className="text-xs font-bold uppercase tracking-wider m-0 mb-1 text-ink">🙂 When it's done right</h3>
+        <p className="text-sm m-0 text-ink-2">{exp.pass}</p>
       </div>
     </div>
   );

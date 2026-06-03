@@ -67,15 +67,15 @@ export function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-oat text-ink-2">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded focus:shadow focus:outline focus:outline-2 focus:outline-blue-700"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:bg-matcha-deep focus:text-oat focus:px-3 focus:py-2 focus:rounded focus:shadow focus:outline focus:outline-2 focus:outline-matcha-deep"
       >
         Skip to main content
       </a>
-      <header className="border-b px-4 py-2 flex items-center gap-4">
-        <h1 className="text-base font-semibold m-0">
+      <header className="bg-paper border-b border-line px-4 py-2 flex items-center gap-4 h-[66px]">
+        <h1 className="text-base font-serif font-medium text-ink m-0">
           <button type="button" onClick={goHome} className="hover:underline" title="Home">
             WCAG 2.2 Explainer
           </button>
@@ -89,19 +89,15 @@ export function App() {
                 type="button"
                 onClick={() => setMode(t.id)}
                 aria-current={active ? "true" : undefined}
-                className={`text-sm px-3 py-1 rounded ${
+                className={`font-sans text-sm px-3 py-1 border-b-2 ${
                   active
-                    ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700"
-                    : "hover:bg-gray-100"
+                    ? "text-ink font-bold border-yolk"
+                    : "text-ink-2 font-medium border-transparent hover:text-ink"
                 }`}
               >
                 {t.label}
                 {t.id === "checklist" && checklist.ids.size > 0 && (
-                  <span
-                    className={`ml-1.5 text-xs px-1.5 rounded-full ${
-                      active ? "bg-white/25" : "bg-blue-100 text-blue-800"
-                    }`}
-                  >
+                  <span className="ml-1.5 text-xs px-1.5 rounded-full bg-matcha-tint text-matcha-deep">
                     {checklist.ids.size}
                   </span>
                 )}
@@ -113,7 +109,7 @@ export function App() {
           href={DOCS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-auto text-sm text-blue-700 hover:underline"
+          className="ml-auto text-sm text-matcha-deep hover:underline"
         >
           Docs &amp; how it's built ↗
         </a>
@@ -122,7 +118,7 @@ export function App() {
       <div className="flex flex-1 min-h-0">
         {mode === "reference" ? (
           <>
-            <aside className="w-80 border-r flex flex-col">
+            <aside className="w-80 bg-paper border-r border-line flex flex-col">
               <SearchBar value={query} onChange={setQuery} />
               <FacetFilter
                 component={component}

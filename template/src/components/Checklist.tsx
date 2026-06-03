@@ -32,8 +32,8 @@ export function Checklist({
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold">My checklist</h1>
-      <p className="text-gray-600 mt-1">
+      <h1 className="text-2xl font-semibold font-serif text-ink">My checklist</h1>
+      <p className="text-ink-2 mt-1">
         Pick the criteria relevant to your project, then export a checklist or a PR-review template.
         Your selection is saved in this browser.
       </p>
@@ -45,33 +45,33 @@ export function Checklist({
           value={projectName}
           onChange={(e) => onProjectName(e.target.value)}
           placeholder="e.g. Checkout redesign"
-          className="w-full mt-1 px-3 py-2 border rounded text-sm"
+          className="w-full mt-1 px-3 py-2 border border-muted rounded-md text-sm bg-paper text-ink placeholder:text-muted"
         />
       </label>
 
       {selected.length === 0 ? (
-        <p className="mt-6 text-gray-600">
+        <p className="mt-6 text-ink-2">
           No criteria selected yet. Use the <strong>＋ Add to checklist</strong> button on any
           criterion, or pick from the full list in Reference mode.
         </p>
       ) : (
         <>
           <div className="mt-6 flex items-center gap-3">
-            <h2 className="text-lg font-semibold m-0">{selected.length} selected</h2>
-            <button type="button" onClick={onClear} className="text-sm text-blue-700 hover:underline">
+            <h2 className="text-lg font-semibold m-0 font-serif text-ink">{selected.length} selected</h2>
+            <button type="button" onClick={onClear} className="text-sm text-matcha-deep hover:underline">
               Clear all
             </button>
           </div>
-          <ul className="mt-2 divide-y border rounded">
+          <ul className="mt-2 divide-y divide-line-2 border border-line rounded-md">
             {selected
               .sort((a, b) => a.id.localeCompare(b.id))
               .map((c) => (
-                <li key={c.id} className="flex items-center gap-2 px-3 py-2 text-sm">
+                <li key={c.id} className="flex items-center gap-2 px-3 py-2 text-sm text-ink-2">
                   <button
                     type="button"
                     onClick={() => onToggle(c.id)}
                     aria-label={`Remove ${c.id} from checklist`}
-                    className="inline-flex items-center justify-center min-w-6 min-h-6 text-red-700 hover:bg-red-50 rounded"
+                    className="inline-flex items-center justify-center min-w-6 min-h-6 text-bad hover:bg-bad-bg rounded"
                   >
                     ✕
                   </button>
@@ -81,19 +81,19 @@ export function Checklist({
                     className="text-left hover:underline"
                   >
                     <span className="font-mono mr-2">{c.id}</span>
-                    {c.title} <span className="text-gray-500">({c.level})</span>
+                    {c.title} <span className="text-muted">({c.level})</span>
                   </button>
                 </li>
               ))}
           </ul>
 
           <div className="mt-6 flex items-center gap-3">
-            <div className="inline-flex rounded border overflow-hidden text-sm">
+            <div className="inline-flex rounded-md border border-muted overflow-hidden text-sm">
               <button
                 type="button"
                 onClick={() => setFormat("checklist")}
                 aria-pressed={format === "checklist"}
-                className={`px-3 py-1 ${format === "checklist" ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700" : "bg-white"}`}
+                className={`px-3 py-1 ${format === "checklist" ? "bg-matcha-tint text-matcha-deep font-semibold border border-matcha-tint-border" : "bg-paper text-ink-2"}`}
               >
                 Checklist
               </button>
@@ -101,7 +101,7 @@ export function Checklist({
                 type="button"
                 onClick={() => setFormat("pr")}
                 aria-pressed={format === "pr"}
-                className={`px-3 py-1 border-l ${format === "pr" ? "bg-blue-600 text-white font-semibold ring-1 ring-inset ring-blue-700" : "bg-white"}`}
+                className={`px-3 py-1 border-l border-muted ${format === "pr" ? "bg-matcha-tint text-matcha-deep font-semibold border border-matcha-tint-border" : "bg-paper text-ink-2"}`}
               >
                 PR template
               </button>
@@ -109,7 +109,7 @@ export function Checklist({
             <CopyButton text={output} label="Copy Markdown" className="text-sm px-3 py-1" />
           </div>
           <pre
-            className="mt-3 p-3 rounded-md bg-gray-50 border text-sm overflow-x-auto whitespace-pre-wrap"
+            className="mt-3 p-3 rounded-md bg-term-bg text-term-text font-mono border border-line text-sm overflow-x-auto whitespace-pre-wrap"
             tabIndex={0}
             role="region"
             aria-label="Markdown export"

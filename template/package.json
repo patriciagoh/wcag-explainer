@@ -12,6 +12,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "matcha-oat-design-system": "github:patriciagoh/matcha-oat-design-system",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "shiki": "^4.1.0",

@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
+/* Base surface + type come from the Matcha Oat tokens (single source of truth,
+   loaded via matcha-oat-design-system/tokens.css in main.tsx). */
+@layer base {
+  body {
+    background: var(--oat);
+    color: var(--ink-2);
+    font-family: var(--sans);
+  }
 }
 
-/* Visible focus indicator for keyboard users (WCAG 2.4.7). blue-700 reads
-   >=3:1 against white and against the blue-600 active controls (1.4.11). */
+/* Visible focus indicator for keyboard users (WCAG 2.4.7).
+   matcha-deep reads >=3:1 against oat/paper and against matcha-tint controls (1.4.11). */
 :focus-visible {
-  outline: 2px solid #1d4ed8;
-  outline-offset: 2px;
+  outline: var(--focus);
+  outline-offset: var(--focus-offset);
 }
 
 /* Honor reduced-motion preferences (2.3.3). */

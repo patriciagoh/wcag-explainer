@@ -9,18 +9,18 @@ type Props = { examples: CodeExampleType[] };
 function DiffView({ fail, pass }: { fail: CodeExampleType; pass: CodeExampleType }) {
   const diff = lineDiff(fail.code, pass.code);
   return (
-    <figure className="border rounded-md overflow-hidden">
-      <figcaption className="flex items-center gap-2 px-3 py-2 border-b bg-gray-50">
-        <span className="text-xs font-semibold px-2 py-0.5 rounded border bg-indigo-100 text-indigo-900 border-indigo-300">
+    <figure className="border border-line rounded-md overflow-hidden">
+      <figcaption className="flex items-center gap-2 px-3 py-2 border-b border-line bg-oat">
+        <span className="text-xs font-semibold px-2 py-0.5 rounded border bg-matcha-tint text-matcha-deep border-matcha-tint-border">
           FIX
         </span>
-        <span className="text-sm">Fail → pass diff</span>
+        <span className="text-sm text-ink">Fail → pass diff</span>
         <span className="ml-auto">
           <CopyButton text={pass.code} label="Copy fixed code" />
         </span>
       </figcaption>
       <pre
-        className="p-3 m-0 overflow-x-auto bg-gray-900 text-gray-100 text-sm"
+        className="p-3 m-0 overflow-x-auto bg-term-bg text-term-text font-mono text-sm"
         tabIndex={0}
         role="region"
         aria-label="Fail to pass code diff"
@@ -29,9 +29,9 @@ function DiffView({ fail, pass }: { fail: CodeExampleType; pass: CodeExampleType
           {diff.map((line, i) => {
             const cls =
               line.type === "add"
-                ? "bg-green-900/50 text-green-200"
+                ? "bg-ok-bg text-ok"
                 : line.type === "del"
-                  ? "bg-red-900/50 text-red-200"
+                  ? "bg-bad-bg text-bad"
                   : "";
             const sign = line.type === "add" ? "+" : line.type === "del" ? "-" : " ";
             return (
@@ -61,7 +61,7 @@ export function CodeExamples({ examples }: Props) {
             type="button"
             onClick={() => setShowDiff((v) => !v)}
             aria-pressed={showDiff}
-            className="text-sm px-3 py-1 rounded border bg-white hover:bg-gray-50"
+            className="text-sm px-3 py-1 rounded border border-muted bg-paper text-ink-2 hover:bg-matcha-tint"
           >
             {showDiff ? "Show side by side" : "Show fail → pass diff"}
           </button>

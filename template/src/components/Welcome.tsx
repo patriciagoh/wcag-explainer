@@ -50,19 +50,19 @@ const MODES: { mode: Mode; emoji: string; title: string; desc: string }[] = [
 export function Welcome({ byId, total, onSelect, onMode }: Props) {
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold tracking-tight">WCAG 2.2 Explainer</h1>
-      <p className="mt-3 text-lg text-gray-700">
+      <h1 className="text-3xl font-serif font-bold tracking-tight text-ink">WCAG 2.2 Explainer</h1>
+      <p className="mt-3 text-lg text-ink-2">
         A working engineer's guide to all {total} WCAG&nbsp;2.2 success criteria — each in plain English,
-        with <span className="text-green-700 font-medium">passing</span> and{" "}
-        <span className="text-red-700 font-medium">failing</span> code, what a real user experiences,
+        with <span className="text-ok font-medium">passing</span> and{" "}
+        <span className="text-bad font-medium">failing</span> code, what a real user experiences,
         the common mistakes, and the axe-core rules that catch them.
       </p>
 
-      <h2 className="text-base font-semibold mt-8 mb-2 text-gray-800">Start here</h2>
+      <h2 className="text-base font-serif font-semibold mt-8 mb-2 text-ink">Start here</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div className="border rounded-lg p-4 bg-blue-50 border-blue-200">
-          <div className="text-sm font-semibold text-blue-900">📚 Browse criteria</div>
-          <p className="text-sm text-gray-700 m-0 mt-1">
+        <div className="border rounded-lg p-4 bg-matcha-tint border-matcha-tint-border">
+          <div className="text-sm font-semibold text-matcha-deep">📚 Browse criteria</div>
+          <p className="text-sm text-ink-2 m-0 mt-1">
             Pick any criterion from the sidebar on the left, or filter it by component or your role.
           </p>
         </div>
@@ -71,17 +71,17 @@ export function Welcome({ byId, total, onSelect, onMode }: Props) {
             key={m.mode}
             type="button"
             onClick={() => onMode(m.mode)}
-            className="text-left border rounded-lg p-4 hover:border-blue-400 hover:bg-gray-50"
+            className="text-left border border-line rounded-lg p-4 hover:border-matcha hover:bg-matcha-tint"
           >
-            <div className="text-sm font-semibold">
+            <div className="text-sm font-semibold text-ink">
               {m.emoji} {m.title}
             </div>
-            <p className="text-sm text-gray-600 m-0 mt-1">{m.desc}</p>
+            <p className="text-sm text-muted m-0 mt-1">{m.desc}</p>
           </button>
         ))}
       </div>
 
-      <h2 className="text-base font-semibold mt-8 mb-2 text-gray-800">Jump to a common criterion</h2>
+      <h2 className="text-base font-serif font-semibold mt-8 mb-2 text-ink">Jump to a common criterion</h2>
       <div className="flex flex-wrap gap-2">
         {FEATURED.map((id) => {
           const c = byId.get(id);
@@ -91,20 +91,20 @@ export function Welcome({ byId, total, onSelect, onMode }: Props) {
               key={id}
               type="button"
               onClick={() => onSelect(id)}
-              className="text-sm px-3 py-1.5 rounded-full border bg-white hover:bg-blue-50 hover:border-blue-300"
+              className="text-sm px-3 py-1.5 rounded-full border border-line bg-paper hover:bg-matcha-tint hover:border-matcha-tint-border"
             >
-              <span className="font-mono text-xs text-gray-500 mr-1.5">{id}</span>
+              <span className="font-mono text-xs text-muted mr-1.5">{id}</span>
               {c.title}
             </button>
           );
         })}
       </div>
 
-      <h2 className="text-base font-semibold mt-8 mb-2 text-gray-800">Official docs &amp; tools</h2>
+      <h2 className="text-base font-serif font-semibold mt-8 mb-2 text-ink">Official docs &amp; tools</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {REFERENCES.map((col) => (
           <section key={col.group} aria-label={col.group}>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">
+            <h3 className="text-xs font-mono font-semibold uppercase tracking-wide text-muted mb-2">
               {col.group}
             </h3>
             <ul className="list-none p-0 m-0 space-y-2">
@@ -114,11 +114,11 @@ export function Welcome({ byId, total, onSelect, onMode }: Props) {
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-blue-700 hover:underline font-medium"
+                    className="text-sm text-matcha-deep hover:underline font-medium"
                   >
                     {l.label} ↗
                   </a>
-                  <p className="text-xs text-gray-500 m-0">{l.note}</p>
+                  <p className="text-xs text-muted m-0">{l.note}</p>
                 </li>
               ))}
             </ul>
@@ -126,13 +126,13 @@ export function Welcome({ byId, total, onSelect, onMode }: Props) {
         ))}
       </div>
 
-      <p className="mt-8 text-sm text-gray-500">
+      <p className="mt-8 text-sm text-muted">
         Curious how this is built?{" "}
         <a
           href="https://patriciagoh.github.io/wcag-explainer/docs/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700 underline"
+          className="text-matcha-deep underline"
         >
           Read the docs ↗
         </a>{" "}

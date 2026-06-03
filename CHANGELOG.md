@@ -6,6 +6,7 @@ All notable changes to this project are documented here. The format is based on
 ## [Unreleased]
 
 ### Added
+- Reskinned the UI to the Matcha Oat design system (consumes matcha-oat-design-system via its Tailwind preset + tokens; WCAG 2.2 AA preserved).
 - CI workflow running lint + tests for both the app and the pipeline.
 - Contribution scaffolding: CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, issue/PR templates.
 - ARCHITECTURE.md documenting the repo layout as a reusable skill-project template.
